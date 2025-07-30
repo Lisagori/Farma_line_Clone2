@@ -11,20 +11,20 @@ Base = declarative_base()
 class TesseraSanitaria(Base):
     __tablename__ = 'tessere_sanitarie'
 
-    codice_fiscale = Column(String(16), primary_key=True)
-    sesso = Column(String(1))
-    luogo_nascita = Column(String(100))
-    provincia = Column(String(2))
-    data_nascita = Column(String(10))
-    data_scadenza = Column(String(10))
-    numero_identificazione_tessera = Column(String(20))
+    codice_fiscale = Column(String, primary_key=True)
+    sesso = Column(String)
+    luogo_nascita = Column(String)
+    provincia = Column(String)
+    data_nascita = Column(String)
+    data_scadenza = Column(String)
+    numero_identificazione_tessera = Column(String)
 
 class Cliente(Base):
     __tablename__ = 'clienti'
 
-    nome = Column(String(100), nullable=False)
-    cognome = Column(String(100), nullable=False)
-    codice_fiscale = Column(String(16), ForeignKey('tessere_sanitarie.codice_fiscale'),primary_key=True, nullable=False, unique=True)
+    nome = Column(String, nullable=False)
+    cognome = Column(String, nullable=False)
+    codice_fiscale = Column(String, ForeignKey('tessere_sanitarie.codice_fiscale'),primary_key=True, nullable=False, unique=True)
 
 class TesserinoProfessionale(Base):
     __tablename__ = 'tesserino_professionale'
