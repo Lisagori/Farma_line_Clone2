@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="687e12ae-2a07-4650-9e4f-85933ff285c1" name="Changes" comment="aggiunta la directory profile con il file iscrizione">
-      <change afterPath="$PROJECT_DIR$/profile_creation/base_iscrizioni.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="687e12ae-2a07-4650-9e4f-85933ff285c1" name="Changes" comment="realizzate le tabelle per la sezione di iscrizione">
+      <change afterPath="$PROJECT_DIR$/profile_creation/iscrizione.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile_creation/iscrizione.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,6 +36,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/profile_creation/base_iscrizioni.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/profile_creation/iscrizione.py" root0="SKIP_INSPECTION" />
   </component>
   <component name="ProjectColorInfo">{
@@ -82,7 +81,15 @@
       <option name="project" value="LOCAL" />
       <updated>1753864288845</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="realizzate le tabelle per la sezione di iscrizione">
+      <option name="closed" value="true" />
+      <created>1753870648752</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1753870648752</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -98,6 +105,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="aggiunta la directory profile con il file iscrizione" />
-    <option name="LAST_COMMIT_MESSAGE" value="aggiunta la directory profile con il file iscrizione" />
+    <MESSAGE value="realizzate le tabelle per la sezione di iscrizione" />
+    <option name="LAST_COMMIT_MESSAGE" value="realizzate le tabelle per la sezione di iscrizione" />
   </component>
 </project>
