@@ -122,7 +122,7 @@ class Cliente(Persona):
         cliente = session.query(ClienteDB).filter_by(codice_fiscale=self.t_s.codice_fiscale).first()   #si definisce la ricerca da database per controllare se la persona è già registrata
 
         if cliente:
-            print("utente già registrato")
+            print("Il codice fiscale inserito appartiene a un utente già registrato")
         else:
             self.t_s.associazione_tessera_a_db()
 
@@ -153,7 +153,7 @@ class Farmacista(Persona):
         farmacista = session.query(FarmacistaDB).filter_by(matricola=self.t_p.n_matricola).first() # si definisce la ricerca da database per controllare se la persona è già registrata
 
         if farmacista:
-            print("utente già registrato")
+            print("La matricola inserita appartiene a un utente già registrato")
         else:
             self.t_p.associazione_tessera_a_db()
 
