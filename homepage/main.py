@@ -1,0 +1,3 @@
+from profile_creation.iscrizioni import registrazione_utente
+
+registrazione_utente()

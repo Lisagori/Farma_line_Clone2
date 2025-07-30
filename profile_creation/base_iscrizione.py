@@ -11,7 +11,7 @@ Base = declarative_base()
 class TesseraSanitariaDB(Base):
     __tablename__ = 'tessere_sanitarie'
 
-    codice_fiscale = Column(String, primary_key=True)
+    codice_fiscale = Column(String, primary_key=True, unique=True)
     sesso = Column(String)
     luogo_nascita = Column(String)
     provincia = Column(String)
@@ -38,5 +38,13 @@ class FarmacistaDB(Base):
     nome = Column(String(100), nullable=False)
     cognome = Column(String(100), nullable=False)
     matricola = Column(String, ForeignKey('tesserino_professionale.n_matricola'),primary_key=True, nullable=False, unique=True)
+
+class ProfiloUtenteDB(Base):
+    __tablename__ = 'profili'
+
+    nome_utente = Column(String,primary_key= True, unique=True)
+    password =Column(String)
+    id_cliente = Column(String, ForeignKey('clienti.codice_fiscale'), unique=True, nullable=True)
+    id_farmacista = Column(String, ForeignKey('farmacisti.matricola'), unique = True, nullable=True)
 
 Base.metadata.create_all(engine)
