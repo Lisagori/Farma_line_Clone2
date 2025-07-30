@@ -1,14 +1,14 @@
 from enum import unique
-
 from sqlalchemy import create_engine
-engine = create_engine('postgresql+psycopg2://postgres:postgres@localhost:5432/Farmaline')
-
 from sqlalchemy import Column, Integer, String, DateTime, Date, ForeignKey
 from sqlalchemy.orm import sessionmaker, declarative_base
+
+engine = create_engine('postgresql+psycopg2://postgres:postgres@localhost:5432/Farmaline')
+
 Base = declarative_base()
 
 
-class TesseraSanitaria(Base):
+class TesseraSanitariaDB(Base):
     __tablename__ = 'tessere_sanitarie'
 
     codice_fiscale = Column(String, primary_key=True)
@@ -19,20 +19,20 @@ class TesseraSanitaria(Base):
     data_scadenza = Column(String)
     numero_identificazione_tessera = Column(String)
 
-class Cliente(Base):
+class ClienteDB(Base):
     __tablename__ = 'clienti'
 
     nome = Column(String, nullable=False)
     cognome = Column(String, nullable=False)
     codice_fiscale = Column(String, ForeignKey('tessere_sanitarie.codice_fiscale'),primary_key=True, nullable=False, unique=True)
 
-class TesserinoProfessionale(Base):
+class TesserinoProfessionaleDB(Base):
     __tablename__ = 'tesserino_professionale'
 
     n_matricola = Column(String, primary_key=True, unique=True)
     ordine_di_appartenenza = Column(String)
 
-class Farmacista(Base):
+class FarmacistaDB(Base):
     __tablename__ = 'farmacisti'
 
     nome = Column(String(100), nullable=False)

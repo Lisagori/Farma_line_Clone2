@@ -1,9 +1,6 @@
-from abc import ABC, abstractmethod
-import base_iscrizioni
+from abc import ABC
+from profile_creation.base_iscrizioni import *
 from sqlalchemy.orm import sessionmaker
-from sqlalchemy import create_engine
-from base_iscrizioni import engine, Cliente as ClienteDB, TesseraSanitaria as TesseraSanitariaDB
-from sqlalchemy import ForeignKey
 
 Session = sessionmaker(bind=engine)
 session = Session()
@@ -79,43 +76,77 @@ class ProfiloUtente :
 
 
 def iscriversi(user: Persona) -> ProfiloUtente:
-    cliente = session.query(ClienteDB).filter_by(codice_fiscale=user.t_s.codice_fiscale).first()
 
-    if cliente:
-        print("utente già registrato")
-    else:
-        profilo = ProfiloUtente(user)
-        print(f"""registrazione effettuata con successo.
-                 Benvenuto {profilo.nome_utente} ! """)
+    if isinstance(user, Cliente) : # processo di creazione account cliente
+        cliente = session.query(ClienteDB).filter_by(codice_fiscale=user.t_s.codice_fiscale).first()
 
-        # Crea le istanze dei modelli SQLAlchemy da salvare
-        tessera = TesseraSanitariaDB(
-            codice_fiscale=user.t_s.codice_fiscale,
-            sesso=user.t_s.sesso,
-            luogo_nascita=user.t_s.luogo_nascita,
-            provincia=user.t_s.provincia,
-            data_nascita=user.t_s.data_nascita,
-            data_scadenza=user.t_s.data_scadenza,
-            numero_identificazione_tessera=user.t_s.numero_identificazione_tessera
-        )
-        session.add(tessera)
-        session.commit()
+        if cliente:
+            print("utente già registrato")
+        else:
+            profilo = ProfiloUtente(user)
+            print(f"""registrazione effettuata con successo.
+                     Benvenuto {profilo.nome_utente} ! """)
 
-        cliente_db = ClienteDB(
-            nome=user.nome,
-            cognome=user.cognome,
-            codice_fiscale=user.t_s.codice_fiscale
-        )
+            # Crea le istanze dei modelli SQLAlchemy da salvare
+            tessera = TesseraSanitariaDB(
+                codice_fiscale=user.t_s.codice_fiscale,
+                sesso=user.t_s.sesso,
+                luogo_nascita=user.t_s.luogo_nascita,
+                provincia=user.t_s.provincia,
+                data_nascita=user.t_s.data_nascita,
+                data_scadenza=user.t_s.data_scadenza,
+                numero_identificazione_tessera=user.t_s.numero_identificazione_tessera
+            )
+            session.add(tessera)
+            session.commit()
 
+            cliente_db = ClienteDB(
+                nome=user.nome,
+                cognome=user.cognome,
+                codice_fiscale=user.t_s.codice_fiscale
+            )
+            session.add(cliente_db)
+            session.commit()
 
-        session.add(cliente_db)
-        session.commit()
-        return profilo
+            return profilo
 
+    elif isinstance(user, Farmacista):  # processo di creazione account farmacista
+        farmacista = session.query(FarmacistaDB).filter_by(n_matricola=user.t_p.n_matricola).first()
+
+        if farmacista:
+            print("utente già registrato")
+        else:
+            profilo = ProfiloUtente(user)
+            print(f"""registrazione effettuata con successo.
+                     Benvenuto {profilo.nome_utente} ! """)
+
+            # Crea le istanze dei modelli SQLAlchemy da salvare
+            tessera = TesserinoProfessionaleDB(
+                n_matricola=user.t_p.n_matricola,
+                ordine_di_appartenenza=user.t_p.ordine_di_appartenenza
+            )
+            session.add(tessera)
+            session.commit()
+
+            farmacista_db = FarmacistaDB(
+                nome=user.nome,
+                cognome=user.cognome,
+                n_matricola=user.t_p.n_matricola
+            )
+            session.add(farmacista_db)
+            session.commit()
+
+            return profilo
 
 
 #verifica del codice
-profilo : ProfiloUtente
-persona = Cliente()
+profile: ProfiloUtente
+controllo= int(input(""" Se si desidera iscriversi come cliente digitare 1
+Se si desidera iscriversi come farmacista digitare 2"""))
+if controllo == 1 :
+    persona = Cliente()
+elif controllo == 2 :
+    persona = Farmacista()
+
 print(" profilo cliente ")
-profilo = iscriversi(persona)
+profile = iscriversi(persona)
