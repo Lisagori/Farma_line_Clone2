@@ -54,7 +54,7 @@ class TesserinoProfessionale :
 
     def __init__(self, ordine :str):
         self.ordine_di_appartenenza = ordine
-        self.n_iscrizione_albo = input("Inserire il proprio numero di matricola : ")
+        self.n_matricola = input("Inserire il proprio numero di matricola : ")
 
 class Farmacista(Persona):
     t_p: TesserinoProfessionale #t_p abbreviazione tesserino professionale
@@ -111,7 +111,7 @@ def iscriversi(user: Persona) -> ProfiloUtente:
             return profilo
 
     elif isinstance(user, Farmacista):  # processo di creazione account farmacista
-        farmacista = session.query(FarmacistaDB).filter_by(n_matricola=user.t_p.n_matricola).first()
+        farmacista = session.query(FarmacistaDB).filter_by(matricola=user.t_p.n_matricola).first()
 
         if farmacista:
             print("utente già registrato")
@@ -131,7 +131,7 @@ def iscriversi(user: Persona) -> ProfiloUtente:
             farmacista_db = FarmacistaDB(
                 nome=user.nome,
                 cognome=user.cognome,
-                n_matricola=user.t_p.n_matricola
+                matricola=user.t_p.n_matricola
             )
             session.add(farmacista_db)
             session.commit()
@@ -148,6 +148,7 @@ if controllo == 1 :
     persona = Cliente()
 elif controllo == 2 :
     persona = Farmacista()
-
+else :
+    print("opzione non valida")
 print(" profilo cliente ")
 profile = iscriversi(persona)

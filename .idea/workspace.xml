@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="687e12ae-2a07-4650-9e4f-85933ff285c1" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/profile_creation/base_iscrizioni.py" beforeDir="false" afterPath="$PROJECT_DIR$/profile_creation/base_iscrizioni.py" afterDir="false" />
+    <list default="true" id="687e12ae-2a07-4650-9e4f-85933ff285c1" name="Changes" comment="aggiunta framacista">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/profile_creation/iscrizione.py" beforeDir="false" afterPath="$PROJECT_DIR$/profile_creation/iscrizione.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -98,7 +98,23 @@
       <option name="project" value="LOCAL" />
       <updated>1753870648752</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="prime modifiche sbagliate">
+      <option name="closed" value="true" />
+      <created>1753885918575</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1753885918575</updated>
+    </task>
+    <task id="LOCAL-00004" summary="aggiunta framacista">
+      <option name="closed" value="true" />
+      <created>1753886064237</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1753886064237</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -118,7 +134,9 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="aggiunta la directory profile con il file iscrizione" />
     <MESSAGE value="realizzate le tabelle per la sezione di iscrizione" />
-    <option name="LAST_COMMIT_MESSAGE" value="realizzate le tabelle per la sezione di iscrizione" />
+    <MESSAGE value="prime modifiche sbagliate" />
+    <MESSAGE value="aggiunta framacista" />
+    <option name="LAST_COMMIT_MESSAGE" value="aggiunta framacista" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Farma_line$iscrizione.coverage" NAME="iscrizione Coverage Results" MODIFIED="1753883589561" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/profile_creation" />
