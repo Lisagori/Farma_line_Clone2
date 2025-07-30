@@ -142,7 +142,8 @@ def iscriversi(user: Persona) -> ProfiloUtente:
 #verifica del codice
 profile: ProfiloUtente
 controllo= int(input(""" Se si desidera iscriversi come cliente digitare 1
-Se si desidera iscriversi come farmacista digitare 2"""))
+Se si desidera iscriversi come farmacista digitare 2 
+"""))
 if controllo == 1 :
     persona = Cliente()
 elif controllo == 2 :
