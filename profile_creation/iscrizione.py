@@ -1,7 +1,6 @@
-from abc import ABC, abstractmethod
-import base_iscrizioni
+from abc import ABC
+from profile_creation.base_iscrizioni import *
 from sqlalchemy.orm import sessionmaker
-from sqlalchemy import create_engine
 
 Session = sessionmaker(bind=engine)
 session = Session()
@@ -78,7 +77,7 @@ class ProfiloUtente :
 
 def iscriversi(user : Persona) -> ProfiloUtente :
 
-    cliente = session.query(Cliente).filter_by(codice_fiscale= user.t_s.codice_fiscale).first()
+    cliente = session.query(Cliente_).filter_by(codice_fiscale= user.t_s.codice_fiscale).first()
 
     if cliente:
         print("utente già registrato")
@@ -86,13 +85,15 @@ def iscriversi(user : Persona) -> ProfiloUtente :
         profilo = ProfiloUtente(user)
         print(f"""registrazione effettuata con successo.
                  Benvenuto {profilo.nome_utente} ! """)
-        session.add(user)
+        session.add()
         session.commit()
         return profilo
 
 
 #verifica del codice
-profilo : ProfiloUtente
+profile : ProfiloUtente
 persona = Cliente()
 print(" profilo cliente ")
-profilo = iscriversi(persona)
+profile = iscriversi(persona)
+
+
