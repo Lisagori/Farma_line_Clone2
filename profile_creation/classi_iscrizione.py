@@ -24,6 +24,20 @@ class Persona (ABC) :
     def iscriversi(self):
         ...
 
+    def crea_profilo(self):
+
+        profilo = ProfiloUtente(self)
+        ck = profilo.controllo()
+        while not ck:  # questo nuovo
+            nuovo_nome = input("Inserisci un altro nome utente: ")
+            profilo.nome_utente = nuovo_nome
+            ck = profilo.controllo()
+
+        profilo.associazione_profilo_utente()
+
+        print(f"""registrazione effettuata con successo.
+                    Benvenuto {profilo.nome_utente} ! """)
+
 class ProfiloUtente :
     nome_utente:str
     password: str
@@ -141,18 +155,9 @@ class Cliente(Persona):
 
             session.add(cliente_db)
             session.commit()
-            profilo = ProfiloUtente(self)
-            ck = profilo.controllo()
-            while not ck: #questo nuovo
-                    nuovo_nome = input("Inserisci un altro nome utente: ")
-                    profilo.nome_utente = nuovo_nome
-                    ck = profilo.controllo()
-
-            profilo.associazione_profilo_utente() #quest è giusto
-            print(f"""registrazione effettuata con successo.
-            Benvenuto {profilo.nome_utente} ! """)
 
             #sezione per associazione profilo utente
+            self.crea_profilo()
 
 class Farmacista(Persona):
     t_p: TesserinoProfessionale #t_p abbreviazione tesserino professionale
@@ -177,16 +182,6 @@ class Farmacista(Persona):
             session.add(farmacista_db)
             session.commit()
 
-            profilo = ProfiloUtente(self)
-            ck = profilo.controllo()
-            while not ck:  # questo nuovo
-                nuovo_nome = input("Inserisci un altro nome utente: ")
-                profilo.nome_utente = nuovo_nome
-                ck = profilo.controllo()
-
-            profilo.associazione_profilo_utente()
-
-            print(f"""registrazione effettuata con successo.
-            Benvenuto {profilo.nome_utente} ! """)
+            self.crea_profilo()
 
 

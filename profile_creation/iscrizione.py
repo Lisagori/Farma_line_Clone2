@@ -3,7 +3,7 @@ from profile_creation.classi_iscrizione import *
 # sezione di codice dedicata  all'iscrizione da usare nel main
 
 def registrazione_utente() ->None :
-    print("Creazione profilo cliente, seguire le istruzioni mostrate di seguito :")
+    print("Creazione profilo utente, seguire le istruzioni mostrate di seguito :")
 
     verifica = False
     pearson : Persona
