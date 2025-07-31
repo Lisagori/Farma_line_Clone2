@@ -146,7 +146,7 @@ class Cliente(Persona):
         if cliente:
             print("Il codice fiscale inserito appartiene a un utente già registrato")
 
-            scelta = input("""Se si vuole accedere al servizio con questo nome utente digitare 1 
+            scelta = input("""Se si vuole accedere al servizio digitare 1 
 Se si vuole ritentare il processo di iscrizione digitare 2 
 Digitare exit se si vuole terminare l'operazione 
             """)
@@ -186,7 +186,7 @@ class Farmacista(Persona):
         if farmacista:
             print("La matricola inserita appartiene a un utente già registrato")
 
-            scelta = input("""Se si vuole accedere al servizio con questo nome utente digitare 1 
+            scelta = input("""Se si vuole accedere al servizio digitare 1 
 Se si vuole ritentare il processo di iscrizione digitare 2 )
 Digitare exit se si vuole terminare l'operazione 
 """)
