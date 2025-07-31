@@ -15,7 +15,7 @@ while scelta == "1" :
 Se si desidera effetuare un un ordine di un preparato galenico magistrale digitare 2. 
     """)
     while selezione == "1":
-
+        search_bar()
         selezione = input("""Se si desidera continuare a ricercare medicinali da acquistare digitare 1
 Se si desidera terminare la ricerca e procedere all'acquisto digitare 3""")
 

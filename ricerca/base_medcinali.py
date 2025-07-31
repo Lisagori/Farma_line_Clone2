@@ -2,7 +2,7 @@ from enum import unique
 from sqlalchemy import create_engine
 from sqlalchemy import Column, Integer, String, DateTime, Date, ForeignKey
 from sqlalchemy.orm import sessionmaker, declarative_base
-from documentazione_farmaci.base_documenti_medicinali import SchedaTecnicaDB
+from ricerca.documentazione_farmaci.base_documenti_medicinali import SchedaTecnicaDB
 
 engine = create_engine('postgresql+psycopg2://postgres:postgres@localhost:5432/Farmaline')
 
