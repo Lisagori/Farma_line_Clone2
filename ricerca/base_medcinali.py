@@ -1,8 +1,10 @@
 from enum import unique
+from operator import index
+
 from sqlalchemy import create_engine
 from sqlalchemy import Column, Integer, String, DateTime, Date, ForeignKey
 from sqlalchemy.orm import sessionmaker, declarative_base
-from documentazione_farmaci.base_documenti_medicinali import SchedaTecnicaDB
+from ricerca.documentazione_farmaci.base_documenti_medicinali import SchedaTecnicaDB
 
 engine = create_engine('postgresql+psycopg2://postgres:postgres@localhost:5432/Farmaline')
 
@@ -15,12 +17,14 @@ class FarmaciDB(Base) :
     nome = Column(String)
     ricetta = Column (String(2), nullable=True)
     preparato_galenico = Column(String(2), nullable=True)
+    prezzo = Column( String )
 
     def __repr__(self): #metodo speciale per definire la rappresentazione testuale di un oggetto
         return f"""codice : {self.codice} 
-nome : {self.nome} 
-ricetta : {self.ricetta} 
-preparato_galenico : {self.preparato_galenico} 
+NOME : {self.nome} 
+RICETTA : {self.ricetta} 
+PREPARATO GALENICO : {self.preparato_galenico} 
+PREZZO : {self.prezzo} 
 """
 
 Base.metadata.create_all(engine)

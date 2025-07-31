@@ -23,7 +23,7 @@ def accesso_utente() -> str:
             print("se non si è in possesso di un profilo utente già registrato selezionare 2 per iscriversi al servizio")
             print("digitare exit se si vuole terminare le operazioni")
             verify = input()
-            return verify#si riconduce al main dove fa la nuova iscrizione
+            return verify #si riconduce al main dove fa la nuova iscrizione
 
     if count > 0 :
             #sezione dedicata al controllo password
@@ -32,5 +32,4 @@ def accesso_utente() -> str:
             while not pw_check :
                 pw = input(" La password inserita  per questo username è incorretta, riprovare : ")
                 pw_check = session.query(ProfiloUtenteDB).filter_by(nome_utente=username, password = pw).first()
-
 
