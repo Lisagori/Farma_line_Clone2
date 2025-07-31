@@ -1,4 +1,4 @@
-from profile_creation.iscrizioni import registrazione_utente
+from profile_creation.iscrizione import registrazione_utente
 
 controll ="go"
 print( "Se si vuole terminare scrivere exit quando richiesto ")
