@@ -51,10 +51,17 @@ class ProfiloUtente :
         else:
             prf = ProfiloUtenteDB()
             print(" il processo di associazione profilo non è andato a buon fine ")
-
         session.add(prf)
         session.commit()
         return None
+
+    def controllo(self)->bool:
+        profilo_esistente = session.query(ProfiloUtenteDB).filter_by(nome_utente=self.nome_utente).first()
+        if profilo_esistente:
+            print(f"Il nome utente '{self.nome_utente}' è già in uso. Scegliere un altro nome.")
+            return False
+        else:
+            return True
 
 class TesseraSanitaria :
     codice_fiscale: str
@@ -134,9 +141,14 @@ class Cliente(Persona):
 
             session.add(cliente_db)
             session.commit()
-
             profilo = ProfiloUtente(self)
-            profilo.associazione_profilo_utente()
+            ck = profilo.controllo()
+            while not ck: #questo nuovo
+                    nuovo_nome = input("Inserisci un altro nome utente: ")
+                    profilo.nome_utente = nuovo_nome
+                    ck = profilo.controllo()
+
+            profilo.associazione_profilo_utente() #quest è giusto
             print(f"""registrazione effettuata con successo.
             Benvenuto {profilo.nome_utente} ! """)
 
@@ -166,6 +178,12 @@ class Farmacista(Persona):
             session.commit()
 
             profilo = ProfiloUtente(self)
+            ck = profilo.controllo()
+            while not ck:  # questo nuovo
+                nuovo_nome = input("Inserisci un altro nome utente: ")
+                profilo.nome_utente = nuovo_nome
+                ck = profilo.controllo()
+
             profilo.associazione_profilo_utente()
 
             print(f"""registrazione effettuata con successo.
