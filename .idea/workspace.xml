@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="687e12ae-2a07-4650-9e4f-85933ff285c1" name="Changes" comment="main ciclico">
+    <list default="true" id="687e12ae-2a07-4650-9e4f-85933ff285c1" name="Changes" comment="non è stato modificato niente">
+      <change afterPath="$PROJECT_DIR$/accesso/accesso.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -28,12 +29,12 @@
     &quot;assignee&quot;: &quot;Ila-i&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/Ila-i/Farma_line.git&quot;,
-    &quot;accountId&quot;: &quot;ef441d76-cfff-49f7-ab30-11f7b7381cc9&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Ila-i/Farma_line.git",
+    "accountId": "f1bb7cde-48ee-4622-80a9-9f5cbf72eaf6"
   }
-}</component>
+}]]></component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/profile_creation/base_iscrizioni.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/profile_creation/iscrizione.py" root0="FORCE_HIGHLIGHTING" />
@@ -47,29 +48,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.base_iscrizioni.executor": "Run",
-    "Python.iscrizione.executor": "Run",
-    "Python.iscrizioni.executor": "Run",
-    "Python.main.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.base_iscrizioni.executor&quot;: &quot;Run&quot;,
+    &quot;Python.iscrizione.executor&quot;: &quot;Run&quot;,
+    &quot;Python.iscrizioni.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-09060db00ec0-JavaScript-PY-251.26927.90" />
-        <option value="bundled-python-sdk-41e8cd69c857-64d779b69b7a-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-251.26927.90" />
+        <option value="bundled-python-sdk-af26db0dccfe-c546a90a8094-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-242.26775.22" />
       </set>
     </attachedChunks>
   </component>
@@ -139,7 +139,23 @@
       <option name="project" value="LOCAL" />
       <updated>1753899052906</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="non è stato modificato niente">
+      <option name="closed" value="true" />
+      <created>1753947780553</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1753947780553</updated>
+    </task>
+    <task id="LOCAL-00009" summary="non è stato modificato niente">
+      <option name="closed" value="true" />
+      <created>1753948140626</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1753948140626</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -164,7 +180,8 @@
     <MESSAGE value="aggiunta framacista correzione matricola" />
     <MESSAGE value="trasformato il metodo controllo in funzione controlla &#10;realizzati i metodi iscriversi per le classi cliente e farmacista&#10;realizzati imetodi associazione tessera per tessera sanitaria e tesserino professionale&#10;relizzato il metodo associazione profilo per associare profilo utente" />
     <MESSAGE value="main ciclico" />
-    <option name="LAST_COMMIT_MESSAGE" value="main ciclico" />
+    <MESSAGE value="non è stato modificato niente" />
+    <option name="LAST_COMMIT_MESSAGE" value="non è stato modificato niente" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Farma_line$iscrizione.coverage" NAME="iscrizione Coverage Results" MODIFIED="1753883589561" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/profile_creation" />
