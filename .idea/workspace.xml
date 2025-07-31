@@ -4,10 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="687e12ae-2a07-4650-9e4f-85933ff285c1" name="Changes" comment="modifiche tutto">
+    <list default="true" id="687e12ae-2a07-4650-9e4f-85933ff285c1" name="Changes" comment="aggiunta opzione iscrizione da accesso">
+      <change afterPath="$PROJECT_DIR$/profile_creation/documentazione_persone/base_documenti_persone.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ricerca/base_medcinali.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ricerca/classi_medicinali/classi_medicinali.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ricerca/documentazione_farmaci/base_documenti_medicinali.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ricerca/documentazione_farmaci/base_prescrizioni_mediche.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ricerca/searchbar.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accesso/accesso.py" beforeDir="false" afterPath="$PROJECT_DIR$/accesso/accesso.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/homepage/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/homepage/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,10 +56,13 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Python.accesso.executor": "Run",
+    "Python.base_documenti_medicinali.executor": "Run",
     "Python.base_iscrizioni.executor": "Run",
+    "Python.base_medcinali.executor": "Run",
     "Python.iscrizione.executor": "Run",
     "Python.iscrizioni.executor": "Run",
     "Python.main.executor": "Run",
+    "Python.searchbar.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "master",
@@ -181,7 +188,15 @@
       <option name="project" value="LOCAL" />
       <updated>1753956745035</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="aggiunta opzione iscrizione da accesso">
+      <option name="closed" value="true" />
+      <created>1753959729569</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1753959729569</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -210,7 +225,8 @@
     <MESSAGE value="creazione funzione accesso" />
     <MESSAGE value="modifiche su iscrizione spostamento sezione codice creazione profilo" />
     <MESSAGE value="modifiche tutto" />
-    <option name="LAST_COMMIT_MESSAGE" value="modifiche tutto" />
+    <MESSAGE value="aggiunta opzione iscrizione da accesso" />
+    <option name="LAST_COMMIT_MESSAGE" value="aggiunta opzione iscrizione da accesso" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Farma_line$iscrizione.coverage" NAME="iscrizione Coverage Results" MODIFIED="1753883589561" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/profile_creation" />
