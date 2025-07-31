@@ -1,7 +1,10 @@
 from profile_creation.base_iscrizione import ProfiloUtenteDB, engine
-from profile_creation.classi_iscrizione import session
+from sqlalchemy.orm import sessionmaker
 
-def accesso_utente() -> None:
+Session = sessionmaker(bind=engine)
+session = Session()
+
+def accesso_utente() -> bool :
     username :str
     pw : str #pw abbrevviazione per password
 

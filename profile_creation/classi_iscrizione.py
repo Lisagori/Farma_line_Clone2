@@ -21,22 +21,23 @@ class Persona (ABC) :
         self.cognome = input("Inserire il proprio cognome : ")
 
     @abstractmethod
-    def iscriversi(self):
+    def iscriversi(self) -> bool:
         ...
 
-    def crea_profilo(self):
+    def crea_profilo(self) ->bool:
 
         profilo = ProfiloUtente(self)
-        ck = profilo.controllo()
+        ck = profilo.controllo_utente()
         while not ck:  # questo nuovo
             nuovo_nome = input("Inserisci un altro nome utente: ")
             profilo.nome_utente = nuovo_nome
-            ck = profilo.controllo()
+            ck = profilo.controllo_utente()
 
         profilo.associazione_profilo_utente()
 
         print(f"""registrazione effettuata con successo.
                     Benvenuto {profilo.nome_utente} ! """)
+        return True
 
 class ProfiloUtente :
     nome_utente:str
@@ -69,7 +70,7 @@ class ProfiloUtente :
         session.commit()
         return None
 
-    def controllo(self)->bool:
+    def controllo_utente(self)->bool:
         profilo_esistente = session.query(ProfiloUtenteDB).filter_by(nome_utente=self.nome_utente).first()
         if profilo_esistente:
             print(f"Il nome utente '{self.nome_utente}' è già in uso. Scegliere un altro nome.")
@@ -139,11 +140,24 @@ class Cliente(Persona):
         super().__init__()
         self.t_s = TesseraSanitaria()
 
-    def iscriversi(self):
+    def iscriversi(self) -> bool:
         cliente = session.query(ClienteDB).filter_by(codice_fiscale=self.t_s.codice_fiscale).first()   #si definisce la ricerca da database per controllare se la persona è già registrata
 
         if cliente:
             print("Il codice fiscale inserito appartiene a un utente già registrato")
+
+            scelta = input("""Se si vuole accedere al servizio con questo nome utente digitare 1 
+Se si vuole ritentare il processo di iscrizione digitare 2 
+Digitare exit se si vuole terminare l'operazione 
+            """)
+            if scelta == "1":
+                return True
+            elif scelta == "2":
+                self.t_s.codice_fiscale = input("Inserire il codice fiscale corretto : ")
+                return self.iscriversi()
+            else:
+                return False
+
         else:
             self.t_s.associazione_tessera_a_db()
 
@@ -157,7 +171,7 @@ class Cliente(Persona):
             session.commit()
 
             #sezione per associazione profilo utente
-            self.crea_profilo()
+            return self.crea_profilo()
 
 class Farmacista(Persona):
     t_p: TesserinoProfessionale #t_p abbreviazione tesserino professionale
@@ -166,11 +180,24 @@ class Farmacista(Persona):
         super().__init__()
         self.t_p = TesserinoProfessionale("farmacista")
 
-    def iscriversi(self):
+    def iscriversi(self) ->bool :
         farmacista = session.query(FarmacistaDB).filter_by(matricola=self.t_p.n_matricola).first() # si definisce la ricerca da database per controllare se la persona è già registrata
 
         if farmacista:
             print("La matricola inserita appartiene a un utente già registrato")
+
+            scelta = input("""Se si vuole accedere al servizio con questo nome utente digitare 1 
+Se si vuole ritentare il processo di iscrizione digitare 2 )
+Digitare exit se si vuole terminare l'operazione 
+""")
+            if scelta == "1":
+                return True
+            elif scelta == "2":
+                self.t_p.n_matricola = input("Inserire il numero di matricola corretto : ")
+                return self.iscriversi()
+            else:
+                return False
+
         else:
             self.t_p.associazione_tessera_a_db()
 
@@ -182,6 +209,6 @@ class Farmacista(Persona):
             session.add(farmacista_db)
             session.commit()
 
-            self.crea_profilo()
+            return self.crea_profilo()
 
 
