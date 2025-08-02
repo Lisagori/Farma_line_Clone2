@@ -2,7 +2,6 @@ from sqlalchemy.orm import sessionmaker
 from ricerca.documentazione_farmaci.base_documenti_medicinali import SchedaTecnicaDB
 from ricerca.base_medcinali import FarmaciDB, engine
 from acquisto.classi_acquisto import Farmaco
-from sqlalchemy import and_, true
 
 Session = sessionmaker(bind=engine)
 session = Session()
@@ -11,9 +10,8 @@ def search_bar() -> None:
     medicinale :str
     filtri : str
     aggiungi_carrello :str
-    carrello : list[Farmaco]
+    carrello : list[Farmaco]=[]
     farmaco : Farmaco
-    from sqlalchemy import and_
 
     print("BARRA DI RICERCA")
     filtri = input("Vuoi applicare dei filtri alla tua ricerca? (digitare si o no) : ")
@@ -66,9 +64,30 @@ def search_bar() -> None:
             print("\nSCHEDA TECNICA")
             print(scheda)
 
+        codice_input=int(input("inserire il codice del farmaco che si vuole acquistare:  "))
+
         aggiungi_carrello = input(
             "\nDigitare 'si' se si vuole aggiungere il prodotto al carrello, altrimenti digitare 'no': ")
         if aggiungi_carrello == "si":
-            print("Azione non disponibile al momento.")
+            farmaco_scelto = None # inizializzo il risultato di operazione di ricerca
+            for farmaco, scheda in results:
+                if farmaco.codice == codice_input: #verifico quale farmaco ha lo stesso codice di quello che ho inserito
+                    farmaco_scelto = farmaco
+                    break
+            if farmaco_scelto:
+                carrello.append(farmaco_scelto)
+                print("Farmaco aggiunto al carrello.")
+            else:
+                print("Codice non trovato.")
+            print("Contenuto attuale del carrello:")
+            print(carrello)
+
+        elif aggiungi_carrello == "no":
+            print("Farmaco non aggiunto al carrello")
+            print("Contenuto attuale del carrello:")
+            print(carrello)
+        else:
+            print("Operazione non valida.")
+
     else:
         print(" Nessun farmaco trovato.")

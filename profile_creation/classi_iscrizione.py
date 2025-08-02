@@ -172,7 +172,6 @@ Digitare exit se si vuole terminare l'operazione
 
             #sezione per associazione profilo utente
             return self.crea_profilo()
-
 class Farmacista(Persona):
     t_p: TesserinoProfessionale #t_p abbreviazione tesserino professionale
 
