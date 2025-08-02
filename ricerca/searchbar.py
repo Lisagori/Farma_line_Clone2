@@ -6,11 +6,13 @@ from acquisto.classi_acquisto import Farmaco
 Session = sessionmaker(bind=engine)
 session = Session()
 
+carrello : list[Farmaco]=[]
+
 def search_bar() -> None:
     medicinale :str
     filtri : str
     aggiungi_carrello :str
-    carrello : list[Farmaco]=[]
+
     farmaco : Farmaco
 
     print("BARRA DI RICERCA")
@@ -64,7 +66,11 @@ def search_bar() -> None:
             print("\nSCHEDA TECNICA")
             print(scheda)
 
-        codice_input=int(input("inserire il codice del farmaco che si vuole acquistare:  "))
+        if len(results) > 1:
+            codice_input = int(input("\nInserire il codice del farmaco che si vuole acquistare: "))
+        else:# Se ce n'è solo uno
+            farmaco = results[0][0] # results[0][0] è il primo oggetto FarmaciDB
+            codice_input =(farmaco.codice)
 
         aggiungi_carrello = input(
             "\nDigitare 'si' se si vuole aggiungere il prodotto al carrello, altrimenti digitare 'no': ")

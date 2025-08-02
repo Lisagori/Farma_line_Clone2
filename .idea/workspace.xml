@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="687e12ae-2a07-4650-9e4f-85933ff285c1" name="Changes" comment="aggiunta ricerca corretta">
-      <change afterPath="$PROJECT_DIR$/ricerca/carrello.py" afterDir="false" />
+    <list default="true" id="687e12ae-2a07-4650-9e4f-85933ff285c1" name="Changes" comment="aggiunta carrello">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/homepage/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/homepage/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile_creation/classi_iscrizione.py" beforeDir="false" afterPath="$PROJECT_DIR$/profile_creation/classi_iscrizione.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ricerca/documentazione_farmaci/base_documenti_medicinali.py" beforeDir="false" afterPath="$PROJECT_DIR$/ricerca/documentazione_farmaci/base_documenti_medicinali.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ricerca/searchbar.py" beforeDir="false" afterPath="$PROJECT_DIR$/ricerca/searchbar.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -62,6 +59,7 @@
     "Python.main.executor": "Run",
     "Python.searchbar.executor": "Debug",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "master",
     "node.js.detected.package.eslint": "true",
@@ -93,7 +91,7 @@
       <workItem from="1754035887024" duration="7093000" />
       <workItem from="1754056161360" duration="5968000" />
       <workItem from="1754123935887" duration="4218000" />
-      <workItem from="1754142834355" duration="5077000" />
+      <workItem from="1754142834355" duration="7055000" />
     </task>
     <task id="LOCAL-00001" summary="aggiunta la directory profile con il file iscrizione">
       <option name="closed" value="true" />
@@ -231,7 +229,15 @@
       <option name="project" value="LOCAL" />
       <updated>1754043734767</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="aggiunta carrello">
+      <option name="closed" value="true" />
+      <created>1754148118003</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1754148118003</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -263,7 +269,8 @@
     <MESSAGE value="aggiunta opzione iscrizione da accesso" />
     <MESSAGE value="aggiunta ricerca" />
     <MESSAGE value="aggiunta ricerca corretta" />
-    <option name="LAST_COMMIT_MESSAGE" value="aggiunta ricerca corretta" />
+    <MESSAGE value="aggiunta carrello" />
+    <option name="LAST_COMMIT_MESSAGE" value="aggiunta carrello" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -285,7 +292,7 @@
     <SUITE FILE_PATH="coverage/Farma_line$iscrizione.coverage" NAME="iscrizione Coverage Results" MODIFIED="1753883589561" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/profile_creation" />
     <SUITE FILE_PATH="coverage/Farma_line$base_iscrizioni.coverage" NAME="base_iscrizioni Coverage Results" MODIFIED="1753882474763" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/profile_creation" />
     <SUITE FILE_PATH="coverage/Farma_line$base_medcinali.coverage" NAME="base_medcinali Coverage Results" MODIFIED="1753987293929" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ricerca" />
-    <SUITE FILE_PATH="coverage/Farma_line$main.coverage" NAME="main Coverage Results" MODIFIED="1754147906318" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/homepage" />
+    <SUITE FILE_PATH="coverage/Farma_line$main.coverage" NAME="main Coverage Results" MODIFIED="1754149735109" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/homepage" />
     <SUITE FILE_PATH="coverage/Farma_line$searchbar.coverage" NAME="searchbar Coverage Results" MODIFIED="1754146846147" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ricerca" />
   </component>
 </project>

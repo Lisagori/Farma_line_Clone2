@@ -1,6 +1,6 @@
 from profile_creation.iscrizione import registrazione_utente
 from accesso.accesso import  accesso_utente
-from ricerca.searchbar import search_bar
+from ricerca.searchbar import *
 from acquisto.classi_acquisto import Farmaco
 
 scelta : str
@@ -25,7 +25,8 @@ Se si desidera effetuare un ordine di un preparato galenico magistrale digitare 
             while selezione == "1":
                 search_bar()
                 selezione = input("""Se si desidera continuare a ricercare medicinali da acquistare digitare 1 
-Se si desidera terminare la ricerca e procedere all'acquisto digitare 3""")
+Se si desidera terminare la ricerca e procedere all'acquisto digitare 3
+""")
 
             if selezione == "3" :
                 # processo di acquisto
