@@ -32,6 +32,8 @@ Se si desidera terminare la ricerca e procedere all'acquisto digitare 3
                 # processo di acquisto
                 print("Sezione non disponibile ")
                 #processo di acquisto
+            else:
+                print("Inserimento non corretto")
 
     scelta2 = "2"
 

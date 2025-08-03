@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="687e12ae-2a07-4650-9e4f-85933ff285c1" name="Changes" comment="aggiunta carrello">
+    <list default="true" id="687e12ae-2a07-4650-9e4f-85933ff285c1" name="Changes" comment="aggiunta carrello con selezione codice">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/acquisto/classi_acquisto.py" beforeDir="false" afterPath="$PROJECT_DIR$/acquisto/classi_acquisto.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/homepage/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/homepage/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ricerca/base_medcinali.py" beforeDir="false" afterPath="$PROJECT_DIR$/ricerca/base_medicinali.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ricerca/searchbar.py" beforeDir="false" afterPath="$PROJECT_DIR$/ricerca/searchbar.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -40,6 +42,9 @@
     <setting file="file://$PROJECT_DIR$/profile_creation/base_iscrizioni.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/profile_creation/iscrizione.py" root0="FORCE_HIGHLIGHTING" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
 }</component>
@@ -48,29 +53,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.accesso.executor": "Run",
-    "Python.base_documenti_medicinali.executor": "Run",
-    "Python.base_iscrizioni.executor": "Run",
-    "Python.base_medcinali.executor": "Run",
-    "Python.iscrizione.executor": "Run",
-    "Python.iscrizioni.executor": "Run",
-    "Python.main.executor": "Run",
-    "Python.searchbar.executor": "Debug",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.accesso.executor&quot;: &quot;Run&quot;,
+    &quot;Python.base_documenti_medicinali.executor&quot;: &quot;Run&quot;,
+    &quot;Python.base_iscrizioni.executor&quot;: &quot;Run&quot;,
+    &quot;Python.base_medcinali.executor&quot;: &quot;Run&quot;,
+    &quot;Python.iscrizione.executor&quot;: &quot;Run&quot;,
+    &quot;Python.iscrizioni.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.searchbar.executor&quot;: &quot;Debug&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -91,7 +96,11 @@
       <workItem from="1754035887024" duration="7093000" />
       <workItem from="1754056161360" duration="5968000" />
       <workItem from="1754123935887" duration="4218000" />
-      <workItem from="1754142834355" duration="7055000" />
+      <workItem from="1754142834355" duration="7312000" />
+      <workItem from="1754150279391" duration="110000" />
+      <workItem from="1754150715294" duration="5360000" />
+      <workItem from="1754208657224" duration="6232000" />
+      <workItem from="1754217091582" duration="3168000" />
     </task>
     <task id="LOCAL-00001" summary="aggiunta la directory profile con il file iscrizione">
       <option name="closed" value="true" />
@@ -237,7 +246,15 @@
       <option name="project" value="LOCAL" />
       <updated>1754148118003</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="aggiunta carrello con selezione codice">
+      <option name="closed" value="true" />
+      <created>1754150124647</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1754150124647</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -270,7 +287,8 @@
     <MESSAGE value="aggiunta ricerca" />
     <MESSAGE value="aggiunta ricerca corretta" />
     <MESSAGE value="aggiunta carrello" />
-    <option name="LAST_COMMIT_MESSAGE" value="aggiunta carrello" />
+    <MESSAGE value="aggiunta carrello con selezione codice" />
+    <option name="LAST_COMMIT_MESSAGE" value="aggiunta carrello con selezione codice" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -282,8 +300,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/profile_creation/classi_iscrizione.py</url>
-          <line>135</line>
-          <option name="timeStamp" value="2" />
+          <line>55</line>
+          <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -292,7 +310,7 @@
     <SUITE FILE_PATH="coverage/Farma_line$iscrizione.coverage" NAME="iscrizione Coverage Results" MODIFIED="1753883589561" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/profile_creation" />
     <SUITE FILE_PATH="coverage/Farma_line$base_iscrizioni.coverage" NAME="base_iscrizioni Coverage Results" MODIFIED="1753882474763" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/profile_creation" />
     <SUITE FILE_PATH="coverage/Farma_line$base_medcinali.coverage" NAME="base_medcinali Coverage Results" MODIFIED="1753987293929" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ricerca" />
-    <SUITE FILE_PATH="coverage/Farma_line$main.coverage" NAME="main Coverage Results" MODIFIED="1754149735109" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/homepage" />
+    <SUITE FILE_PATH="coverage/Farma_line$main.coverage" NAME="main Coverage Results" MODIFIED="1754220386212" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/homepage" />
     <SUITE FILE_PATH="coverage/Farma_line$searchbar.coverage" NAME="searchbar Coverage Results" MODIFIED="1754146846147" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ricerca" />
   </component>
 </project>

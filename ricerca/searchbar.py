@@ -1,6 +1,6 @@
 from sqlalchemy.orm import sessionmaker
 from ricerca.documentazione_farmaci.base_documenti_medicinali import SchedaTecnicaDB
-from ricerca.base_medcinali import FarmaciDB, engine
+from ricerca.base_medicinali import FarmaciDB, engine
 from acquisto.classi_acquisto import Farmaco
 
 Session = sessionmaker(bind=engine)
@@ -61,9 +61,9 @@ def search_bar() -> None:
     # Stampa dei risultati
     if results:
         for farmaco, scheda in results:
-            print("\nINFORMAZIONI FARMACO")
+            print("INFORMAZIONI FARMACO")
             print(farmaco)
-            print("\nSCHEDA TECNICA")
+            print("SCHEDA TECNICA")
             print(scheda)
 
         if len(results) > 1:
