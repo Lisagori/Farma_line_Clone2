@@ -1,9 +1,7 @@
 from abc import ABC, abstractmethod
 from profile_creation.base_iscrizione import *
-from sqlalchemy.orm import sessionmaker
-
-Session = sessionmaker(bind=engine)
-session = Session()
+import pandas as pd
+from db import connection
 
 # funzione applicabile a tutte le classi
 def controlla(messaggio: str, lunghezza: int) -> str : #controllo del numero dei caratteri alfanumerici( va aggiunto se si riesce il controllo più specifico o messo come eccezione
@@ -52,27 +50,35 @@ class ProfiloUtente :
     def associazione_profilo_utente(self) -> None:
 
         if isinstance(self.utente, Cliente):
-            prf = ProfiloUtenteDB(  # prf fa riferimento al profilo utente da associare alla relativa tebella
-                nome_utente=self.nome_utente,
-                password=self.password,
-                id_cliente=self.utente.t_s.codice_fiscale
+            new_profile= pd.DataFrame ( # prf fa riferimento al profilo utente da associare alla relativa tebella
+                    columns=['nome_utente','password','id_cliente'],
+                data= [
+                    [self.nome_utente,self.password,self.utente.t_s.codice_fiscale]
+                ]
             )
+            new_profile.to_sql('ProfiloUtente', connection, if_exists='append', index=False)
+            connection.commit()
+
         elif isinstance(self.utente, Farmacista):
-            prf = ProfiloUtenteDB(
-                nome_utente=self.nome_utente,
-                password=self.password,
-                id_farmacista=self.utente.t_p.n_matricola
+            new_profile = pd.DataFrame(  # prf fa riferimento al profilo utente da associare alla relativa tebella
+                columns=['nome_utente','password','id_farmacista'],
+                data=[
+                [self.nome_utente, self.password, self.utente.t_p.n_matricola]
+                ]
             )
+            new_profile.to_sql('ProfiloUtente', connection, if_exists='append', index=False)
+            connection.commit()
         else:
-            prf = ProfiloUtenteDB()
-            print(" il processo di associazione profilo non è andato a buon fine ")
-        session.add(prf)
-        session.commit()
+            print("  Associazione profilo fallita: tipo utente non valido.")
+            return #TODO CONTROLLARE COSA RESTITUISCE
+
+        print("Profilo utente aggiunto con successo.")
         return None
 
     def controllo_utente(self)->bool:
-        profilo_esistente = session.query(ProfiloUtenteDB).filter_by(nome_utente=self.nome_utente).first()
-        if profilo_esistente:
+        query = f"SELECT * FROM ProfiloUtente WHERE nome_utente = '{self.nome_utente}'"
+        profilo_esistente = pd.read_sql(query, connection)
+        if not profilo_esistente.empty: #pd.read_sql(...) restituisce sempre un DataFrame di pandas.
             print(f"Il nome utente '{self.nome_utente}' è già in uso. Scegliere un altro nome.")
             return False
         else:
@@ -100,19 +106,29 @@ class TesseraSanitaria :
         self.numero_identificazione_tessera = controlla(" NUMERO IDENTIFICAZIONE TESSERA : ", 20)# sulla tessera sanitaria fisica sono 20 caratteri alfanumerici
 
     def associazione_tessera_a_db(self):
-        # Crea le istanze dei modelli SQLAlchemy da salvare sulle tabelle
-        tessera = TesseraSanitariaDB(
-            codice_fiscale=self.codice_fiscale,
-            sesso=self.sesso,
-            luogo_nascita=self.luogo_nascita,
-            provincia=self.provincia,
-            data_nascita=self.data_nascita,
-            data_scadenza=self.data_scadenza,
-            numero_identificazione_tessera=self.numero_identificazione_tessera
+        new_tessera = pd.DataFrame(
+            [[
+                self.codice_fiscale,
+                self.sesso,
+                self.luogo_nascita,
+                self.provincia,
+                self.data_nascita,
+                self.data_scadenza,
+                self.numero_identificazione_tessera
+            ]],
+            columns=[
+                'codice_fiscale',  # <-- niente spazio finale
+                'sesso',
+                'luogo_nascita',
+                'provincia',
+                'data_nascita',
+                'data_scadenza',
+                'numero_identificazione_tessera'
+            ]
         )
+        new_tessera.to_sql('TesseraSanitaria', connection, if_exists='append', index=False)
+        connection.commit()
 
-        session.add(tessera)
-        session.commit()
 
 class TesserinoProfessionale :
     ordine_di_appartenenza: str # indica il settore lavorativo a cui appartieni
@@ -124,14 +140,14 @@ class TesserinoProfessionale :
 
     def associazione_tessera_a_db(self):
         # Crea le istanze dei modelli SQLAlchemy da salvare sulle tabelle
-
-        tessera = TesserinoProfessionaleDB(
-            n_matricola=self.n_matricola,
-            ordine_di_appartenenza=self.ordine_di_appartenenza
+        new_tesserino = pd.DataFrame(
+            columns=['ordine_appartenenza','n_matricola'],
+            data=[
+            [self.ordine_di_appartenenza, self.n_matricola]
+            ]
         )
-
-        session.add(tessera)
-        session.commit()
+        new_tesserino.to_sql('TesserinoProfessionale', connection, if_exists='append', index=False)
+        connection.commit()
 
 class Cliente(Persona):
     t_s: TesseraSanitaria #t_s abbreviazione tessera sanitaria
@@ -141,9 +157,9 @@ class Cliente(Persona):
         self.t_s = TesseraSanitaria()
 
     def iscriversi(self) -> bool:
-        cliente = session.query(ClienteDB).filter_by(codice_fiscale=self.t_s.codice_fiscale).first()   #si definisce la ricerca da database per controllare se la persona è già registrata
-
-        if cliente:
+        query = f"SELECT * FROM Clienti WHERE codice_fiscale = '{self.t_s.codice_fiscale}'"
+        cliente = pd.read_sql(query, connection)
+        if not cliente.empty: # è un dataframe
             print("Il codice fiscale inserito appartiene a un utente già registrato")
 
             scelta = input("""Se si vuole accedere al servizio digitare 1 
@@ -160,16 +176,14 @@ Digitare exit se si vuole terminare l'operazione
 
         else:
             self.t_s.associazione_tessera_a_db()
-
-            cliente_db = ClienteDB(
-                nome=self.nome,
-                cognome=self.cognome,
-                codice_fiscale=self.t_s.codice_fiscale
+            new_cliente = pd.DataFrame(
+                columns=['nome','cognome','codice_fiscale'],
+                data=[
+                [self.nome, self.cognome, self.t_s.codice_fiscale ]
+                ]
             )
-
-            session.add(cliente_db)
-            session.commit()
-
+            new_cliente.to_sql('Clienti', connection, if_exists='append', index=False)
+            connection.commit()
             #sezione per associazione profilo utente
             return self.crea_profilo()
 class Farmacista(Persona):
@@ -180,9 +194,10 @@ class Farmacista(Persona):
         self.t_p = TesserinoProfessionale("farmacista")
 
     def iscriversi(self) ->bool :
-        farmacista = session.query(FarmacistaDB).filter_by(matricola=self.t_p.n_matricola).first() # si definisce la ricerca da database per controllare se la persona è già registrata
-
-        if farmacista:
+        query = f"SELECT * FROM Farmacista WHERE matricola = '{self.t_p.n_matricola}'"
+        farmacista = pd.read_sql(query, connection)
+        # si definisce la ricerca da database per controllare se la persona è già registrata
+        if not farmacista.empty: #è un dataframe
             print("La matricola inserita appartiene a un utente già registrato")
 
             scelta = input("""Se si vuole accedere al servizio digitare 1 
@@ -199,15 +214,13 @@ Digitare exit se si vuole terminare l'operazione
 
         else:
             self.t_p.associazione_tessera_a_db()
-
-            farmacista_db = FarmacistaDB(
-                nome=self.nome,
-                cognome=self.cognome,
-                matricola=self.t_p.n_matricola
+            new_farmacista = pd.DataFrame(
+                columns=['nome','cognome','matricola'],
+                data=[
+                [self.nome, self.cognome, self.t_p.n_matricola]
+                ]
             )
-            session.add(farmacista_db)
-            session.commit()
-
+            new_farmacista.to_sql('Farmacista', connection, if_exists='append', index=False)
+            connection.commit()
+            # sezione per associazione profilo utente
             return self.crea_profilo()
-
-

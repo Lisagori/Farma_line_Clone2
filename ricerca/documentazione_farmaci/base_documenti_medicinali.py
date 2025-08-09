@@ -7,7 +7,6 @@ engine = create_engine('postgresql+psycopg2://postgres:postgres@localhost:5432/F
 
 Base = declarative_base()
 
-1
 class SchedaTecnicaDB(Base) :
     __tablename__ = 'schede_tecniche'
 

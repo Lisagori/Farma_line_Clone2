@@ -1,10 +1,6 @@
-from sqlalchemy.orm import sessionmaker
-from ricerca.documentazione_farmaci.base_documenti_medicinali import SchedaTecnicaDB
-from ricerca.base_medicinali import FarmaciDB, engine
 from acquisto.classi_acquisto import Farmaco
-
-Session = sessionmaker(bind=engine)
-session = Session()
+from db import connection
+import pandas as pd
 
 carrello : list[Farmaco]=[]
 
@@ -26,74 +22,122 @@ def search_bar() -> None:
         posologia = input("Inserire la posologia : ")
 
         filters = []  #lista
+        params = {}
 
         if indicazioni_terapeutiche:
-            filters.append(SchedaTecnicaDB.indicazioni_terapeutiche.ilike(f"%{indicazioni_terapeutiche}%"))
-        if composizione:
-            filters.append(SchedaTecnicaDB.composizione.ilike(f"%{composizione}%"))
-        if posologia:
-            filters.append(SchedaTecnicaDB.posologia.ilike(f"%{posologia}%"))
+            filters.append("LOWER(s.indicazioni_terapeutiche) LIKE LOWER(:indicazioni)")
+            params["indicazioni"] = f"%{indicazioni_terapeutiche}%"
 
+        if composizione:
+            filters.append("LOWER (s.composizione) LIKE LOWER (:composizione)")
+            params["composizione"] = f"%{composizione}%"
+
+        if posologia:
+            filters.append("LOWER (s.posologia) LIKE LOWER (:posologia)")
+            params["posologia"] = f"%{posologia}%"
+
+        query = """
+                SELECT 
+   
+                    f.codice AS codice_farmaco,      -- alias univoco
+                    f.nome,
+                    f.ricetta,
+                    f.preparato_galenico,
+                    f.prezzo,
+                    s.indicazioni_terapeutiche,
+                    s.composizione,
+                    s.eccipienti,
+                    s.controindicazioni,
+                    s.posologia,
+                    s.avvertenze,
+                    s.effetti_indesiderati
+                FROM FarmaciMagazzino AS f
+                LEFT JOIN SchedaTecnica AS s
+                  ON f.codice = s.codice 
+                """
         if filters:
-            results = (
-                session.query(FarmaciDB, SchedaTecnicaDB)
-                .join(SchedaTecnicaDB, FarmaciDB.codice == SchedaTecnicaDB.codice) #viene usato per stampare solo i farmaci con lo stesso codice in comune
-                .filter(*filters) #Usando *filters si apre la lista e si passa gli elementi uno ad uno come argomenti separati
-                .all()
-            )
-        else:
+            query += " WHERE " + " AND ".join(filters)
+            results = pd.read_sql(query, connection, params=params)
+
+        else :
             print("Nessun filtro inserito. Ricerca annullata.")
-            results = []
+            results = pd.DataFrame() # equivalente a lista vuota
 
     elif filtri == "no":
-        medicinale = input("Digitare il nome del farmaco che si sta cercando: ")
+        medicinale = input("Digitare il nome del farmaco che si sta cercando: ").strip()
 
-        results = (
-            session.query(FarmaciDB, SchedaTecnicaDB)
-            .join(SchedaTecnicaDB, FarmaciDB.codice == SchedaTecnicaDB.codice) #viene usato per stampare solo i farmaci con lo stesso codice in comune
-            .filter(FarmaciDB.nome.ilike(f"%{medicinale}%")) #filtro parziale (anche lettere maiuscole/minuscole)
-            .all()
-        )
+        query = """
+                SELECT
+                    f.codice AS codice_farmaco,      -- alias univoco
+                    f.nome,
+                    f.ricetta,
+                    f.preparato_galenico,
+                    f.prezzo,
+                    s.indicazioni_terapeutiche,
+                    s.composizione,
+                    s.eccipienti,
+                    s.controindicazioni,
+                    s.posologia,
+                    s.avvertenze,
+                    s.effetti_indesiderati
+                FROM FarmaciMagazzino AS f
+                JOIN SchedaTecnica AS s
+                  ON f.codice = s.codice
+                    WHERE LOWER(TRIM(f.nome)) LIKE LOWER(:nome)  -- TRIM dà più tolleranza sugli spazi
+                            """
+        params = {"nome": f"%{medicinale}%"}
+        results = pd.read_sql_query(query, connection, params=params)
     else:
         print("Operazione non valida.")
-        results = []
+        results = pd.DataFrame()  # equivalente a lista vuota
 
     # Stampa dei risultati
-    if results:
-        for farmaco, scheda in results:
-            print("INFORMAZIONI FARMACO")
+    if not results.empty:
+        for farmaco in results.to_dict(orient="records"):
             print(farmaco)
-            print("SCHEDA TECNICA")
-            print(scheda)
 
         if len(results) > 1:
             codice_input = int(input("\nInserire il codice del farmaco che si vuole acquistare: "))
         else:# Se ce n'è solo uno
-            farmaco = results[0][0] # results[0][0] è il primo oggetto FarmaciDB
-            codice_input =(farmaco.codice)
+            codice_input =int(results.iloc[0]["codice_farmaco"])
 
         aggiungi_carrello = input(
             "\nDigitare 'si' se si vuole aggiungere il prodotto al carrello, altrimenti digitare 'no': ")
         if aggiungi_carrello == "si":
-            farmaco_scelto = None # inizializzo il risultato di operazione di ricerca
-            for farmaco, scheda in results:
-                if farmaco.codice == codice_input: #verifico quale farmaco ha lo stesso codice di quello che ho inserito
-                    farmaco_scelto = farmaco
-                    break
-            if farmaco_scelto:
-                carrello.append(farmaco_scelto)
+            # results: DataFrame con almeno la colonna "codice"
+            try:
+                codice_input = int(codice_input)
+            except ValueError:
+                print("Codice non valido.")
+                return
+
+            riga = results.loc[results["codice_farmaco"] == codice_input]
+
+            if not riga.empty:
+                farmaco_dict = riga.iloc[0].to_dict()  # prendo la prima corrispondenza
+                carrello.append(farmaco_dict)
                 print("Farmaco aggiunto al carrello.")
             else:
-                print("Codice non trovato.")
+                print("Codice non trovato tra i risultati mostrati.")
+
             print("Contenuto attuale del carrello:")
-            print(carrello)
+
+            if carrello:
+                print(pd.DataFrame(carrello).to_string(index=False))
+            else:
+                print("Il carrello è vuoto.")
 
         elif aggiungi_carrello == "no":
             print("Farmaco non aggiunto al carrello")
             print("Contenuto attuale del carrello:")
-            print(carrello)
+
+            if carrello:
+                print(pd.DataFrame(carrello).to_string(index=False))
+            else:
+                print("Il carrello è vuoto.")
         else:
             print("Operazione non valida.")
 
-    else:
-        print(" Nessun farmaco trovato.")
+    if results.empty:
+        print("Nessun farmaco trovato.")
+        return  # torna al menu precedente
