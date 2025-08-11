@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
-
 from classi.persone.classe_profilo import ProfiloUtente
+
 class Persona (ABC) :
     nome: str
     cognome: str

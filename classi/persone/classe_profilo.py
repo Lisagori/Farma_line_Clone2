@@ -1,8 +1,8 @@
-from classi.persone.classe_persona import Persona
 import pandas as pd
 from db import connection
 from classi.persone.classe_cliente import Cliente
 from classi.persone.classe_farmacista import Farmacista
+from classi.persone.classe_persona import Persona
 
 class ProfiloUtente :
     nome_utente:str
