@@ -13,3 +13,6 @@ class Farmaco:
         self.ricetta = ricetta
         self.preparato_galenico = preparato_galenico
         self.scheda_tecnica = scheda_tecnica  # opzionale
+
+    def __getitem__(self, item):
+        return getattr(self, item)

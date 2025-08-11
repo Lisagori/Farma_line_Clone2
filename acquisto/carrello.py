@@ -6,19 +6,14 @@ carrello: list[Farmaco] = [] #si inserisce fuori dalla funzione per evitare che 
 def aggiunta_carrello(results)->None:
 
     if len(results) > 1: # Se ce più di un farmaco
-        codice_input = int(input("\nInserire il codice del farmaco che si vuole acquistare: "))
+        codice_input = input("\nInserire il codice del farmaco che si vuole acquistare: ")
     else:# Se ce n'è solo uno
-        codice_input =int(results.iloc[0]["codice_farmaco"])
+        codice_input =results.iloc[0]["codice_farmaco"]
 
     aggiungi_carrello = input("\nDigitare 'si' se si vuole aggiungere il prodotto al carrello, altrimenti digitare 'no': ")
 
     if aggiungi_carrello == "si":
         # results: DataFrame con almeno la colonna "codice"
-        try:
-            codice_input = int(codice_input)
-        except ValueError:
-            print("Codice non valido.")
-            return
 
         riga = results.loc[results["codice_farmaco"] == codice_input]
 

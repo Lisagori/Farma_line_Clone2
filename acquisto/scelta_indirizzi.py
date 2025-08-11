@@ -13,16 +13,24 @@ def acquisto_farmaci() ->None :
 
     #todo diventa una funzione a se stante nome selezione indirizzo
     for prodotto in carrello :
-        query = (f" SELECT ricetta FROM FarmaciMagazzino WHERE codice = '{prodotto["codice_farmaco"]}' AND ricetta = '{"si" }'")
+        print("controllo")
+        cod = prodotto["codice_farmaco"]
+        print( cod)
+        query = f" SELECT ricetta FROM FarmaciMagazzino WHERE codice = '{cod}' AND ricetta = 'si' "
         serve_ricetta = pd.read_sql_query(query, connection)
 
         if not serve_ricetta.empty:
-            query = (f" SELECT codice FROM FarmaciMagazzino WHERE codice = '{prodotto["codice_farmaco"]}' ")
+            query = f" SELECT codice FROM FarmaciMagazzino WHERE codice = '{cod}' "
             codicefarmaco= pd.read_sql_query(query, connection)
-            codice_fiscale_utente = dati_utente()
+            codicefarmaco = pd.DataFrame(codicefarmaco).to_string(index=False)
+            print(codicefarmaco)
 
-            query = (f" SELECT codice_farmaco FROM Ricette WHERE codice_farmaco ='{codicefarmaco}' AND codice_fiscale = '{codice_fiscale_utente}'")
+            codice_fiscale_utente = dati_utente()
+            print(codice_fiscale_utente)
+            #todo non riesce a fare questa query
+            query = f" SELECT codice_farmaco FROM Ricette WHERE codice_farmaco ='{codicefarmaco}' AND codice_fiscale = '{codice_fiscale_utente}'"
             nome_ck = pd.read_sql_query(query, connection)
+            print(nome_ck)
             # fare tabella con nome farmaco , codice fiscale persona, codice ricetta(chiave)
             if nome_ck.empty :
                 print("Non è associata nessuna ricetta per questo farmaco al profilo corrente, il prodotto verrà eliminato dal carrello")

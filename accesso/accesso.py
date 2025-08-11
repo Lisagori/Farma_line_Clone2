@@ -58,4 +58,5 @@ def dati_utente() -> str :
     query = (f"SELECT id_cliente FROM ProfiloUtente WHERE nome_utente ='{username}'")
     codice_utente = pd.read_sql(query, connection)
     codice_utente=pd.DataFrame(codice_utente).to_string(index=False)
+    print(codice_utente)
     return codice_utente
