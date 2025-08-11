@@ -2,32 +2,48 @@ from acquisto.carrello import *
 from db import connection
 import pandas as pd
 from accesso.accesso import dati_utente
+import sqlalchemy as sa
 
 def acquisto_farmaci() ->None :
 
-    prodotto : Farmaco
     indirizzo_farma :str
     indirizzo_domicilio : str
 
     print("PROCEDURA DI ACQUISTO")
 
     #todo diventa una funzione a se stante nome selezione indirizzo
-    for prodotto in carrello :
-        query = (f" SELECT ricetta FROM FarmaciMagazzino WHERE codice = '{prodotto["codice_farmaco"]}' AND ricetta = '{"si" }'")
+    for prodotto in carrello:
+
+        codice_val = prodotto["codice_farmaco"]
+        query = (f" SELECT ricetta FROM FarmaciMagazzino WHERE codice = '{codice_val}' AND ricetta = 'si'")
         serve_ricetta = pd.read_sql_query(query, connection)
 
         if not serve_ricetta.empty:
-            query = (f" SELECT codice FROM FarmaciMagazzino WHERE codice = '{prodotto["codice_farmaco"]}' ")
-            codicefarmaco= pd.read_sql_query(query, connection)
-            codice_fiscale_utente = dati_utente()
+            query = (f" SELECT codice FROM FarmaciMagazzino WHERE codice = '{codice_val}' ")
+            codicefarmaco= pd.read_sql_query(query,connection)
+            if codicefarmaco.empty:
+                return None  # o puoi alzare un'eccezione se è obbligatorio
+# prendi il primo valore (prima riga, prima colonna) e lo trasformi in stringa
+            codicefarmaco = str(codicefarmaco.iloc[0, 0])
 
-            query = (f" SELECT codice_farmaco FROM Ricette WHERE codice_farmaco ='{codicefarmaco}' AND codice_fiscale = '{codice_fiscale_utente}'")
-            nome_ck = pd.read_sql_query(query, connection)
-            # fare tabella con nome farmaco , codice fiscale persona, codice ricetta(chiave)
+            codice_fiscale_utente = dati_utente()
+         #   print("CF utente (id_cliente):",codice_fiscale_utente ) per verifica
+
+            query = (f" SELECT codice_farmaco FROM Ricette WHERE codice_farmaco ='{codicefarmaco}' AND UPPER(TRIM(codice_fiscale)) = '{codice_fiscale_utente}'")
+            nome_ck = pd.read_sql_query(query,connection)
             if nome_ck.empty :
                 print("Non è associata nessuna ricetta per questo farmaco al profilo corrente, il prodotto verrà eliminato dal carrello")
                 carrello.remove(prodotto)
+        # 1) Vedi cosa c'è in Ricette per quel farmaco
+        dbg = pd.read_sql_query(
+            sa.text("SELECT codice_farmaco, '['||codice_fiscale||']' as cf FROM Ricette WHERE codice_farmaco = :cod"),
+            connection, params={"cod": codice_val}
+        )
+        print("Ricette per farmaco:", codice_val)
+        print(dbg.to_string(index=False))
 
+        # 2) Stampa il CF che stai usando
+        print("CF usato:", f"[{codice_fiscale_utente}]")
 
         if serve_ricetta.empty:
             print("per ricevere l'ordine a domicilio digitare 1")
