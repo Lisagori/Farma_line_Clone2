@@ -5,28 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="687e12ae-2a07-4650-9e4f-85933ff285c1" name="Changes" comment="1 todo fatto">
-      <change afterPath="$PROJECT_DIR$/db.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_07_2025_16_42_[Changes]1/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_07_2025_16_42__Changes_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_07_2025_19_25_[Changes]1/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_07_2025_19_25__Changes_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_07_2025_22_08_[Changes]1/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_07_2025_22_08__Changes_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_31_07_2025_10_33_[Changes]1/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_31_07_2025_10_33__Changes_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_31_07_2025_12_13_[Changes]1/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_31_07_2025_12_13__Changes_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_31_07_2025_14_10_[Changes]1/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_31_07_2025_14_10__Changes_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Farma_line.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Farma_line.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/accesso/accesso.py" beforeDir="false" afterPath="$PROJECT_DIR$/accesso/accesso.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/homepage/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/homepage/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile_creation/base_iscrizione.py" beforeDir="false" afterPath="$PROJECT_DIR$/profile_creation/base_iscrizione.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/profile_creation/base_iscrizione.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/profile_creation/classi_iscrizione.py" beforeDir="false" afterPath="$PROJECT_DIR$/profile_creation/classi_iscrizione.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ricerca/base_medicinali.py" beforeDir="false" afterPath="$PROJECT_DIR$/ricerca/base_medicinali.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ricerca/carrello.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ricerca/documentazione_farmaci/base_documenti_medicinali.py" beforeDir="false" afterPath="$PROJECT_DIR$/ricerca/documentazione_farmaci/base_documenti_medicinali.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ricerca/documentazione_farmaci/base_prescrizioni_mediche.py" beforeDir="false" afterPath="$PROJECT_DIR$/ricerca/documentazione_farmaci/base_prescrizioni_mediche.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/profile_creation/documentazione_persone/base_documenti_persone.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/profile_creation/iscrizione.py" beforeDir="false" afterPath="$PROJECT_DIR$/profile_creation/iscrizione.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ricerca/base_medicinali.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ricerca/documentazione_farmaci/base_documenti_medicinali.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ricerca/documentazione_farmaci/base_prescrizioni_mediche.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/ricerca/searchbar.py" beforeDir="false" afterPath="$PROJECT_DIR$/ricerca/searchbar.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -52,8 +41,8 @@
 }</component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/Ila-i/Farma_line.git&quot;,
-    &quot;accountId&quot;: &quot;ef441d76-cfff-49f7-ab30-11f7b7381cc9&quot;
+    &quot;url&quot;: &quot;https://github.com/Lisagori/Farma_line_Clone2.git&quot;,
+    &quot;accountId&quot;: &quot;f1bb7cde-48ee-4622-80a9-9f5cbf72eaf6&quot;
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
@@ -71,30 +60,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.accesso.executor": "Run",
-    "Python.base_documenti_medicinali.executor": "Run",
-    "Python.base_iscrizioni.executor": "Run",
-    "Python.base_medcinali.executor": "Run",
-    "Python.iscrizione.executor": "Run",
-    "Python.iscrizioni.executor": "Run",
-    "Python.main.executor": "Run",
-    "Python.searchbar.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/Utente/Desktop/Farma_line - Copia3",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.accesso.executor&quot;: &quot;Run&quot;,
+    &quot;Python.base_documenti_medicinali.executor&quot;: &quot;Run&quot;,
+    &quot;Python.base_iscrizioni.executor&quot;: &quot;Run&quot;,
+    &quot;Python.base_medcinali.executor&quot;: &quot;Run&quot;,
+    &quot;Python.iscrizione.executor&quot;: &quot;Run&quot;,
+    &quot;Python.iscrizioni.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.searchbar.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Utente/Desktop/Farma_line - Copia3&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Utente\Desktop\Farma_line - Copia3" />
@@ -103,8 +92,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-09060db00ec0-JavaScript-PY-251.26927.90" />
-        <option value="bundled-python-sdk-41e8cd69c857-64d779b69b7a-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-251.26927.90" />
+        <option value="bundled-python-sdk-af26db0dccfe-c546a90a8094-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-242.26775.22" />
       </set>
     </attachedChunks>
   </component>

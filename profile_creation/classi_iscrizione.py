@@ -1,11 +1,11 @@
 from abc import ABC, abstractmethod
-from profile_creation.base_iscrizione import *
 import pandas as pd
 from db import connection
 
 # funzione applicabile a tutte le classi
 def controlla(messaggio: str, lunghezza: int) -> str : #controllo del numero dei caratteri alfanumerici( va aggiunto se si riesce il controllo più specifico o messo come eccezione
    parametro = input(messaggio)
+
    while len(parametro) != lunghezza :
         parametro = input(f" il parametro non è valido, riprovare : ")
    return parametro
@@ -33,8 +33,8 @@ class Persona (ABC) :
 
         profilo.associazione_profilo_utente()
 
-        print(f"""registrazione effettuata con successo.
-                    Benvenuto {profilo.nome_utente} ! """)
+        print("registrazione effettuata con successo.")
+        print(f"        Benvenuto {profilo.nome_utente} !")
         return True
 
 class ProfiloUtente :
@@ -129,7 +129,6 @@ class TesseraSanitaria :
         new_tessera.to_sql('TesseraSanitaria', connection, if_exists='append', index=False)
         connection.commit()
 
-
 class TesserinoProfessionale :
     ordine_di_appartenenza: str # indica il settore lavorativo a cui appartieni
     n_matricola : str # indica il numero di iscrizione all'albo di riferimento
@@ -162,10 +161,11 @@ class Cliente(Persona):
         if not cliente.empty: # è un dataframe
             print("Il codice fiscale inserito appartiene a un utente già registrato")
 
-            scelta = input("""Se si vuole accedere al servizio digitare 1 
-Se si vuole ritentare il processo di iscrizione digitare 2 
-Digitare exit se si vuole terminare l'operazione 
-            """)
+            print("Se si vuole accedere al servizio digitare 1")
+            print("Se si vuole ritentare il processo di iscrizione digitare 2")
+            print("Digitare exit se si vuole terminare l'operazione")
+            scelta = input()
+
             if scelta == "1":
                 return True
             elif scelta == "2":
@@ -186,6 +186,7 @@ Digitare exit se si vuole terminare l'operazione
             connection.commit()
             #sezione per associazione profilo utente
             return self.crea_profilo()
+
 class Farmacista(Persona):
     t_p: TesserinoProfessionale #t_p abbreviazione tesserino professionale
 
@@ -200,10 +201,11 @@ class Farmacista(Persona):
         if not farmacista.empty: #è un dataframe
             print("La matricola inserita appartiene a un utente già registrato")
 
-            scelta = input("""Se si vuole accedere al servizio digitare 1 
-Se si vuole ritentare il processo di iscrizione digitare 2 )
-Digitare exit se si vuole terminare l'operazione 
-""")
+            print("Se si vuole accedere al servizio digitare 1")
+            print("Se si vuole ritentare il processo di iscrizione digitare 2")
+            print("Digitare exit se si vuole terminare l'operazione")
+            scelta = input()
+
             if scelta == "1":
                 return True
             elif scelta == "2":

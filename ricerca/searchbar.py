@@ -15,14 +15,13 @@ def search_bar() -> None:
     filtri = input("Vuoi applicare dei filtri alla tua ricerca? (digitare si o no) : ")
 
     if filtri == "si":
-        print(
-            "Indica almeno uno dei seguenti filtri, quando non si vuole mettere un filtro premere semplicemente invio")
+        print("Indica almeno uno dei seguenti filtri, quando non si vuole mettere un filtro premere semplicemente invio")
         indicazioni_terapeutiche = input("Inserire le indicazioni terapeutiche : ")
         composizione = input("Inserire la composizione: ")
         posologia = input("Inserire la posologia : ")
 
         filters = []  #lista
-        params = {}
+        params = {}  #Cosa vuol dire params?
 
         if indicazioni_terapeutiche:
             filters.append("LOWER(s.indicazioni_terapeutiche) LIKE LOWER(:indicazioni)")
@@ -95,8 +94,9 @@ def search_bar() -> None:
     if not results.empty:
         for farmaco in results.to_dict(orient="records"):
             print(farmaco)
-
-        if len(results) > 1:
+# TODO trasformare tutta questa sotto sezione in una funzione a se stante perchè sennò è troppo lunga, chiama tipo riempi carrello
+# da mettere possibilmente nella sezione acquisto
+        if len(results) > 1: # Se ce più di un farmaco
             codice_input = int(input("\nInserire il codice del farmaco che si vuole acquistare: "))
         else:# Se ce n'è solo uno
             codice_input =int(results.iloc[0]["codice_farmaco"])

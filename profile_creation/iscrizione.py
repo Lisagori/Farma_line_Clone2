@@ -7,9 +7,11 @@ def registrazione_utente() ->bool :
 
     verifica = False
     pearson : Persona
-    controllo= int(input("""Se si desidera iscriversi come cliente digitare 1
-Se si desidera iscriversi come farmacista digitare 2 
-    """))
+
+    print("Se si desidera iscriversi come cliente digitare 1")
+    print("Se si desidera iscriversi come farmacista digitare 2 ")
+    controllo= int(input())
+
     while not verifica :
         if controllo == 1 :
             pearson = Cliente()
