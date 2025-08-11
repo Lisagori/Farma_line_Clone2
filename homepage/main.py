@@ -40,8 +40,7 @@ while operazione == "2":
 if operazione =="continua" : # dentro il servizio della farmacia
     #TODO distinzione tra cliente e farmacista bisogna interrogare l abase dati
     print("Se si desidera cercare farmaci digitare 1")
-    print("Se si desidera procedere all'acquisto di farmaci da carrello digitare 2")
-    print("Se si desidera ordinare una preparazione galenica magistrale digitare 3")
+    print("Se si desidera ordinare una preparazione galenica magistrale digitare 2")
     opzioni = input()
     while opzioni == "1":
         search_bar()
@@ -50,8 +49,6 @@ if operazione =="continua" : # dentro il servizio della farmacia
         opzioni = input()
 
     if opzioni =="2":
-        print("operazione non disponibile")
-    elif opzioni =="3":
         print("operazione non disponibile")
     else:
         print("operazione non disponibile")

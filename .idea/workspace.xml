@@ -4,9 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="687e12ae-2a07-4650-9e4f-85933ff285c1" name="Changes" comment="modifiche main">
+    <list default="true" id="687e12ae-2a07-4650-9e4f-85933ff285c1" name="Changes" comment="print allineati">
+      <change afterPath="$PROJECT_DIR$/acquisto/carrello.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Farma_line.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Farma_line.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.py" beforeDir="false" afterPath="$PROJECT_DIR$/db.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/homepage/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/homepage/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ricerca/searchbar.py" beforeDir="false" afterPath="$PROJECT_DIR$/ricerca/searchbar.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -284,15 +288,7 @@
       <option name="project" value="LOCAL" />
       <updated>1754901347534</updated>
     </task>
-    <task id="LOCAL-00022" summary="modifiche main">
-      <option name="closed" value="true" />
-      <created>1754903422360</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1754903422360</updated>
-    </task>
-    <option name="localTasksCounter" value="23" />
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -328,8 +324,7 @@
     <MESSAGE value="aggiunta carrello con selezione codice" />
     <MESSAGE value="1 todo fatto" />
     <MESSAGE value="print allineati" />
-    <MESSAGE value="modifiche main" />
-    <option name="LAST_COMMIT_MESSAGE" value="modifiche main" />
+    <option name="LAST_COMMIT_MESSAGE" value="print allineati" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Farma_line$iscrizione.coverage" NAME="iscrizione Coverage Results" MODIFIED="1753883589561" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/profile_creation" />
@@ -337,7 +332,7 @@
     <SUITE FILE_PATH="coverage/Farma_line$base_medcinali.coverage" NAME="base_medcinali Coverage Results" MODIFIED="1753987293929" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ricerca" />
     <SUITE FILE_PATH="coverage/Farma_line$main.coverage" NAME="main Coverage Results" MODIFIED="1754662453464" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/homepage" />
     <SUITE FILE_PATH="coverage/Farma_line___Copia3$searchbar.coverage" NAME="searchbar Coverage Results" MODIFIED="1754754742125" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ricerca" />
-    <SUITE FILE_PATH="coverage/Farma_line___Copia3$main.coverage" NAME="main Coverage Results" MODIFIED="1754755995979" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/homepage" />
+    <SUITE FILE_PATH="coverage/Farma_line___Copia3$main.coverage" NAME="main Coverage Results" MODIFIED="1754905387009" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/homepage" />
     <SUITE FILE_PATH="coverage/Farma_line$searchbar.coverage" NAME="searchbar Coverage Results" MODIFIED="1754146846147" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ricerca" />
   </component>
 </project>

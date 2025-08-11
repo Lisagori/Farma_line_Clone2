@@ -1,8 +1,7 @@
 from acquisto.classi_acquisto import Farmaco
 from db import connection
 import pandas as pd
-
-carrello : list[Farmaco]=[]
+from acquisto.carrello import aggiunta_carrello
 
 def search_bar() -> None:
     medicinale :str
@@ -94,49 +93,7 @@ def search_bar() -> None:
     if not results.empty:
         for farmaco in results.to_dict(orient="records"):
             print(farmaco)
-# TODO trasformare tutta questa sotto sezione in una funzione a se stante perchè sennò è troppo lunga, chiama tipo riempi carrello
-# da mettere possibilmente nella sezione acquisto
-        if len(results) > 1: # Se ce più di un farmaco
-            codice_input = int(input("\nInserire il codice del farmaco che si vuole acquistare: "))
-        else:# Se ce n'è solo uno
-            codice_input =int(results.iloc[0]["codice_farmaco"])
-
-        aggiungi_carrello = input(
-            "\nDigitare 'si' se si vuole aggiungere il prodotto al carrello, altrimenti digitare 'no': ")
-        if aggiungi_carrello == "si":
-            # results: DataFrame con almeno la colonna "codice"
-            try:
-                codice_input = int(codice_input)
-            except ValueError:
-                print("Codice non valido.")
-                return
-
-            riga = results.loc[results["codice_farmaco"] == codice_input]
-
-            if not riga.empty:
-                farmaco_dict = riga.iloc[0].to_dict()  # prendo la prima corrispondenza
-                carrello.append(farmaco_dict)
-                print("Farmaco aggiunto al carrello.")
-            else:
-                print("Codice non trovato tra i risultati mostrati.")
-
-            print("Contenuto attuale del carrello:")
-
-            if carrello:
-                print(pd.DataFrame(carrello).to_string(index=False))
-            else:
-                print("Il carrello è vuoto.")
-
-        elif aggiungi_carrello == "no":
-            print("Farmaco non aggiunto al carrello")
-            print("Contenuto attuale del carrello:")
-
-            if carrello:
-                print(pd.DataFrame(carrello).to_string(index=False))
-            else:
-                print("Il carrello è vuoto.")
-        else:
-            print("Operazione non valida.")
+        aggiunta_carrello(results)
 
     if results.empty:
         print("Nessun farmaco trovato.")
