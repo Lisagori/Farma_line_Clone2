@@ -4,19 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="687e12ae-2a07-4650-9e4f-85933ff285c1" name="Changes" comment="1 todo fatto">
-      <change beforePath="$PROJECT_DIR$/.idea/Farma_line.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Farma_line.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="687e12ae-2a07-4650-9e4f-85933ff285c1" name="Changes" comment="print allineati">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/accesso/accesso.py" beforeDir="false" afterPath="$PROJECT_DIR$/accesso/accesso.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile_creation/base_iscrizione.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile_creation/classi_iscrizione.py" beforeDir="false" afterPath="$PROJECT_DIR$/profile_creation/classi_iscrizione.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile_creation/documentazione_persone/base_documenti_persone.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile_creation/iscrizione.py" beforeDir="false" afterPath="$PROJECT_DIR$/profile_creation/iscrizione.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ricerca/base_medicinali.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ricerca/documentazione_farmaci/base_documenti_medicinali.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ricerca/documentazione_farmaci/base_prescrizioni_mediche.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ricerca/searchbar.py" beforeDir="false" afterPath="$PROJECT_DIR$/ricerca/searchbar.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.py" beforeDir="false" afterPath="$PROJECT_DIR$/db.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/homepage/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/homepage/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -286,7 +278,15 @@
       <option name="project" value="LOCAL" />
       <updated>1754221601941</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="print allineati">
+      <option name="closed" value="true" />
+      <created>1754901347534</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1754901347534</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -321,7 +321,8 @@
     <MESSAGE value="aggiunta carrello" />
     <MESSAGE value="aggiunta carrello con selezione codice" />
     <MESSAGE value="1 todo fatto" />
-    <option name="LAST_COMMIT_MESSAGE" value="1 todo fatto" />
+    <MESSAGE value="print allineati" />
+    <option name="LAST_COMMIT_MESSAGE" value="print allineati" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Farma_line$iscrizione.coverage" NAME="iscrizione Coverage Results" MODIFIED="1753883589561" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/profile_creation" />
