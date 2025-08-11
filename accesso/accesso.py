@@ -11,6 +11,8 @@ def accesso_utente() -> str:
     controllo = 3
     #il termice chek viene utilizzato per riferire le variabili di controllo usate per verificare la presenza dell'utente
 
+    print("INSERIMENTO DATI PER ACCESSO")
+
     #sezione dedicata al controllo del nome utente
     username = input("Inserire il proprio nome utente : ")
     query = f"SELECT * FROM ProfiloUtente WHERE nome_utente = '{username}'"
