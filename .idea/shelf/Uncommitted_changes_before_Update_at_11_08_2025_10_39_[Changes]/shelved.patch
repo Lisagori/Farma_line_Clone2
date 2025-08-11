@@ -1,0 +1,249 @@
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"687e12ae-2a07-4650-9e4f-85933ff285c1\" name=\"Changes\" comment=\"1 todo fatto\">\r\n      <change afterPath=\"$PROJECT_DIR$/db.py\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_07_2025_16_42_[Changes]1/shelved.patch\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_07_2025_16_42__Changes_1.xml\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_07_2025_19_25_[Changes]1/shelved.patch\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_07_2025_19_25__Changes_1.xml\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_07_2025_22_08_[Changes]1/shelved.patch\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_07_2025_22_08__Changes_1.xml\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_31_07_2025_10_33_[Changes]1/shelved.patch\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_31_07_2025_10_33__Changes_1.xml\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_31_07_2025_12_13_[Changes]1/shelved.patch\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_31_07_2025_12_13__Changes_1.xml\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_31_07_2025_14_10_[Changes]1/shelved.patch\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_31_07_2025_14_10__Changes_1.xml\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/accesso/accesso.py\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/accesso/accesso.py\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/homepage/main.py\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/homepage/main.py\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/profile_creation/base_iscrizione.py\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/profile_creation/base_iscrizione.py\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/profile_creation/classi_iscrizione.py\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/profile_creation/classi_iscrizione.py\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/ricerca/base_medicinali.py\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/ricerca/base_medicinali.py\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/ricerca/carrello.py\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/ricerca/documentazione_farmaci/base_documenti_medicinali.py\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/ricerca/documentazione_farmaci/base_documenti_medicinali.py\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/ricerca/documentazione_farmaci/base_prescrizioni_mediche.py\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/ricerca/documentazione_farmaci/base_prescrizioni_mediche.py\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/ricerca/searchbar.py\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/ricerca/searchbar.py\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Python Script\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\">{\r\n  &quot;lastFilter&quot;: {\r\n    &quot;state&quot;: &quot;OPEN&quot;,\r\n    &quot;assignee&quot;: &quot;Ila-i&quot;\r\n  }\r\n}</component>\r\n  <component name=\"GithubPullRequestsUISettings\">{\r\n  &quot;selectedUrlAndAccountId&quot;: {\r\n    &quot;url&quot;: &quot;https://github.com/Ila-i/Farma_line.git&quot;,\r\n    &quot;accountId&quot;: &quot;ef441d76-cfff-49f7-ab30-11f7b7381cc9&quot;\r\n  }\r\n}</component>\r\n  <component name=\"HighlightingSettingsPerFile\">\r\n    <setting file=\"file://$PROJECT_DIR$/homepage/main.py\" root0=\"SKIP_INSPECTION\" />\r\n    <setting file=\"file://$PROJECT_DIR$/profile_creation/iscrizione.py\" root0=\"FORCE_HIGHLIGHTING\" />\r\n  </component>\r\n  <component name=\"ProblemsViewState\">\r\n    <option name=\"selectedTabId\" value=\"CurrentFile\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 1\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"30aQHyngg5WLdQa6YFFy98dhzXs\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"Python.accesso.executor\": \"Run\",\r\n    \"Python.base_documenti_medicinali.executor\": \"Run\",\r\n    \"Python.base_iscrizioni.executor\": \"Run\",\r\n    \"Python.base_medcinali.executor\": \"Run\",\r\n    \"Python.iscrizione.executor\": \"Run\",\r\n    \"Python.iscrizioni.executor\": \"Run\",\r\n    \"Python.main.executor\": \"Run\",\r\n    \"Python.searchbar.executor\": \"Run\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager\": \"true\",\r\n    \"RunOnceActivity.git.unshallow\": \"true\",\r\n    \"git-widget-placeholder\": \"master\",\r\n    \"last_opened_file_path\": \"C:/Users/Utente/Desktop/Farma_line - Copia3\",\r\n    \"node.js.detected.package.eslint\": \"true\",\r\n    \"node.js.detected.package.tslint\": \"true\",\r\n    \"node.js.selected.package.eslint\": \"(autodetect)\",\r\n    \"node.js.selected.package.tslint\": \"(autodetect)\",\r\n    \"nodejs_package_manager_path\": \"npm\",\r\n    \"settings.editor.selected.configurable\": \"com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable\",\r\n    \"vue.rearranger.settings.migration\": \"true\"\r\n  }\r\n}]]></component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\Utente\\Desktop\\Farma_line - Copia3\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"bundled-js-predefined-d6986cc7102b-09060db00ec0-JavaScript-PY-251.26927.90\" />\r\n        <option value=\"bundled-python-sdk-41e8cd69c857-64d779b69b7a-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-251.26927.90\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"687e12ae-2a07-4650-9e4f-85933ff285c1\" name=\"Changes\" comment=\"\" />\r\n      <created>1753863119875</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1753863119875</updated>\r\n      <workItem from=\"1753881483728\" duration=\"2523000\" />\r\n      <workItem from=\"1754035887024\" duration=\"7093000\" />\r\n      <workItem from=\"1754056161360\" duration=\"5968000\" />\r\n      <workItem from=\"1754123935887\" duration=\"4218000\" />\r\n      <workItem from=\"1754142834355\" duration=\"7312000\" />\r\n      <workItem from=\"1754150279391\" duration=\"110000\" />\r\n      <workItem from=\"1754150715294\" duration=\"5360000\" />\r\n      <workItem from=\"1754208657224\" duration=\"6232000\" />\r\n      <workItem from=\"1754217091582\" duration=\"3168000\" />\r\n      <workItem from=\"1754221455456\" duration=\"159000\" />\r\n      <workItem from=\"1754302546329\" duration=\"695000\" />\r\n      <workItem from=\"1754316102946\" duration=\"1584000\" />\r\n      <workItem from=\"1754386918226\" duration=\"3112000\" />\r\n      <workItem from=\"1754398209232\" duration=\"281000\" />\r\n      <workItem from=\"1754559095448\" duration=\"13129000\" />\r\n      <workItem from=\"1754639259543\" duration=\"23000\" />\r\n      <workItem from=\"1754639377359\" duration=\"50000\" />\r\n      <workItem from=\"1754662421154\" duration=\"263000\" />\r\n      <workItem from=\"1754732829690\" duration=\"362000\" />\r\n      <workItem from=\"1754734657580\" duration=\"130000\" />\r\n      <workItem from=\"1754735250568\" duration=\"9812000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"aggiunta la directory profile con il file iscrizione\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1753864288845</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1753864288845</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"realizzate le tabelle per la sezione di iscrizione\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1753870648752</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1753870648752</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"prime modifiche sbagliate\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1753885918575</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1753885918575</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"aggiunta framacista\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1753886064237</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1753886064237</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"aggiunta framacista correzione matricola\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1753886517378</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1753886517378</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"trasformato il metodo controllo in funzione controlla &#10;realizzati i metodi iscriversi per le classi cliente e farmacista&#10;realizzati imetodi associazione tessera per tessera sanitaria e tesserino professionale&#10;relizzato il metodo associazione profilo per associare profilo utente\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1753896295255</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1753896295255</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"main ciclico\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1753899052906</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1753899052906</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00008\" summary=\"non è stato modificato niente\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1753947780553</created>\r\n      <option name=\"number\" value=\"00008\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1753947780553</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00009\" summary=\"non è stato modificato niente\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1753948140626</created>\r\n      <option name=\"number\" value=\"00009\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1753948140626</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00010\" summary=\"creazione funzione accesso\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1753949601053</created>\r\n      <option name=\"number\" value=\"00010\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1753949601053</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00011\" summary=\"modifiche su iscrizione spostamento sezione codice creazione profilo\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1753950777639</created>\r\n      <option name=\"number\" value=\"00011\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00011\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1753950777639</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00012\" summary=\"modifiche tutto\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1753956745035</created>\r\n      <option name=\"number\" value=\"00012\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00012\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1753956745035</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00013\" summary=\"aggiunta opzione iscrizione da accesso\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1753959729569</created>\r\n      <option name=\"number\" value=\"00013\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00013\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1753959729569</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00014\" summary=\"aggiunta ricerca\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1753975149428</created>\r\n      <option name=\"number\" value=\"00014\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00014\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1753975149428</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00015\" summary=\"aggiunta ricerca corretta\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1754041906773</created>\r\n      <option name=\"number\" value=\"00015\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00015\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1754041906774</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00016\" summary=\"aggiunta ricerca corretta\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1754041928440</created>\r\n      <option name=\"number\" value=\"00016\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00016\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1754041928440</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00017\" summary=\"aggiunta ricerca corretta\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1754043734767</created>\r\n      <option name=\"number\" value=\"00017\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00017\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1754043734767</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00018\" summary=\"aggiunta carrello\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1754148118003</created>\r\n      <option name=\"number\" value=\"00018\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00018\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1754148118003</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00019\" summary=\"aggiunta carrello con selezione codice\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1754150124647</created>\r\n      <option name=\"number\" value=\"00019\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00019\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1754150124647</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00020\" summary=\"1 todo fatto\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1754221601941</created>\r\n      <option name=\"number\" value=\"00020\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00020\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1754221601941</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"21\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"aggiunta la directory profile con il file iscrizione\" />\r\n    <MESSAGE value=\"realizzate le tabelle per la sezione di iscrizione\" />\r\n    <MESSAGE value=\"prime modifiche sbagliate\" />\r\n    <MESSAGE value=\"aggiunta framacista\" />\r\n    <MESSAGE value=\"aggiunta framacista correzione matricola\" />\r\n    <MESSAGE value=\"trasformato il metodo controllo in funzione controlla &#10;realizzati i metodi iscriversi per le classi cliente e farmacista&#10;realizzati imetodi associazione tessera per tessera sanitaria e tesserino professionale&#10;relizzato il metodo associazione profilo per associare profilo utente\" />\r\n    <MESSAGE value=\"main ciclico\" />\r\n    <MESSAGE value=\"non è stato modificato niente\" />\r\n    <MESSAGE value=\"creazione funzione accesso\" />\r\n    <MESSAGE value=\"modifiche su iscrizione spostamento sezione codice creazione profilo\" />\r\n    <MESSAGE value=\"modifiche tutto\" />\r\n    <MESSAGE value=\"aggiunta opzione iscrizione da accesso\" />\r\n    <MESSAGE value=\"aggiunta ricerca\" />\r\n    <MESSAGE value=\"aggiunta ricerca corretta\" />\r\n    <MESSAGE value=\"aggiunta carrello\" />\r\n    <MESSAGE value=\"aggiunta carrello con selezione codice\" />\r\n    <MESSAGE value=\"1 todo fatto\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"1 todo fatto\" />\r\n  </component>\r\n  <component name=\"com.intellij.coverage.CoverageDataManagerImpl\">\r\n    <SUITE FILE_PATH=\"coverage/Farma_line$iscrizione.coverage\" NAME=\"iscrizione Coverage Results\" MODIFIED=\"1753883589561\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"coverage.py\" COVERAGE_BY_TEST_ENABLED=\"false\" COVERAGE_TRACING_ENABLED=\"false\" WORKING_DIRECTORY=\"$PROJECT_DIR$/profile_creation\" />\r\n    <SUITE FILE_PATH=\"coverage/Farma_line$base_iscrizioni.coverage\" NAME=\"base_iscrizioni Coverage Results\" MODIFIED=\"1753882474763\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"coverage.py\" COVERAGE_BY_TEST_ENABLED=\"false\" COVERAGE_TRACING_ENABLED=\"false\" WORKING_DIRECTORY=\"$PROJECT_DIR$/profile_creation\" />\r\n    <SUITE FILE_PATH=\"coverage/Farma_line$base_medcinali.coverage\" NAME=\"base_medcinali Coverage Results\" MODIFIED=\"1753987293929\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"coverage.py\" COVERAGE_BY_TEST_ENABLED=\"false\" COVERAGE_TRACING_ENABLED=\"false\" WORKING_DIRECTORY=\"$PROJECT_DIR$/ricerca\" />\r\n    <SUITE FILE_PATH=\"coverage/Farma_line$main.coverage\" NAME=\"main Coverage Results\" MODIFIED=\"1754662453464\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"coverage.py\" COVERAGE_BY_TEST_ENABLED=\"false\" COVERAGE_TRACING_ENABLED=\"false\" WORKING_DIRECTORY=\"$PROJECT_DIR$/homepage\" />\r\n    <SUITE FILE_PATH=\"coverage/Farma_line___Copia3$searchbar.coverage\" NAME=\"searchbar Coverage Results\" MODIFIED=\"1754754742125\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"coverage.py\" COVERAGE_BY_TEST_ENABLED=\"false\" COVERAGE_TRACING_ENABLED=\"false\" WORKING_DIRECTORY=\"$PROJECT_DIR$/ricerca\" />\r\n    <SUITE FILE_PATH=\"coverage/Farma_line___Copia3$main.coverage\" NAME=\"main Coverage Results\" MODIFIED=\"1754755995979\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"coverage.py\" COVERAGE_BY_TEST_ENABLED=\"false\" COVERAGE_TRACING_ENABLED=\"false\" WORKING_DIRECTORY=\"$PROJECT_DIR$/homepage\" />\r\n    <SUITE FILE_PATH=\"coverage/Farma_line$searchbar.coverage\" NAME=\"searchbar Coverage Results\" MODIFIED=\"1754146846147\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"coverage.py\" COVERAGE_BY_TEST_ENABLED=\"false\" COVERAGE_TRACING_ENABLED=\"false\" WORKING_DIRECTORY=\"$PROJECT_DIR$/ricerca\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 2b9b9cb10a2c6b66a317943c06f5d2d86fedcc8c)
++++ b/.idea/workspace.xml	(date 1754809752278)
+@@ -4,29 +4,9 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="687e12ae-2a07-4650-9e4f-85933ff285c1" name="Changes" comment="1 todo fatto">
+-      <change afterPath="$PROJECT_DIR$/db.py" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_07_2025_16_42_[Changes]1/shelved.patch" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_07_2025_16_42__Changes_1.xml" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_07_2025_19_25_[Changes]1/shelved.patch" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_07_2025_19_25__Changes_1.xml" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_07_2025_22_08_[Changes]1/shelved.patch" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_07_2025_22_08__Changes_1.xml" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_31_07_2025_10_33_[Changes]1/shelved.patch" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_31_07_2025_10_33__Changes_1.xml" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_31_07_2025_12_13_[Changes]1/shelved.patch" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_31_07_2025_12_13__Changes_1.xml" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_31_07_2025_14_10_[Changes]1/shelved.patch" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_31_07_2025_14_10__Changes_1.xml" beforeDir="false" />
++    <list default="true" id="687e12ae-2a07-4650-9e4f-85933ff285c1" name="Changes" comment="risoluzione tutti DB">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/accesso/accesso.py" beforeDir="false" afterPath="$PROJECT_DIR$/accesso/accesso.py" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/homepage/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/homepage/main.py" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/profile_creation/base_iscrizione.py" beforeDir="false" afterPath="$PROJECT_DIR$/profile_creation/base_iscrizione.py" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/profile_creation/classi_iscrizione.py" beforeDir="false" afterPath="$PROJECT_DIR$/profile_creation/classi_iscrizione.py" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/ricerca/base_medicinali.py" beforeDir="false" afterPath="$PROJECT_DIR$/ricerca/base_medicinali.py" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/ricerca/carrello.py" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/ricerca/documentazione_farmaci/base_documenti_medicinali.py" beforeDir="false" afterPath="$PROJECT_DIR$/ricerca/documentazione_farmaci/base_documenti_medicinali.py" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/ricerca/documentazione_farmaci/base_prescrizioni_mediche.py" beforeDir="false" afterPath="$PROJECT_DIR$/ricerca/documentazione_farmaci/base_prescrizioni_mediche.py" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/ricerca/searchbar.py" beforeDir="false" afterPath="$PROJECT_DIR$/ricerca/searchbar.py" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+@@ -71,30 +51,30 @@
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent"><![CDATA[{
+-  "keyToString": {
+-    "Python.accesso.executor": "Run",
+-    "Python.base_documenti_medicinali.executor": "Run",
+-    "Python.base_iscrizioni.executor": "Run",
+-    "Python.base_medcinali.executor": "Run",
+-    "Python.iscrizione.executor": "Run",
+-    "Python.iscrizioni.executor": "Run",
+-    "Python.main.executor": "Run",
+-    "Python.searchbar.executor": "Run",
+-    "RunOnceActivity.ShowReadmeOnStart": "true",
+-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
+-    "RunOnceActivity.git.unshallow": "true",
+-    "git-widget-placeholder": "master",
+-    "last_opened_file_path": "C:/Users/Utente/Desktop/Farma_line - Copia3",
+-    "node.js.detected.package.eslint": "true",
+-    "node.js.detected.package.tslint": "true",
+-    "node.js.selected.package.eslint": "(autodetect)",
+-    "node.js.selected.package.tslint": "(autodetect)",
+-    "nodejs_package_manager_path": "npm",
+-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
+-    "vue.rearranger.settings.migration": "true"
++  <component name="PropertiesComponent">{
++  &quot;keyToString&quot;: {
++    &quot;Python.accesso.executor&quot;: &quot;Run&quot;,
++    &quot;Python.base_documenti_medicinali.executor&quot;: &quot;Run&quot;,
++    &quot;Python.base_iscrizioni.executor&quot;: &quot;Run&quot;,
++    &quot;Python.base_medcinali.executor&quot;: &quot;Run&quot;,
++    &quot;Python.iscrizione.executor&quot;: &quot;Run&quot;,
++    &quot;Python.iscrizioni.executor&quot;: &quot;Run&quot;,
++    &quot;Python.main.executor&quot;: &quot;Run&quot;,
++    &quot;Python.searchbar.executor&quot;: &quot;Run&quot;,
++    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
++    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
++    &quot;last_opened_file_path&quot;: &quot;C:/Users/Utente/Desktop/Farma_line - Copia3&quot;,
++    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
++    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
++    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
++    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
++    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
++    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
++    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+   }
+-}]]></component>
++}</component>
+   <component name="RecentsManager">
+     <key name="CopyFile.RECENT_KEYS">
+       <recent name="C:\Users\Utente\Desktop\Farma_line - Copia3" />
+@@ -136,7 +116,9 @@
+       <workItem from="1754662421154" duration="263000" />
+       <workItem from="1754732829690" duration="362000" />
+       <workItem from="1754734657580" duration="130000" />
+-      <workItem from="1754735250568" duration="9812000" />
++      <workItem from="1754735250568" duration="9955000" />
++      <workItem from="1754756309819" duration="1923000" />
++      <workItem from="1754807577232" duration="1895000" />
+     </task>
+     <task id="LOCAL-00001" summary="aggiunta la directory profile con il file iscrizione">
+       <option name="closed" value="true" />
+@@ -298,7 +280,15 @@
+       <option name="project" value="LOCAL" />
+       <updated>1754221601941</updated>
+     </task>
+-    <option name="localTasksCounter" value="21" />
++    <task id="LOCAL-00021" summary="risoluzione tutti DB">
++      <option name="closed" value="true" />
++      <created>1754756188654</created>
++      <option name="number" value="00021" />
++      <option name="presentableId" value="LOCAL-00021" />
++      <option name="project" value="LOCAL" />
++      <updated>1754756188654</updated>
++    </task>
++    <option name="localTasksCounter" value="22" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -333,7 +323,8 @@
+     <MESSAGE value="aggiunta carrello" />
+     <MESSAGE value="aggiunta carrello con selezione codice" />
+     <MESSAGE value="1 todo fatto" />
+-    <option name="LAST_COMMIT_MESSAGE" value="1 todo fatto" />
++    <MESSAGE value="risoluzione tutti DB" />
++    <option name="LAST_COMMIT_MESSAGE" value="risoluzione tutti DB" />
+   </component>
+   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+     <SUITE FILE_PATH="coverage/Farma_line$iscrizione.coverage" NAME="iscrizione Coverage Results" MODIFIED="1753883589561" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/profile_creation" />
+@@ -341,7 +332,7 @@
+     <SUITE FILE_PATH="coverage/Farma_line$base_medcinali.coverage" NAME="base_medcinali Coverage Results" MODIFIED="1753987293929" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ricerca" />
+     <SUITE FILE_PATH="coverage/Farma_line$main.coverage" NAME="main Coverage Results" MODIFIED="1754662453464" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/homepage" />
+     <SUITE FILE_PATH="coverage/Farma_line___Copia3$searchbar.coverage" NAME="searchbar Coverage Results" MODIFIED="1754754742125" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ricerca" />
+-    <SUITE FILE_PATH="coverage/Farma_line___Copia3$main.coverage" NAME="main Coverage Results" MODIFIED="1754755995979" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/homepage" />
++    <SUITE FILE_PATH="coverage/Farma_line___Copia3$main.coverage" NAME="main Coverage Results" MODIFIED="1754756112239" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/homepage" />
+     <SUITE FILE_PATH="coverage/Farma_line$searchbar.coverage" NAME="searchbar Coverage Results" MODIFIED="1754146846147" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ricerca" />
+   </component>
+ </project>
+\ No newline at end of file
+Index: ricerca/searchbar.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>from acquisto.classi_acquisto import Farmaco\r\nfrom db import connection\r\nimport pandas as pd\r\n\r\ncarrello : list[Farmaco]=[]\r\n\r\ndef search_bar() -> None:\r\n    medicinale :str\r\n    filtri : str\r\n    aggiungi_carrello :str\r\n\r\n    farmaco : Farmaco\r\n\r\n    print(\"BARRA DI RICERCA\")\r\n    filtri = input(\"Vuoi applicare dei filtri alla tua ricerca? (digitare si o no) : \")\r\n\r\n    if filtri == \"si\":\r\n        print(\r\n            \"Indica almeno uno dei seguenti filtri, quando non si vuole mettere un filtro premere semplicemente invio\")\r\n        indicazioni_terapeutiche = input(\"Inserire le indicazioni terapeutiche : \")\r\n        composizione = input(\"Inserire la composizione: \")\r\n        posologia = input(\"Inserire la posologia : \")\r\n\r\n        filters = []  #lista\r\n        params = {}\r\n\r\n        if indicazioni_terapeutiche:\r\n            filters.append(\"LOWER(s.indicazioni_terapeutiche) LIKE LOWER(:indicazioni)\")\r\n            params[\"indicazioni\"] = f\"%{indicazioni_terapeutiche}%\"\r\n\r\n        if composizione:\r\n            filters.append(\"LOWER (s.composizione) LIKE LOWER (:composizione)\")\r\n            params[\"composizione\"] = f\"%{composizione}%\"\r\n\r\n        if posologia:\r\n            filters.append(\"LOWER (s.posologia) LIKE LOWER (:posologia)\")\r\n            params[\"posologia\"] = f\"%{posologia}%\"\r\n\r\n        query = \"\"\"\r\n                SELECT \r\n   \r\n                    f.codice AS codice_farmaco,      -- alias univoco\r\n                    f.nome,\r\n                    f.ricetta,\r\n                    f.preparato_galenico,\r\n                    f.prezzo,\r\n                    s.indicazioni_terapeutiche,\r\n                    s.composizione,\r\n                    s.eccipienti,\r\n                    s.controindicazioni,\r\n                    s.posologia,\r\n                    s.avvertenze,\r\n                    s.effetti_indesiderati\r\n                FROM FarmaciMagazzino AS f\r\n                LEFT JOIN SchedaTecnica AS s\r\n                  ON f.codice = s.codice \r\n                \"\"\"\r\n        if filters:\r\n            query += \" WHERE \" + \" AND \".join(filters)\r\n            results = pd.read_sql(query, connection, params=params)\r\n\r\n        else :\r\n            print(\"Nessun filtro inserito. Ricerca annullata.\")\r\n            results = pd.DataFrame() # equivalente a lista vuota\r\n\r\n    elif filtri == \"no\":\r\n        medicinale = input(\"Digitare il nome del farmaco che si sta cercando: \").strip()\r\n\r\n        query = \"\"\"\r\n                SELECT\r\n                    f.codice AS codice_farmaco,      -- alias univoco\r\n                    f.nome,\r\n                    f.ricetta,\r\n                    f.preparato_galenico,\r\n                    f.prezzo,\r\n                    s.indicazioni_terapeutiche,\r\n                    s.composizione,\r\n                    s.eccipienti,\r\n                    s.controindicazioni,\r\n                    s.posologia,\r\n                    s.avvertenze,\r\n                    s.effetti_indesiderati\r\n                FROM FarmaciMagazzino AS f\r\n                JOIN SchedaTecnica AS s\r\n                  ON f.codice = s.codice\r\n                    WHERE LOWER(TRIM(f.nome)) LIKE LOWER(:nome)  -- TRIM dà più tolleranza sugli spazi\r\n                            \"\"\"\r\n        params = {\"nome\": f\"%{medicinale}%\"}\r\n        results = pd.read_sql_query(query, connection, params=params)\r\n    else:\r\n        print(\"Operazione non valida.\")\r\n        results = pd.DataFrame()  # equivalente a lista vuota\r\n\r\n    # Stampa dei risultati\r\n    if not results.empty:\r\n        for farmaco in results.to_dict(orient=\"records\"):\r\n            print(farmaco)\r\n\r\n        if len(results) > 1:\r\n            codice_input = int(input(\"\\nInserire il codice del farmaco che si vuole acquistare: \"))\r\n        else:# Se ce n'è solo uno\r\n            codice_input =int(results.iloc[0][\"codice_farmaco\"])\r\n\r\n        aggiungi_carrello = input(\r\n            \"\\nDigitare 'si' se si vuole aggiungere il prodotto al carrello, altrimenti digitare 'no': \")\r\n        if aggiungi_carrello == \"si\":\r\n            # results: DataFrame con almeno la colonna \"codice\"\r\n            try:\r\n                codice_input = int(codice_input)\r\n            except ValueError:\r\n                print(\"Codice non valido.\")\r\n                return\r\n\r\n            riga = results.loc[results[\"codice_farmaco\"] == codice_input]\r\n\r\n            if not riga.empty:\r\n                farmaco_dict = riga.iloc[0].to_dict()  # prendo la prima corrispondenza\r\n                carrello.append(farmaco_dict)\r\n                print(\"Farmaco aggiunto al carrello.\")\r\n            else:\r\n                print(\"Codice non trovato tra i risultati mostrati.\")\r\n\r\n            print(\"Contenuto attuale del carrello:\")\r\n\r\n            if carrello:\r\n                print(pd.DataFrame(carrello).to_string(index=False))\r\n            else:\r\n                print(\"Il carrello è vuoto.\")\r\n\r\n        elif aggiungi_carrello == \"no\":\r\n            print(\"Farmaco non aggiunto al carrello\")\r\n            print(\"Contenuto attuale del carrello:\")\r\n\r\n            if carrello:\r\n                print(pd.DataFrame(carrello).to_string(index=False))\r\n            else:\r\n                print(\"Il carrello è vuoto.\")\r\n        else:\r\n            print(\"Operazione non valida.\")\r\n\r\n    if results.empty:\r\n        print(\"Nessun farmaco trovato.\")\r\n        return  # torna al menu precedente
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/ricerca/searchbar.py b/ricerca/searchbar.py
+--- a/ricerca/searchbar.py	(revision 2b9b9cb10a2c6b66a317943c06f5d2d86fedcc8c)
++++ b/ricerca/searchbar.py	(date 1754808389792)
+@@ -39,7 +39,7 @@
+         query = """
+                 SELECT 
+    
+-                    f.codice AS codice_farmaco,      -- alias univoco
++                    f.codice AS codice_farmaco,      -- non stampo con * per eviatare errori di duplicità con il join
+                     f.nome,
+                     f.ricetta,
+                     f.preparato_galenico,
+@@ -56,8 +56,8 @@
+                   ON f.codice = s.codice 
+                 """
+         if filters:
+-            query += " WHERE " + " AND ".join(filters)
+-            results = pd.read_sql(query, connection, params=params)
++            query += " WHERE " + " AND ".join(filters) # " WHERE " con tutte le condizioni dentro la lista filters, unite tra loro con " AND ".
++            results = pd.read_sql(query, connection, params=params) # params sono i parametri del where
+ 
+         else :
+             print("Nessun filtro inserito. Ricerca annullata.")
+@@ -85,6 +85,8 @@
+                   ON f.codice = s.codice
+                     WHERE LOWER(TRIM(f.nome)) LIKE LOWER(:nome)  -- TRIM dà più tolleranza sugli spazi
+                             """
++        #LOWER trasforma tutto il testo in minuscolo.
++        # LIKE È un operatore SQL che serve per confrontare stringhe con pattern(stringa che descrive la forma del testo che vuoi trovare quindi con margine)
+         params = {"nome": f"%{medicinale}%"}
+         results = pd.read_sql_query(query, connection, params=params)
+     else:
+@@ -93,13 +95,13 @@
+ 
+     # Stampa dei risultati
+     if not results.empty:
+-        for farmaco in results.to_dict(orient="records"):
++        for farmaco in results.to_dict(orient="records"): #ogni riga del DataFrame diventa un dizionario ho quindi una lista di dizionari( dizionario è un record)
+             print(farmaco)
+-
++# da qui
+         if len(results) > 1:
+             codice_input = int(input("\nInserire il codice del farmaco che si vuole acquistare: "))
+         else:# Se ce n'è solo uno
+-            codice_input =int(results.iloc[0]["codice_farmaco"])
++            codice_input =int(results.iloc[0]["codice_farmaco"]) #Da quella prima riga, prende solo il valore della colonna codice_farmaco.
+ 
+         aggiungi_carrello = input(
+             "\nDigitare 'si' se si vuole aggiungere il prodotto al carrello, altrimenti digitare 'no': ")
+@@ -111,10 +113,9 @@
+                 print("Codice non valido.")
+                 return
+ 
+-            riga = results.loc[results["codice_farmaco"] == codice_input]
+-
++            riga = results.loc[results["codice_farmaco"] == codice_input] #.loc serve per selezionare righe usando etichette. Si prende dal DataFrame la riga (o le righe) dove codice_farmaco è uguale al valore codice_input
+             if not riga.empty:
+-                farmaco_dict = riga.iloc[0].to_dict()  # prendo la prima corrispondenza
++                farmaco_dict = riga.iloc[0].to_dict()  # prendo la prima corrispondenza e la trasformo in dizionario
+                 carrello.append(farmaco_dict)
+                 print("Farmaco aggiunto al carrello.")
+             else:
+@@ -123,7 +124,7 @@
+             print("Contenuto attuale del carrello:")
+ 
+             if carrello:
+-                print(pd.DataFrame(carrello).to_string(index=False))
++                print(pd.DataFrame(carrello).to_string(index=False))#Converte carrello in un DataFrame Pandas e converte questo in una stringa
+             else:
+                 print("Il carrello è vuoto.")
+ 
+@@ -138,6 +139,6 @@
+         else:
+             print("Operazione non valida.")
+ 
+-    if results.empty:
++    if results.empty: #se il Dataframe results è vuoto
+         print("Nessun farmaco trovato.")
+         return  # torna al menu precedente
+\ No newline at end of file
+Index: homepage/main.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>from profile_creation.iscrizione import registrazione_utente\r\nfrom accesso.accesso import  accesso_utente\r\nfrom ricerca.searchbar import *\r\nfrom acquisto.classi_acquisto import Farmaco\r\nfrom db import connection\r\n\r\nscelta : str\r\ncarrello : list[Farmaco] #non utile al momento\r\nscelta2 :str\r\nscelta2 = \"1\"\r\n\r\nprint(\"HOME PAGE\")\r\n\r\n\r\nwhile scelta2 ==\"1\" :\r\n\r\n    scelta = input(\"\"\"Se si è in possesso di un profilo utente digitare 1 per accedere al servizio.\r\nSe non si possiede un profilo utente digitare 2 per registrarsi al servizio. \r\n        \"\"\")\r\n\r\n    while scelta == \"1\" :\r\n            scelta = accesso_utente()\r\n            selezione= input(\"\"\"Se si desidera ricercare medicinali da acquistare digitare 1.\r\nSe si desidera effetuare un ordine di un preparato galenico magistrale digitare 2. \r\n            \"\"\")\r\n            while selezione == \"1\":\r\n                search_bar()\r\n                selezione = input(\"\"\"Se si desidera continuare a ricercare medicinali da acquistare digitare 1 \r\nSe si desidera terminare la ricerca e procedere all'acquisto digitare 3\r\n\"\"\")\r\n\r\n            if selezione == \"3\" :\r\n                # processo di acquisto\r\n                print(\"Sezione non disponibile \")\r\n                #processo di acquisto\r\n            else:\r\n                print(\"Inserimento non corretto\")\r\n\r\n    scelta2 = \"2\"\r\n\r\n    if scelta == \"2\" :\r\n        if registrazione_utente() :\r\n            scelta2 = \"1\"\r\n        else :\r\n            print(\" Operazione terminata \")\r\n    else :\r\n        print(\" Operazione terminata \")
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/homepage/main.py b/homepage/main.py
+--- a/homepage/main.py	(revision 2b9b9cb10a2c6b66a317943c06f5d2d86fedcc8c)
++++ b/homepage/main.py	(date 1754807683815)
+@@ -44,4 +44,5 @@
+         else :
+             print(" Operazione terminata ")
+     else :
+-        print(" Operazione terminata ")
+\ No newline at end of file
++        print(" Operazione terminata ")
++        #TODO guardare le eccezioni
+\ No newline at end of file
