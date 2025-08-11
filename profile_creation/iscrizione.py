@@ -1,5 +1,6 @@
-from profile_creation.classi_iscrizione import *
-
+from classi.persone.classe_farmacista import Farmacista
+from classi.persone.classe_cliente import Cliente
+from classi.persone.classe_persona import Persona
 # sezione di codice dedicata  all'iscrizione da usare nel main
 
 def registrazione_utente() ->bool :

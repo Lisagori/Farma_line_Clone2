@@ -1,4 +1,4 @@
-from acquisto.classi_acquisto import Farmaco
+from classi.farmaci.classe_farmaci import Farmaco
 from db import connection
 import pandas as pd
 from acquisto.carrello import aggiunta_carrello

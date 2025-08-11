@@ -1,5 +1,4 @@
 import pandas as pd
-from profile_creation.classi_iscrizione import *
 from db import connection
 
 def accesso_utente() -> str:

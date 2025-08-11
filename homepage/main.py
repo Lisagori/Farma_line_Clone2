@@ -1,7 +1,7 @@
 from profile_creation.iscrizione import registrazione_utente
 from accesso.accesso import  accesso_utente
 from ricerca.searchbar import *
-from acquisto.classi_acquisto import Farmaco
+from classi.farmaci.classe_farmaci import Farmaco
 from db import connection
 
 operazione : str

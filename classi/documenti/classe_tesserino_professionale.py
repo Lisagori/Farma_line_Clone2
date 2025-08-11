@@ -1,0 +1,21 @@
+import pandas as pd
+from db import connection
+
+class TesserinoProfessionale :
+    ordine_di_appartenenza: str # indica il settore lavorativo a cui appartieni
+    n_matricola : str # indica il numero di iscrizione all'albo di riferimento
+
+    def __init__(self, ordine :str):
+        self.ordine_di_appartenenza = ordine
+        self.n_matricola = input("Inserire il proprio numero di matricola : ")
+
+    def associazione_tessera_a_db(self):
+        # Crea le istanze dei modelli SQLAlchemy da salvare sulle tabelle
+        new_tesserino = pd.DataFrame(
+            columns=['ordine_appartenenza','n_matricola'],
+            data=[
+            [self.ordine_di_appartenenza, self.n_matricola]
+            ]
+        )
+        new_tesserino.to_sql('TesserinoProfessionale', connection, if_exists='append', index=False)
+        connection.commit()

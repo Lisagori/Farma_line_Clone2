@@ -1,5 +1,4 @@
 
-
 class Farmaco:
 
     def __init__(self, codice: str, nome: str, prezzo: str, ricetta: str, preparato_galenico: str, scheda_tecnica=None):

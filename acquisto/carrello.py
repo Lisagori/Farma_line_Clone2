@@ -1,4 +1,4 @@
-from acquisto.classi_acquisto import Farmaco
+from classi.farmaci.classe_farmaci import Farmaco
 import pandas as pd
 
 carrello: list[Farmaco] = [] #si inserisce fuori dalla funzione per evitare che il carrello si riazzeri ogni volta che viene chiamata da search_bar
