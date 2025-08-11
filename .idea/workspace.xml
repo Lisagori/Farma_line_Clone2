@@ -4,14 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="687e12ae-2a07-4650-9e4f-85933ff285c1" name="Changes" comment="risoluzione tutti DB">
+    <list default="true" id="687e12ae-2a07-4650-9e4f-85933ff285c1" name="Changes" comment="divisione classi">
+      <change beforePath="$PROJECT_DIR$/.idea/Farma_line.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Farma_line.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/accesso/accesso.py" beforeDir="false" afterPath="$PROJECT_DIR$/accesso/accesso.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classi/persone/classe_cliente.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classi/persone/classe_farmacista.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classi/persone/classe_persona.py" beforeDir="false" afterPath="$PROJECT_DIR$/classi/persone/classe_persona.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classi/persone/classe_profilo.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile_creation/iscrizione.py" beforeDir="false" afterPath="$PROJECT_DIR$/profile_creation/iscrizione.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/acquisto/scelta_indirizzi.py" beforeDir="false" afterPath="$PROJECT_DIR$/acquisto/scelta_indirizzi.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,6 +63,7 @@
     "Python.iscrizione.executor": "Run",
     "Python.iscrizioni.executor": "Run",
     "Python.main.executor": "Run",
+    "Python.scelta_indirizzi.executor": "Run",
     "Python.searchbar.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
@@ -88,7 +87,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-af26db0dccfe-c546a90a8094-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-242.26775.22" />
+        <option value="bundled-js-predefined-d6986cc7102b-09060db00ec0-JavaScript-PY-251.26927.90" />
+        <option value="bundled-python-sdk-41e8cd69c857-64d779b69b7a-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-251.26927.90" />
       </set>
     </attachedChunks>
   </component>
@@ -121,6 +121,7 @@
       <workItem from="1754732829690" duration="362000" />
       <workItem from="1754734657580" duration="130000" />
       <workItem from="1754735250568" duration="9812000" />
+      <workItem from="1754920051939" duration="5172000" />
     </task>
     <task id="LOCAL-00001" summary="aggiunta la directory profile con il file iscrizione">
       <option name="closed" value="true" />
@@ -298,7 +299,15 @@
       <option name="project" value="LOCAL" />
       <updated>1754905593651</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="divisione classi">
+      <option name="closed" value="true" />
+      <created>1754908559317</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1754908559317</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -335,7 +344,23 @@
     <MESSAGE value="1 todo fatto" />
     <MESSAGE value="print allineati" />
     <MESSAGE value="risoluzione tutti DB" />
-    <option name="LAST_COMMIT_MESSAGE" value="risoluzione tutti DB" />
+    <MESSAGE value="divisione classi" />
+    <option name="LAST_COMMIT_MESSAGE" value="divisione classi" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/db.py</url>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/db.py</url>
+          <line>2</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Farma_line$iscrizione.coverage" NAME="iscrizione Coverage Results" MODIFIED="1753883589561" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/profile_creation" />
@@ -343,8 +368,10 @@
     <SUITE FILE_PATH="coverage/Farma_line$base_medcinali.coverage" NAME="base_medcinali Coverage Results" MODIFIED="1753987293929" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ricerca" />
     <SUITE FILE_PATH="coverage/Farma_line$main.coverage" NAME="main Coverage Results" MODIFIED="1754662453464" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/homepage" />
     <SUITE FILE_PATH="coverage/Farma_line___Copia3$searchbar.coverage" NAME="searchbar Coverage Results" MODIFIED="1754754742125" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ricerca" />
-    <SUITE FILE_PATH="coverage/Farma_line___Copia3$main.coverage" NAME="main Coverage Results" MODIFIED="1754908157083" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/homepage" />
+    <SUITE FILE_PATH="coverage/Farma_line___Copia3$accesso.coverage" NAME="accesso Coverage Results" MODIFIED="1754928876468" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/accesso" />
+    <SUITE FILE_PATH="coverage/Farma_line___Copia3$main.coverage" NAME="main Coverage Results" MODIFIED="1754929216466" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/homepage" />
     <SUITE FILE_PATH="coverage/Farma_line$searchbar.coverage" NAME="searchbar Coverage Results" MODIFIED="1754146846147" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ricerca" />
     <SUITE FILE_PATH="coverage/Farma_line___Copia3$classe_persona.coverage" NAME="classe_persona Coverage Results" MODIFIED="1754907742632" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/classi/persone" />
+    <SUITE FILE_PATH="coverage/Farma_line___Copia3$scelta_indirizzi.coverage" NAME="scelta_indirizzi Coverage Results" MODIFIED="1754927742630" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/acquisto" />
   </component>
 </project>

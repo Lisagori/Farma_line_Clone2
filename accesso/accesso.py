@@ -1,12 +1,11 @@
 import pandas as pd
 from db import connection
 
-username :str
+username: str
 
 def accesso_utente() -> str:
-
-
-    pw : str #pw abbrevviazione per password
+    global username
+    pw: str #pw abbrevviazione per password
     count : int
     controllo: int
     count = 3
@@ -53,8 +52,10 @@ def accesso_utente() -> str:
 
     return "continua"
 
-def dati_utente() ->str :
-
-    query = f"SELECT id_cliente FROM ProfiloUtente WHERE nome_utente = '{username}'"
+def dati_utente() -> str :
+    global username
+    print(username)
+    query = (f"SELECT id_cliente FROM ProfiloUtente WHERE nome_utente ='{username}'")
     codice_utente = pd.read_sql(query, connection)
+    codice_utente=pd.DataFrame(codice_utente).to_string(index=False)
     return codice_utente
