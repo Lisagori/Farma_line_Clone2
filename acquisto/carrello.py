@@ -10,8 +10,8 @@ def aggiunta_carrello(results)->None:
     else:# Se ce n'è solo uno
         codice_input =int(results.iloc[0]["codice_farmaco"])
 
-    aggiungi_carrello = input(
-        "\nDigitare 'si' se si vuole aggiungere il prodotto al carrello, altrimenti digitare 'no': ")
+    aggiungi_carrello = input("\nDigitare 'si' se si vuole aggiungere il prodotto al carrello, altrimenti digitare 'no': ")
+
     if aggiungi_carrello == "si":
         # results: DataFrame con almeno la colonna "codice"
         try:

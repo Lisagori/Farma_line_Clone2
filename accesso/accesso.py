@@ -1,9 +1,11 @@
 import pandas as pd
 from db import connection
 
+username :str
+
 def accesso_utente() -> str:
 
-    username :str
+
     pw : str #pw abbrevviazione per password
     count : int
     controllo: int
@@ -50,3 +52,9 @@ def accesso_utente() -> str:
                     return "exit"
 
     return "continua"
+
+def dati_utente() ->str :
+
+    query = f"SELECT id_cliente FROM ProfiloUtente WHERE nome_utente = '{username}'"
+    codice_utente = pd.read_sql(query, connection)
+    return codice_utente

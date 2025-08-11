@@ -1,3 +1,4 @@
+from acquisto.scelta_indirizzi import acquisto_farmaci
 from profile_creation.iscrizione import registrazione_utente
 from accesso.accesso import  accesso_utente
 from ricerca.searchbar import *
@@ -45,13 +46,17 @@ if operazione =="continua" : # dentro il servizio della farmacia
     while opzioni == "1":
         search_bar()
         print("Se si desidera continuare a ricercare medicinali da acquistare digitare 1")
-        print("Se si desidera terminare la ricerca e procedere all'acquisto digitare 2")
+        print("Se si desidera terminare la ricerca e procedere all'acquisto digitare 3")
         opzioni = input()
 
     if opzioni =="2":
         print("operazione non disponibile")
+    elif opzioni == "3":
+        print("Inizio processo di acquisto farmaci")
+        acquisto_farmaci()
     else:
         print("operazione non disponibile")
 
 else :
     print("Operazione terminata")
+#TODO aggiungere gli exept
