@@ -7,8 +7,9 @@ def accesso_utente() -> str:
     username :str
     pw : str #pw abbrevviazione per password
     count : int
+    controllo: int
     count = 3
-
+    controllo = 3
     #il termice chek viene utilizzato per riferire le variabili di controllo usate per verificare la presenza dell'utente
 
     #sezione dedicata al controllo del nome utente
@@ -36,7 +37,15 @@ def accesso_utente() -> str:
             pw_check = pd.read_sql(query, connection)
 
             while pw_check.empty :
-                pw = input(" La password inserita  per questo username è incorretta, riprovare : ")
-                query = f"SELECT * FROM ProfiloUtente WHERE password = '{pw}'"
-                pw_check = pd.read_sql(query, connection)
+                controllo -= 1
+                if controllo > 0:
+                    pw = input(" La password inserita  per questo username è incorretta, riprovare : ")
+                    query = f"SELECT * FROM ProfiloUtente WHERE password = '{pw}'"
+                    pw_check = pd.read_sql(query, connection)
 
+                elif controllo == 0 :
+                    print(f"La password inserita  per questo username è incorretta, tentativi rimasti {controllo}")
+                    print(f"Operazione fallita")
+                    return "exit"
+
+    return "continua"
