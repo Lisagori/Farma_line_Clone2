@@ -1,11 +1,9 @@
 from acquisto.dati_ricetta import *
 from db import connection
 import pandas as pd
-from accesso.accesso import dati_utente
 
 def scelta_indirizzi() ->None :
 
-    indirizzo_farma :str
     indirizzo_domicilio : str
     scelta : str = "exit"
     controllo : int
@@ -21,9 +19,22 @@ def scelta_indirizzi() ->None :
 
     if scelta =="1":
         indirizzo_domicilio= input("Inserire l'indirizzo di domicilio a cui si vuole ricevere l'ordine : ")
+        print(f"Operazione andata a buon fine, l'ordine sarà spedito presso {indirizzo_domicilio}")
     elif scelta == "2":
         print("seleziona una farmacia per il ritiro dei prodotti tra gli indirizzi disponibili")
-        print("servizio non disponibile")  # TODO aggiungi tabella indirizzi
+        query = "SELECT * FROM IndirizziFarmacia "
+        indirizzi = pd.read_sql_query(query, connection)
+
+        for indirizzo in indirizzi.to_dict(orient="records"):#stampa indirizzi
+            print(indirizzo)
+
+        codice_farma = input("Inserire il codice della farmacia in cui si vuole ritirare l'ordine ")
+        query = f"SELECT nome_farmacia, città, via, numero_civico FROM IndirizziFarmacia WHERE codice_farmacia = '{codice_farma}'"
+        farma = pd.read_sql_query(query, connection)
+
+        print(f"Operazione andata a buon fine, l'ordine potrà essere ritirato presso")
+        print(str(farma.iloc[0]))
+
     else :
         print("operazione non valida ")
 
