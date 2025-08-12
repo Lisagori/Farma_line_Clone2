@@ -4,12 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="687e12ae-2a07-4650-9e4f-85933ff285c1" name="Changes" comment="divisione classi">
-      <change beforePath="$PROJECT_DIR$/.idea/Farma_line.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Farma_line.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accesso/accesso.py" beforeDir="false" afterPath="$PROJECT_DIR$/accesso/accesso.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/acquisto/scelta_indirizzi.py" beforeDir="false" afterPath="$PROJECT_DIR$/acquisto/scelta_indirizzi.py" afterDir="false" />
+    <list default="true" id="687e12ae-2a07-4650-9e4f-85933ff285c1" name="Changes" comment="errore su query messa come todo">
+      <change beforePath="$PROJECT_DIR$/db.py" beforeDir="false" afterPath="$PROJECT_DIR$/db.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,6 +55,7 @@
     "Python.base_documenti_medicinali.executor": "Run",
     "Python.base_iscrizioni.executor": "Run",
     "Python.base_medcinali.executor": "Run",
+    "Python.carrello.executor": "Run",
     "Python.classe_persona.executor": "Run",
     "Python.iscrizione.executor": "Run",
     "Python.iscrizioni.executor": "Run",
@@ -307,7 +304,15 @@
       <option name="project" value="LOCAL" />
       <updated>1754908559317</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="errore su query messa come todo">
+      <option name="closed" value="true" />
+      <created>1754933576851</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1754933576851</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -345,7 +350,8 @@
     <MESSAGE value="print allineati" />
     <MESSAGE value="risoluzione tutti DB" />
     <MESSAGE value="divisione classi" />
-    <option name="LAST_COMMIT_MESSAGE" value="divisione classi" />
+    <MESSAGE value="errore su query messa come todo" />
+    <option name="LAST_COMMIT_MESSAGE" value="errore su query messa come todo" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
