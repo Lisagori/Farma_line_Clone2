@@ -52,11 +52,15 @@ def accesso_utente() -> str:
 
     return "continua"
 
-def dati_utente() -> str :
+def dati_utente() -> str|None :
     global username
     print(username)
     query = (f"SELECT id_cliente FROM ProfiloUtente WHERE nome_utente ='{username}'")
     codice_utente = pd.read_sql(query, connection)
-    codice_utente=pd.DataFrame(codice_utente).to_string(index=False)
-    print(codice_utente)
+    #codice_utente=pd.DataFrame(codice_utente).to_string(index=False) questo non serve
+    if codice_utente.empty:
+        return None  # o puoi alzare un'eccezione se è obbligatorio
+
+    # prendi il primo valore (prima riga, prima colonna) e lo trasformi in stringa
+    codice_utente = str(codice_utente.iloc[0, 0]).strip().upper()
     return codice_utente

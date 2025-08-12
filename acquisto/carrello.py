@@ -6,9 +6,9 @@ carrello: list[Farmaco] = [] #si inserisce fuori dalla funzione per evitare che 
 def aggiunta_carrello(results)->None:
 
     if len(results) > 1: # Se ce più di un farmaco
-        codice_input = input("\nInserire il codice del farmaco che si vuole acquistare: ")
+        codice_input = (input("\nInserire il codice del farmaco che si vuole acquistare: "))
     else:# Se ce n'è solo uno
-        codice_input =results.iloc[0]["codice_farmaco"]
+        codice_input =(results.iloc[0]["codice_farmaco"])
 
     aggiungi_carrello = input("\nDigitare 'si' se si vuole aggiungere il prodotto al carrello, altrimenti digitare 'no': ")
 
