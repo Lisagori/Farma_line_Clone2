@@ -1,10 +1,11 @@
 from acquisto.pagamento import pagare
 from acquisto.scelta_indirizzi_consegna import scelta_indirizzi
 from profile_creation.iscrizione import registrazione_utente
-from accesso.accesso import  accesso_utente
+from accesso.accesso import accesso_utente, get_nome_utente
 from ricerca.searchbar import *
 from classi.farmaci.classe_farmaci import Farmaco
 from db import connection
+from verifica_ordine.verifica_ordine import verifica_ordine
 
 operazione : str
 verifica : bool
@@ -42,19 +43,34 @@ while operazione == "2":
 
 if operazione =="continua" : # dentro il servizio della farmacia
     #TODO distinzione tra cliente e farmacista bisogna interrogare l abase dati
-    while opzioni == "1":
-        search_bar()
-        print("Se si desidera continuare a ricercare medicinali da acquistare digitare 1")
-        print("Se si desidera terminare la ricerca e procedere all'acquisto digitare 2")
-        opzioni = input()
+    user=get_nome_utente()
+    query=f"SELECT id_cliente, id_farmacista FROM ProfiloUtente WHERE nome_utente = '{user}'"
+    id = pd.read_sql_query(query, connection)
+    id_cliente= str(id.iloc[0, 0])
+    id_farmacista = str(id.iloc[0,1])
 
-    if opzioni == "2":
-        print("PROCEDURA DI ACQUISTO")
-        scelta_indirizzi()
+    # sezione dedicata al cliente
+    if  id_cliente !="None" and id_farmacista =="None" :
+
+        while opzioni == "1":
+            search_bar()
+            print("Se si desidera continuare a ricercare medicinali da acquistare digitare 1")
+            print("Se si desidera terminare la ricerca e procedere all'acquisto digitare 2")
+            opzioni = input()
+
+        if opzioni == "2":
+            print("PROCEDURA DI ACQUISTO")
+            scelta_indirizzi()
+
+        else:
+            print("operazione non disponibile")
+
+    # sezione dedicata al farmacista
+    elif id_cliente =="None" and id_farmacista !="None"  :
+        verifica_ordine()
 
     else:
-        print("operazione non disponibile")
-
+        print("Operazione non valida")
 else :
     print("Operazione terminata")
 #TODO aggiungere gli exept

@@ -1,7 +1,7 @@
 from acquisto.carrello import *
 from db import connection
 import pandas as pd
-from accesso.accesso import dati_utente
+from accesso.accesso import codice_utente
 
 def inserimento_dati_ricetta() -> int :
     count: int = 0
@@ -13,7 +13,7 @@ def inserimento_dati_ricetta() -> int :
         serve_ricetta = pd.read_sql_query(query, connection)  # può restituire si o rimanere vuoto
 
         if not serve_ricetta.empty:
-            codice_fiscale_utente = dati_utente()
+            codice_fiscale_utente = codice_utente()
 
             # controllo se l'utente è in possesso della ricetta per acquistare il farmaco
             query = f" SELECT codice_farmaco FROM Ricette WHERE codice_farmaco ='{codice_val}' AND codice_fiscale = '{codice_fiscale_utente}'"

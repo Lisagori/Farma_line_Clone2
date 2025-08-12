@@ -13,7 +13,7 @@ def scelta_indirizzi() ->None :
 
     if controllo == 0:
         print("per ricevere l'ordine a domicilio digitare 1")
-        print("per ritirare l'ordine nella farmacia assoiata più vicina digitare 2")
+        print("per ritirare l'ordine nella farmacia fisica 2")
         scelta = input()
     elif controllo > 0:
         scelta = "2"
@@ -26,21 +26,11 @@ def scelta_indirizzi() ->None :
             print("Operazione terminata")
 
     elif scelta == "2":
-        print("seleziona una farmacia per il ritiro dei prodotti tra gli indirizzi disponibili")
-        query = "SELECT * FROM IndirizziFarmacia "
-        indirizzi = pd.read_sql_query(query, connection)
+        print("L'ordine potrà essere ritirato entro 10 giorni presso la nostra sede fisica")
+        print(f"Operazione andata a buon fine, l'ordine potrà essere ritirato presso Via Univeristà di Santa Marta, 26")
 
-        for indirizzo in indirizzi.to_dict(orient="records"):#stampa indirizzi
-            print(indirizzo)
+        controllo = pagare("Via Univeristà di Santa Marta, 26")
 
-        codice_farma = input("Inserire il codice della farmacia in cui si vuole ritirare l'ordine ")
-        query = f"SELECT nome_farmacia, città, via, numero_civico FROM IndirizziFarmacia WHERE codice_farmacia = '{codice_farma}'"
-        farma = pd.read_sql_query(query, connection)
-
-        print(f"Operazione andata a buon fine, l'ordine potrà essere ritirato presso")
-        print(str(farma.iloc[0]))
-
-        controllo = pagare(str(farma.iloc[0]))
         if not controllo:
             print("Operazione terminata")
 

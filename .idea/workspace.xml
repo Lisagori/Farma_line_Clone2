@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="687e12ae-2a07-4650-9e4f-85933ff285c1" name="Changes" comment="no mod">
-      <change afterPath="$PROJECT_DIR$/acquisto/creazione_ordine.py" afterDir="false" />
+    <list default="true" id="687e12ae-2a07-4650-9e4f-85933ff285c1" name="Changes" comment="fine cliente">
+      <change afterPath="$PROJECT_DIR$/verifica_ordine/verifica_ordine.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/acquisto/pagamento.py" beforeDir="false" afterPath="$PROJECT_DIR$/acquisto/pagamento.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accesso/accesso.py" beforeDir="false" afterPath="$PROJECT_DIR$/accesso/accesso.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/acquisto/creazione_ordine.py" beforeDir="false" afterPath="$PROJECT_DIR$/acquisto/creazione_ordine.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/acquisto/dati_ricetta.py" beforeDir="false" afterPath="$PROJECT_DIR$/acquisto/dati_ricetta.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/acquisto/scelta_indirizzi_consegna.py" beforeDir="false" afterPath="$PROJECT_DIR$/acquisto/scelta_indirizzi_consegna.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.py" beforeDir="false" afterPath="$PROJECT_DIR$/db.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/homepage/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/homepage/main.py" afterDir="false" />
@@ -69,6 +71,7 @@
     "Python.scelta_indirizzi.executor": "Run",
     "Python.scelta_indirizzi_consegna.executor": "Run",
     "Python.searchbar.executor": "Run",
+    "Python.verifica_ordine.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
     "RunOnceActivity.git.unshallow": "true",
@@ -375,7 +378,15 @@
       <option name="project" value="LOCAL" />
       <updated>1755006425694</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="fine cliente">
+      <option name="closed" value="true" />
+      <created>1755014607963</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1755014607963</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -393,7 +404,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="realizzate le tabelle per la sezione di iscrizione" />
     <MESSAGE value="prime modifiche sbagliate" />
     <MESSAGE value="aggiunta framacista" />
     <MESSAGE value="aggiunta framacista correzione matricola" />
@@ -418,22 +428,8 @@
     <MESSAGE value="funzione indirizzi" />
     <MESSAGE value="funzione cechk data" />
     <MESSAGE value="no mod" />
-    <option name="LAST_COMMIT_MESSAGE" value="no mod" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/db.py</url>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/db.py</url>
-          <line>2</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="fine cliente" />
+    <option name="LAST_COMMIT_MESSAGE" value="fine cliente" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Farma_line$iscrizione.coverage" NAME="iscrizione Coverage Results" MODIFIED="1753883589561" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/profile_creation" />

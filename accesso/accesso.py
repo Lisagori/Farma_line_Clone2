@@ -52,7 +52,7 @@ def accesso_utente() -> str:
 
     return "continua"
 
-def dati_utente() -> str|None :
+def codice_utente() -> str|None :
     global username
     query = f"SELECT id_cliente FROM ProfiloUtente WHERE nome_utente ='{username}'"
     codice_utente = pd.read_sql(query, connection)
@@ -60,3 +60,8 @@ def dati_utente() -> str|None :
     # prendi il primo valore (prima riga, prima colonna) e lo trasformi in stringa
     codice_utente = str(codice_utente.iloc[0, 0])
     return codice_utente
+
+def get_nome_utente() -> str|None :
+    global username
+
+    return username
