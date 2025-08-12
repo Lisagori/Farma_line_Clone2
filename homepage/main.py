@@ -8,7 +8,8 @@ from db import connection
 
 operazione : str
 verifica : bool
-opzioni : str
+opzioni : str = "1"
+controllo : bool
 # modifica accesso con il controllo password e i due return exit e continua
 
 print("HOME PAGE")
@@ -41,21 +42,16 @@ while operazione == "2":
 
 if operazione =="continua" : # dentro il servizio della farmacia
     #TODO distinzione tra cliente e farmacista bisogna interrogare l abase dati
-    print("Se si desidera cercare farmaci digitare 1")
-    print("Se si desidera ordinare una preparazione galenica magistrale digitare 2")
-    opzioni = input()
     while opzioni == "1":
         search_bar()
         print("Se si desidera continuare a ricercare medicinali da acquistare digitare 1")
-        print("Se si desidera terminare la ricerca e procedere all'acquisto digitare 3")
+        print("Se si desidera terminare la ricerca e procedere all'acquisto digitare 2")
         opzioni = input()
 
-    if opzioni =="2":
-        print("operazione non disponibile")
-    elif opzioni == "3":
+    if opzioni == "2":
         print("PROCEDURA DI ACQUISTO")
         scelta_indirizzi()
-        pagare()
+
     else:
         print("operazione non disponibile")
 

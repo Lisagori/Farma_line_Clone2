@@ -4,8 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="687e12ae-2a07-4650-9e4f-85933ff285c1" name="Changes" comment="funzione cechk data">
+    <list default="true" id="687e12ae-2a07-4650-9e4f-85933ff285c1" name="Changes" comment="no mod">
+      <change afterPath="$PROJECT_DIR$/acquisto/creazione_ordine.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/acquisto/pagamento.py" beforeDir="false" afterPath="$PROJECT_DIR$/acquisto/pagamento.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/acquisto/scelta_indirizzi_consegna.py" beforeDir="false" afterPath="$PROJECT_DIR$/acquisto/scelta_indirizzi_consegna.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.py" beforeDir="false" afterPath="$PROJECT_DIR$/db.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/homepage/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/homepage/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,6 +65,7 @@
     "Python.iscrizione.executor": "Run",
     "Python.iscrizioni.executor": "Run",
     "Python.main.executor": "Run",
+    "Python.pagamento.executor": "Run",
     "Python.scelta_indirizzi.executor": "Run",
     "Python.scelta_indirizzi_consegna.executor": "Run",
     "Python.searchbar.executor": "Run",
@@ -361,7 +367,15 @@
       <option name="project" value="LOCAL" />
       <updated>1755005406128</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="no mod">
+      <option name="closed" value="true" />
+      <created>1755006425694</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1755006425694</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -379,7 +393,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="aggiunta la directory profile con il file iscrizione" />
     <MESSAGE value="realizzate le tabelle per la sezione di iscrizione" />
     <MESSAGE value="prime modifiche sbagliate" />
     <MESSAGE value="aggiunta framacista" />
@@ -404,7 +417,8 @@
     <MESSAGE value="funzione inserimento dati ricetta" />
     <MESSAGE value="funzione indirizzi" />
     <MESSAGE value="funzione cechk data" />
-    <option name="LAST_COMMIT_MESSAGE" value="funzione cechk data" />
+    <MESSAGE value="no mod" />
+    <option name="LAST_COMMIT_MESSAGE" value="no mod" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

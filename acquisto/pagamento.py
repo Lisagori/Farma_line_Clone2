@@ -1,31 +1,51 @@
+from acquisto.creazione_ordine import associa_numero_ordine
 from funzioni_generali.controlla import controlla, check_date
-
+from acquisto.carrello import carrello
 
 #operazioni superficiali per concludere il caso d'uso , non viene fatto un collegamento con la banca
-def pagare() ->None:
+def pagare(indirizzo :str) ->bool:
 
     ck : bool
     metodo:str
+    prezzo_tot : float = 0
 
-    print("Scegliere metodo di pagamento")
-    print("digitare 1 per pagare con carta di credito o debito (American Express, Euro/Mastercard, Visa, Maestro)")
-    print("digitare 2 per pagare con portafoglio digitale (paypal , Google pay, Apple pay)")
-    metodo = input()
+    print(carrello)
+    for prodotto in carrello :
+        prezzo_tot = prezzo_tot + float(prodotto["prezzo"])
 
-    if metodo =="1":
+    print(f"Prezzo totale dell'ordine : {prezzo_tot} €")
 
-        print("INSERIMENTO DATI CARTA")
-        nome = input("Inserire il nome dell'intestatario : ")
-        cognome = input("Inserire il cognome dell'intestatario : ")
-        numero_carta = controlla("Inserire numero della carta : ", 16)
-        data_scadenza = controlla("Inserire  data di scadenza della carta(gg/mm/aaaa): ", 10)#todo controllo data scendza se scaduta
-        cvc = controlla("Inserire il CVC : ", 3)
+    print("se si desidera procedere all'acquisto digitare 1")
+    print("se si desidera annullare l'operazione digitare exit")
+    scelta = input()
 
-        ck = check_date(data_scadenza)
-        if not ck :
-            print("operazione fallita")
-        else :
+    if scelta =="1":
+        print("Scegliere metodo di pagamento")
+        print("digitare 1 per pagare con carta di credito o debito (American Express, Euro/Mastercard, Visa, Maestro)")
+        print("digitare 2 per pagare con portafoglio digitale (paypal , Google pay, Apple pay)")
+        metodo = input()
+
+        if metodo =="1":
+
+            print("INSERIMENTO DATI CARTA")
+            nome = input("Inserire il nome dell'intestatario : ")
+            cognome = input("Inserire il cognome dell'intestatario : ")
+            numero_carta = controlla("Inserire numero della carta : ", 16)
+            data_scadenza = controlla("Inserire  data di scadenza della carta(gg/mm/aaaa): ", 10)#todo controllo data scendza se scaduta
+            cvc = controlla("Inserire il CVC : ", 3)
+
+            ck = check_date(data_scadenza)
+            if not ck :
+                print("operazione fallita")
+                return False
+            else :
+                print("operazione andata a buon fine")
+                associa_numero_ordine(indirizzo)
+                return True
+
+        elif metodo =="2":
             print("operazione andata a buon fine")
-
-    elif metodo =="2":
-        print("operazione andata a buon fine")
+            associa_numero_ordine(indirizzo)
+            return True
+    elif scelta == "exit":
+        return False

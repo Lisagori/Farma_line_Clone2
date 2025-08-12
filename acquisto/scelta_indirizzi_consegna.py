@@ -1,4 +1,5 @@
 from acquisto.dati_ricetta import *
+from acquisto.pagamento import pagare
 from db import connection
 import pandas as pd
 
@@ -20,6 +21,10 @@ def scelta_indirizzi() ->None :
     if scelta =="1":
         indirizzo_domicilio= input("Inserire l'indirizzo di domicilio a cui si vuole ricevere l'ordine : ")
         print(f"Operazione andata a buon fine, l'ordine sarà spedito presso {indirizzo_domicilio}")
+        controllo = pagare(indirizzo_domicilio)
+        if not controllo:
+            print("Operazione terminata")
+
     elif scelta == "2":
         print("seleziona una farmacia per il ritiro dei prodotti tra gli indirizzi disponibili")
         query = "SELECT * FROM IndirizziFarmacia "
@@ -34,6 +39,10 @@ def scelta_indirizzi() ->None :
 
         print(f"Operazione andata a buon fine, l'ordine potrà essere ritirato presso")
         print(str(farma.iloc[0]))
+
+        controllo = pagare(str(farma.iloc[0]))
+        if not controllo:
+            print("Operazione terminata")
 
     else :
         print("operazione non valida ")
