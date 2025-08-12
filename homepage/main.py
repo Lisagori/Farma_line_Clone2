@@ -1,3 +1,4 @@
+from acquisto.pagamento import pagare
 from acquisto.scelta_indirizzi_consegna import scelta_indirizzi
 from profile_creation.iscrizione import registrazione_utente
 from accesso.accesso import  accesso_utente
@@ -54,6 +55,7 @@ if operazione =="continua" : # dentro il servizio della farmacia
     elif opzioni == "3":
         print("PROCEDURA DI ACQUISTO")
         scelta_indirizzi()
+        pagare()
     else:
         print("operazione non disponibile")
 
