@@ -353,7 +353,15 @@
       <option name="project" value="LOCAL" />
       <updated>1755005303070</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="funzione cechk data">
+      <option name="closed" value="true" />
+      <created>1755005406128</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1755005406128</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
