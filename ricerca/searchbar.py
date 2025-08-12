@@ -20,19 +20,14 @@ def search_bar() -> None:
         posologia = input("Inserire la posologia : ")
 
         filters = []  #lista
-        params = {}  #Cosa vuol dire params?
-
         if indicazioni_terapeutiche:
-            filters.append("LOWER(s.indicazioni_terapeutiche) LIKE LOWER(:indicazioni)")
-            params["indicazioni"] = f"%{indicazioni_terapeutiche}%"
+            filters.append(f"LOWER(s.indicazioni_terapeutiche) LIKE LOWER ('{indicazioni_terapeutiche}')")
 
         if composizione:
-            filters.append("LOWER (s.composizione) LIKE LOWER (:composizione)")
-            params["composizione"] = f"%{composizione}%"
+            filters.append(f"LOWER (s.composizione) LIKE LOWER ('{composizione}')")
 
         if posologia:
-            filters.append("LOWER (s.posologia) LIKE LOWER (:posologia)")
-            params["posologia"] = f"%{posologia}%"
+            filters.append(f"LOWER (s.posologia) LIKE LOWER ('{posologia}')")
 
         query = """
                 SELECT 
@@ -55,7 +50,7 @@ def search_bar() -> None:
                 """
         if filters:
             query += " WHERE " + " AND ".join(filters)
-            results = pd.read_sql(query, connection, params=params)
+            results = pd.read_sql(query, connection)
 
         else :
             print("Nessun filtro inserito. Ricerca annullata.")
@@ -64,7 +59,7 @@ def search_bar() -> None:
     elif filtri == "no":
         medicinale = input("Digitare il nome del farmaco che si sta cercando: ").strip()
 
-        query = """
+        query = f"""
                 SELECT
                     f.codice AS codice_farmaco,      -- alias univoco
                     f.nome,
@@ -81,10 +76,9 @@ def search_bar() -> None:
                 FROM FarmaciMagazzino AS f
                 JOIN SchedaTecnica AS s
                   ON f.codice = s.codice
-                    WHERE LOWER(TRIM(f.nome)) LIKE LOWER(:nome)  -- TRIM dà più tolleranza sugli spazi
+                    WHERE LOWER(TRIM(f.nome)) LIKE LOWER('{medicinale}')  -- TRIM dà più tolleranza sugli spazi
                             """
-        params = {"nome": f"%{medicinale}%"}
-        results = pd.read_sql_query(query, connection, params=params)
+        results = pd.read_sql_query(query, connection)
     else:
         print("Operazione non valida.")
         results = pd.DataFrame()  # equivalente a lista vuota
