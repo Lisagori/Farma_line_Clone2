@@ -1,4 +1,4 @@
-from funzioni_generali.controlla import controlla
+from funzioni_generali.controlla import controlla, check_date
 import pandas as pd
 from db import connection
 
@@ -14,6 +14,7 @@ class TesseraSanitaria :
     #TODO quando possibile inserire controllo data di nascita e scadenza tessera sanitaria
 
     def __init__(self):
+
         print( " Di seguito si inseriscano i dati della tessera sanitaria : ")
         self.codice_fiscale = controlla(" CODICE FISCALE :", 16) # nel codice fiscale si contano 16 caratteri alfanumerici
         self.sesso = controlla(" SESSO : ", 1)
@@ -22,6 +23,7 @@ class TesseraSanitaria :
         self.data_nascita = controlla(" DATA DI NASCITA (gg/mm/aaaa) : ", 10)
         self.data_scadenza = controlla(" DATA DI SCADENZA (gg/mm/aaaa) : ", 10)
         self.numero_identificazione_tessera = controlla(" NUMERO IDENTIFICAZIONE TESSERA : ", 20)# sulla tessera sanitaria fisica sono 20 caratteri alfanumerici
+
 
     def associazione_tessera_a_db(self):
         new_tessera = pd.DataFrame(

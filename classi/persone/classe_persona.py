@@ -3,6 +3,8 @@ import pandas as pd
 from db import connection
 from classi.documenti.classe_tessera_sanitaria import TesseraSanitaria
 from classi.documenti.classe_tesserino_professionale import TesserinoProfessionale
+from funzioni_generali.controlla import check_date
+
 
 class Persona (ABC) :
     nome: str
@@ -88,36 +90,42 @@ class Cliente(Persona):
         self.t_s = TesseraSanitaria()
 
     def iscriversi(self) -> bool:
-        query = f"SELECT * FROM Clienti WHERE codice_fiscale = '{self.t_s.codice_fiscale}'"
-        cliente = pd.read_sql(query, connection)
-        if not cliente.empty: # è un dataframe
-            print("Il codice fiscale inserito appartiene a un utente già registrato")
+        ck : bool
+        ck= check_date(self.t_s.data_scadenza)
 
-            print("Se si vuole accedere al servizio digitare 1")
-            print("Se si vuole ritentare il processo di iscrizione digitare 2")
-            print("Digitare exit se si vuole terminare l'operazione")
-            scelta = input()
+        if ck:
+            query = f"SELECT * FROM Clienti WHERE codice_fiscale = '{self.t_s.codice_fiscale}'"
+            cliente = pd.read_sql(query, connection)
+            if not cliente.empty: # è un dataframe
+                print("Il codice fiscale inserito appartiene a un utente già registrato")
 
-            if scelta == "1":
-                return True
-            elif scelta == "2":
-                self.t_s.codice_fiscale = input("Inserire il codice fiscale corretto : ")
-                return self.iscriversi()
+                print("Se si vuole accedere al servizio digitare 1")
+                print("Se si vuole ritentare il processo di iscrizione digitare 2")
+                print("Digitare exit se si vuole terminare l'operazione")
+                scelta = input()
+
+                if scelta == "1":
+                    return True
+                elif scelta == "2":
+                    self.t_s.codice_fiscale = input("Inserire il codice fiscale corretto : ")
+                    return self.iscriversi()
+                else:
+                    return False
+
             else:
-                return False
-
+                self.t_s.associazione_tessera_a_db()
+                new_cliente = pd.DataFrame(
+                    columns=['nome','cognome','codice_fiscale'],
+                    data=[
+                    [self.nome, self.cognome, self.t_s.codice_fiscale ]
+                    ]
+                )
+                new_cliente.to_sql('Clienti', connection, if_exists='append', index=False)
+                connection.commit()
+                #sezione per associazione profilo utente
+                return self.crea_profilo()
         else:
-            self.t_s.associazione_tessera_a_db()
-            new_cliente = pd.DataFrame(
-                columns=['nome','cognome','codice_fiscale'],
-                data=[
-                [self.nome, self.cognome, self.t_s.codice_fiscale ]
-                ]
-            )
-            new_cliente.to_sql('Clienti', connection, if_exists='append', index=False)
-            connection.commit()
-            #sezione per associazione profilo utente
-            return self.crea_profilo()
+            return False
 
 class Farmacista(Persona):
             t_p: TesserinoProfessionale  # t_p abbreviazione tesserino professionale
