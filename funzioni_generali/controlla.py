@@ -13,21 +13,21 @@ def check_date(data:str)->bool: #restituisce true quando può continuare , e fal
     today :str
     data_odierna :str
 
-    today = date.today()
-    data_odierna = today.strftime("%d/%m/%Y")
+    today = date.today() #funzione di Python che restituisce la data odierna
+    data_odierna = today.strftime("%d/%m/%Y") #funzione di Python che applicata a today trasfroma il formato dato in stringa
 
-    if int(data[7:]) < int(data_odierna[7:]):
+    if int(data[6:10]) < int(data_odierna[6:10]): #controllo su anno
         print(f" data di scadenza passata ")
         return False
-    elif int(data[7:]) == int(data_odierna[7:]):
-        if int(data[4:6]) < int(data_odierna[4:6]) :
+    elif int(data[6:10]) == int(data_odierna[6:10]):
+        if int(data[3:5]) < int(data_odierna[3:5]) : #controllo mese
             print(f" data di scadenza passata ")
             return False
-        elif int(data[4:6]) == int(data_odierna[4:6]):
-            if int(data[1:3]) < int(data_odierna[1:3]):
+        elif int(data[3:5]) == int(data_odierna[3:5]):
+            if int(data[0:2]) < int(data_odierna[0:2]): #controllo giorno
                 print(f" data di scadenza passata ")
                 return False
-            elif int(data[1:3]) == int(data_odierna[1:3]):
+            elif int(data[0:2]) == int(data_odierna[0:2]):
                 verifica = input("la scadenza è oggi, sei sicuro di voler proseguire?(digita si o no)")
                 if verifica == "si":
                     return True
