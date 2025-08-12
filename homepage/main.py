@@ -1,4 +1,4 @@
-from acquisto.scelta_indirizzi import acquisto_farmaci
+from acquisto.scelta_indirizzi_consegna import scelta_indirizzi
 from profile_creation.iscrizione import registrazione_utente
 from accesso.accesso import  accesso_utente
 from ricerca.searchbar import *
@@ -52,8 +52,8 @@ if operazione =="continua" : # dentro il servizio della farmacia
     if opzioni =="2":
         print("operazione non disponibile")
     elif opzioni == "3":
-        print("Inizio processo di acquisto farmaci")
-        acquisto_farmaci()
+        print("PROCEDURA DI ACQUISTO")
+        scelta_indirizzi()
     else:
         print("operazione non disponibile")
 
