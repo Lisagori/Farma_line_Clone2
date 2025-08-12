@@ -21,13 +21,13 @@ def search_bar() -> None:
 
         filters = []  #lista
         if indicazioni_terapeutiche:
-            filters.append(f"LOWER(s.indicazioni_terapeutiche) LIKE LOWER ('{indicazioni_terapeutiche}')")
+            filters.append(f"LOWER(s.indicazioni_terapeutiche) LIKE LOWER ('%{indicazioni_terapeutiche}'%)")
 
         if composizione:
-            filters.append(f"LOWER (s.composizione) LIKE LOWER ('{composizione}')")
+            filters.append(f"LOWER (s.composizione) LIKE LOWER ('%{composizione}%')")
 
         if posologia:
-            filters.append(f"LOWER (s.posologia) LIKE LOWER ('{posologia}')")
+            filters.append(f"LOWER (s.posologia) LIKE LOWER ('%{posologia}%')")
 
         query = """
                 SELECT 
@@ -45,7 +45,7 @@ def search_bar() -> None:
                     s.avvertenze,
                     s.effetti_indesiderati
                 FROM FarmaciMagazzino AS f
-                LEFT JOIN SchedaTecnica AS s
+                JOIN SchedaTecnica AS s
                   ON f.codice = s.codice 
                 """
         if filters:
@@ -76,9 +76,9 @@ def search_bar() -> None:
                 FROM FarmaciMagazzino AS f
                 JOIN SchedaTecnica AS s
                   ON f.codice = s.codice
-                    WHERE LOWER(TRIM(f.nome)) LIKE LOWER('{medicinale}')  -- TRIM dà più tolleranza sugli spazi
+                    WHERE LOWER(TRIM(f.nome)) LIKE LOWER('%{medicinale}%')  -- TRIM dà più tolleranza sugli spazi
                             """
-        results = pd.read_sql_query(query, connection)
+        results = pd.read_sql(query, connection)
     else:
         print("Operazione non valida.")
         results = pd.DataFrame()  # equivalente a lista vuota

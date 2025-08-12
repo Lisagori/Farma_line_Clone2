@@ -21,5 +21,6 @@ def registrazione_utente() ->bool :
             verifica = True
         else :
             print("opzione non valida riprovare")
+            return False
 
     return pearson.iscriversi()
