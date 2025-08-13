@@ -93,6 +93,3 @@ def aggiunta_farmaci() -> None :
     new_farmaco.to_sql('FarmaciMagazzino', connection, if_exists='append', index=False)
 
     connection.commit()
-
-
-aggiunta_farmaci()

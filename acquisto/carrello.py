@@ -3,6 +3,7 @@ import pandas as pd
 from db import connection
 
 carrello: list[dict] = [] #si inserisce fuori dalla funzione per evitare che il carrello si riazzeri ogni volta che viene chiamata da search_bar
+quanto_compro : list[int] = []
 
 def aggiunta_carrello(results)->None:
 
@@ -13,10 +14,10 @@ def aggiunta_carrello(results)->None:
     # sezione dedicata al controllo del codice se è presente o meno nell'elenco trovato nella ricerca
     if len(results) > 1: # Se ce più di un farmaco
         while not ck:
-            codice_input = (input("\nInserire il codice del farmaco che si vuole acquistare: "))
+            codice_input = input("\nInserire il codice del farmaco che si vuole acquistare: ")
 
-            for prodotto in results.to_dict(orient="records") :
-                if codice_input == prodotto["codice"] :
+            for prodotto in results.to_dict(orient="records"):
+                if codice_input == prodotto["codice_farmaco"] :
                     verifica = True
                 else :
                     verifica = False
@@ -29,8 +30,10 @@ def aggiunta_carrello(results)->None:
         codice_input =(results.iloc[0]["codice_farmaco"])
 
     #sezione di codice per controllare che la quantità che si vuole acquistare sia disponibile
-    ck = False
+
+
     while not controllo :
+        ck = False
         while not ck :
             try :
                 quantity = int(input("Inserire la quantità di prodotto che si vuole aqcuistare : "))
@@ -38,11 +41,12 @@ def aggiunta_carrello(results)->None:
             except ValueError :
                 print("il valore inserito non è compatibile, riprovare")
 
-        query = f"SELECT nome FROM FarmaciMagazzino WHERE quantità >= '{quantity}' AND codice = '{codice_input}' "
+        query = f"SELECT quantità FROM FarmaciMagazzino WHERE quantità < '{quantity}' AND codice = '{codice_input}' "
         q_trovato = pd.read_sql(query, connection)
 
-        if not q_trovato.empty :
+        if q_trovato.empty :
             aggiungi_carrello = input("\nDigitare 'si' se si vuole aggiungere il prodotto al carrello, altrimenti digitare 'no': ")
+            quanto_compro.append(quantity)
 
             if aggiungi_carrello == "si":
                 # results: DataFrame con almeno la colonna "codice"
@@ -59,7 +63,11 @@ def aggiunta_carrello(results)->None:
                 print("Contenuto attuale del carrello:")
 
                 if carrello:
-                    print(pd.DataFrame(carrello).to_string(index=False))
+                    for prodotto in carrello :
+                        print(f" codice : {prodotto["codice_farmaco"]} ")
+                        print(f" nome : {prodotto["nome"]} ")
+                        print(f" quantità : {quantity} ")
+                        print(f" prezzo : {quantity*prodotto["prezzo"]}")
                 else:
                     print("Il carrello è vuoto.")
 
@@ -76,4 +84,8 @@ def aggiunta_carrello(results)->None:
 
             controllo = True
         else :
-            print("La quantità di farmaco in magazzino non è sufficiente, riprovare  ")
+            if q_trovato.iloc[0,0] == 0 :
+                print("Il prodotto è terminato non è possibile acquistarlo")
+                controllo = True
+            else :
+                print("La quantità di farmaco in magazzino non è sufficiente, riprovare  ")
