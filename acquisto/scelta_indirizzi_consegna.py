@@ -26,8 +26,8 @@ def scelta_indirizzi() ->None :
             print("Operazione terminata")
 
     elif scelta == "2":
-        print("L'ordine potrà essere ritirato entro 10 giorni presso la nostra sede fisica")
-        print(f"Operazione andata a buon fine, l'ordine potrà essere ritirato presso Via Univeristà di Santa Marta, 26")
+        print("L'ordine potrà essere ritirato entro 10 giorni presso la nostra sede fisica in Via Univeristà di Santa Marta, 26")
+        print("Operazione andata a buon fine")
 
         controllo = pagare("Via Univeristà di Santa Marta, 26")
 

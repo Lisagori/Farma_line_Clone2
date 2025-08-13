@@ -10,6 +10,7 @@ def aggiunta_carrello(results)->None:
     ck :bool = False
     controllo :bool = False
     verifica : bool = False
+    i : int
 
     # sezione dedicata al controllo del codice se è presente o meno nell'elenco trovato nella ricerca
     if len(results) > 1: # Se ce più di un farmaco
@@ -64,11 +65,13 @@ def aggiunta_carrello(results)->None:
                 print("Contenuto attuale del carrello:")
 
                 if carrello:
+                    i= 0
                     for prodotto in carrello :
                         print(f" codice : {prodotto["codice_farmaco"]} ")
                         print(f" nome : {prodotto["nome"]} ")
-                        print(f" quantità : {quantity} ")
-                        print(f" prezzo : {quantity*prodotto["prezzo"]}")
+                        print(f" quantità : {quanto_compro[i]} ")
+                        print(f" prezzo : {quanto_compro[i]*float(prodotto["prezzo"])}")
+                        i+=1
                 else:
                     print("Il carrello è vuoto.")
 

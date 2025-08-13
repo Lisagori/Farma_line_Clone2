@@ -12,7 +12,15 @@ def pagare(indirizzo :str) ->bool:
     prezzo_tot : float = 0
     i : int = 0
 
-    print(carrello)
+    i = 0
+    for prodotto in carrello:
+        print(f" codice : {prodotto["codice_farmaco"]} ")
+        print(f" nome : {prodotto["nome"]} ")
+        print(f" quantità : {quanto_compro[i]} ")
+        print(f" prezzo : {quanto_compro[i] * float(prodotto["prezzo"])}")
+        i += 1
+
+    i= 0
     for prodotto in carrello :
         prezzo_tot = prezzo_tot + float(prodotto["prezzo"]) * quanto_compro[i]
         i +=1
@@ -58,6 +66,7 @@ def pagare(indirizzo :str) ->bool:
         elif metodo =="2":
             print("operazione andata a buon fine")
             associa_numero_ordine(indirizzo)
+            i = 0
             for prodotto in carrello:
                 new_quantity = prodotto["quantità"] - quanto_compro[i]
                 query = f"UPDATE FarmaciMagazzino SET quantità = '{new_quantity}' WHERE codice = '{prodotto["codice_farmaco"]}' "
