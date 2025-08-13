@@ -18,7 +18,7 @@ def search_bar() -> None:
 
         filters = []  #lista
         if indicazioni_terapeutiche:
-            filters.append(f"LOWER(s.indicazioni_terapeutiche) LIKE LOWER ('%{indicazioni_terapeutiche}'%)")
+            filters.append(f"LOWER(s.indicazioni_terapeutiche) LIKE LOWER ('%{indicazioni_terapeutiche}%')")
 
         if composizione:
             filters.append(f"LOWER (s.composizione) LIKE LOWER ('%{composizione}%')")
@@ -75,7 +75,7 @@ def search_bar() -> None:
                 FROM FarmaciMagazzino AS f
                 JOIN SchedaTecnica AS s
                   ON f.codice = s.codice
-                    WHERE LOWER(TRIM(f.nome)) LIKE LOWER('%{medicinale}%')  -- TRIM dà più tolleranza sugli spazi
+                    WHERE LOWER(TRIM(f.nome)) LIKE LOWER('%{medicinale}%') -- TRIM dà più tolleranza sugli spazi
                             """
         results = pd.read_sql(query, connection)
     else:
