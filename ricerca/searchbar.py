@@ -75,7 +75,7 @@ def search_bar() -> None:
                 FROM FarmaciMagazzino AS f
                 JOIN SchedaTecnica AS s
                   ON f.codice = s.codice
-                    WHERE LOWER(TRIM(f.nome)) LIKE LOWER('%{medicinale}%')  -- TRIM dà più tolleranza sugli spazi
+                    WHERE LOWER(TRIM(f.nome)) LIKE LOWER('%{medicinale}%') -- TRIM dà più tolleranza sugli spazi
                             """
         results = pd.read_sql(query, connection)
     else:
