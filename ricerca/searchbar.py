@@ -1,4 +1,3 @@
-from classi.farmaci.classe_farmaci import Farmaco
 from db import connection
 import pandas as pd
 from acquisto.carrello import aggiunta_carrello
@@ -7,8 +6,6 @@ def search_bar() -> None:
     medicinale :str
     filtri : str
     aggiungi_carrello :str
-
-    farmaco : Farmaco
 
     print("BARRA DI RICERCA")
     filtri = input("Vuoi applicare dei filtri alla tua ricerca? (digitare si o no) : ")
@@ -37,6 +34,7 @@ def search_bar() -> None:
                     f.ricetta,
                     f.preparato_galenico,
                     f.prezzo,
+                    f.quantità,
                     s.indicazioni_terapeutiche,
                     s.composizione,
                     s.eccipienti,
@@ -66,6 +64,7 @@ def search_bar() -> None:
                     f.ricetta,
                     f.preparato_galenico,
                     f.prezzo,
+                    f.quantità,
                     s.indicazioni_terapeutiche,
                     s.composizione,
                     s.eccipienti,

@@ -1,4 +1,7 @@
+from sqlalchemy import text
+
 from acquisto.creazione_ordine import associa_numero_ordine
+from db import connection
 from funzioni_generali.controlla import controlla, check_date
 from acquisto.carrello import carrello
 
@@ -31,7 +34,7 @@ def pagare(indirizzo :str) ->bool:
             nome = input("Inserire il nome dell'intestatario : ")
             cognome = input("Inserire il cognome dell'intestatario : ")
             numero_carta = controlla("Inserire numero della carta : ", 16)
-            data_scadenza = controlla("Inserire  data di scadenza della carta(gg/mm/aaaa): ", 10)#todo controllo data scendza se scaduta
+            data_scadenza = controlla("Inserire  data di scadenza della carta(gg/mm/aaaa): ", 10)
             cvc = controlla("Inserire il CVC : ", 3)
 
             ck = check_date(data_scadenza)
@@ -41,6 +44,11 @@ def pagare(indirizzo :str) ->bool:
             else :
                 print("operazione andata a buon fine")
                 associa_numero_ordine(indirizzo)
+                for prodotto in carrello :
+                    new_quantity = prodotto["quantità"]
+                    query = f"UPDATE INTO FarmaciMagazzino SET quantità = '{prodotto["quantità"]}' WHERE codice = '{prodotto["codice"]}' "
+                    connection.execute(text(query))  # serve per eseguire query che non devono restituire valori
+                    connection.commit()
                 return True
 
         elif metodo =="2":

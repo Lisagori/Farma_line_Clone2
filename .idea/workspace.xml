@@ -4,15 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="687e12ae-2a07-4650-9e4f-85933ff285c1" name="Changes" comment="fine cliente">
-      <change afterPath="$PROJECT_DIR$/verifica_ordine/verifica_ordine.py" afterDir="false" />
+    <list default="true" id="687e12ae-2a07-4650-9e4f-85933ff285c1" name="Changes" comment="verifica ordine">
+      <change afterPath="$PROJECT_DIR$/gestione_magazzino/aggiorna_magazzino.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gestione_magazzino/aggiunta_farmaci.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accesso/accesso.py" beforeDir="false" afterPath="$PROJECT_DIR$/accesso/accesso.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/acquisto/creazione_ordine.py" beforeDir="false" afterPath="$PROJECT_DIR$/acquisto/creazione_ordine.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/acquisto/dati_ricetta.py" beforeDir="false" afterPath="$PROJECT_DIR$/acquisto/dati_ricetta.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/acquisto/scelta_indirizzi_consegna.py" beforeDir="false" afterPath="$PROJECT_DIR$/acquisto/scelta_indirizzi_consegna.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/acquisto/carrello.py" beforeDir="false" afterPath="$PROJECT_DIR$/acquisto/carrello.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/acquisto/pagamento.py" beforeDir="false" afterPath="$PROJECT_DIR$/acquisto/pagamento.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classi/farmaci/classe_farmaci.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/db.py" beforeDir="false" afterPath="$PROJECT_DIR$/db.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/funzioni_generali/controlla.py" beforeDir="false" afterPath="$PROJECT_DIR$/funzioni_generali/controlla.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/homepage/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/homepage/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ricerca/searchbar.py" beforeDir="false" afterPath="$PROJECT_DIR$/ricerca/searchbar.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/verifica_ordine/verifica_ordine.py" beforeDir="false" afterPath="$PROJECT_DIR$/verifica_ordine/verifica_ordine.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,11 +62,14 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Python.accesso.executor": "Run",
+    "Python.aggiorna_magazzino.executor": "Run",
+    "Python.aggiunta_farmaci.executor": "Run",
     "Python.base_documenti_medicinali.executor": "Run",
     "Python.base_iscrizioni.executor": "Run",
     "Python.base_medcinali.executor": "Run",
     "Python.classe_persona.executor": "Run",
     "Python.classe_tessera_sanitaria.executor": "Debug",
+    "Python.gestione_magazzino.executor": "Run",
     "Python.iscrizione.executor": "Run",
     "Python.iscrizioni.executor": "Run",
     "Python.main.executor": "Run",
@@ -386,7 +392,15 @@
       <option name="project" value="LOCAL" />
       <updated>1755014607963</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="verifica ordine">
+      <option name="closed" value="true" />
+      <created>1755019385846</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1755019385846</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -404,7 +418,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="prime modifiche sbagliate" />
     <MESSAGE value="aggiunta framacista" />
     <MESSAGE value="aggiunta framacista correzione matricola" />
     <MESSAGE value="trasformato il metodo controllo in funzione controlla &#10;realizzati i metodi iscriversi per le classi cliente e farmacista&#10;realizzati imetodi associazione tessera per tessera sanitaria e tesserino professionale&#10;relizzato il metodo associazione profilo per associare profilo utente" />
@@ -429,7 +442,8 @@
     <MESSAGE value="funzione cechk data" />
     <MESSAGE value="no mod" />
     <MESSAGE value="fine cliente" />
-    <option name="LAST_COMMIT_MESSAGE" value="fine cliente" />
+    <MESSAGE value="verifica ordine" />
+    <option name="LAST_COMMIT_MESSAGE" value="verifica ordine" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Farma_line$iscrizione.coverage" NAME="iscrizione Coverage Results" MODIFIED="1753883589561" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/profile_creation" />

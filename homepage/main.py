@@ -1,9 +1,10 @@
 from acquisto.pagamento import pagare
 from acquisto.scelta_indirizzi_consegna import scelta_indirizzi
+from gestione_magazzino.aggiorna_magazzino import aggiorna_magazzino
+from gestione_magazzino.aggiunta_farmaci import aggiunta_farmaci
 from profile_creation.iscrizione import registrazione_utente
 from accesso.accesso import accesso_utente, get_nome_utente
 from ricerca.searchbar import *
-from classi.farmaci.classe_farmaci import Farmaco
 from db import connection
 from verifica_ordine.verifica_ordine import verifica_ordine
 
@@ -67,7 +68,23 @@ if operazione =="continua" : # dentro il servizio della farmacia
 
     # sezione dedicata al farmacista
     elif id_cliente =="None" and id_farmacista !="None"  :
-        verifica_ordine()
+
+        aggiorna_magazzino()
+
+        print("Se si desidera aggiungere nuovi farmaci al magazzino digitare 1")
+        print("Per verificare l'esistenza dell'ordine e confermare l'avvenuta consegna digitare 2")
+        opzioni = input()
+
+        if opzioni == "1":
+            print("PROCEDURA DI AGGIUNTA FARMACI")
+            aggiunta_farmaci()
+
+        elif opzioni == "2":
+            print("PROCEDURA DI VERIFICA")
+            verifica_ordine()
+
+        else:
+            print("operazione inesistente")
 
     else:
         print("Operazione non valida")
