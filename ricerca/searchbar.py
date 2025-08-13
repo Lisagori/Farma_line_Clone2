@@ -18,7 +18,7 @@ def search_bar() -> None:
 
         filters = []  #lista
         if indicazioni_terapeutiche:
-            filters.append(f"LOWER(s.indicazioni_terapeutiche) LIKE LOWER ('%{indicazioni_terapeutiche}'%)")
+            filters.append(f"LOWER(s.indicazioni_terapeutiche) LIKE LOWER ('%{indicazioni_terapeutiche}%')")
 
         if composizione:
             filters.append(f"LOWER (s.composizione) LIKE LOWER ('%{composizione}%')")
