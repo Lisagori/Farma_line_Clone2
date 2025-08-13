@@ -19,6 +19,7 @@ def aggiunta_carrello(results)->None:
             for prodotto in results.to_dict(orient="records"):
                 if codice_input == prodotto["codice_farmaco"] :
                     verifica = True
+                    break
                 else :
                     verifica = False
 
