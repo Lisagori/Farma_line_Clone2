@@ -45,13 +45,12 @@ while operazione == "2":
 if operazione =="continua" : # dentro il servizio della farmacia
     #TODO distinzione tra cliente e farmacista bisogna interrogare l abase dati
     user=get_nome_utente()
-    query=f"SELECT id_cliente, id_farmacista FROM ProfiloUtente WHERE nome_utente = '{user}'"
+    query=f"SELECT tipo_profilo FROM ProfiloUtente WHERE nome_utente = '{user}'"
     id = pd.read_sql_query(query, connection)
-    id_cliente= str(id.iloc[0, 0])
-    id_farmacista = str(id.iloc[0,1])
+    tipo_prof= str(id.iloc[0, 0])
 
     # sezione dedicata al cliente
-    if  id_cliente !="None" and id_farmacista =="None" :
+    if  tipo_prof =="cliente" :
 
         while opzioni == "1":
             search_bar()
@@ -67,7 +66,7 @@ if operazione =="continua" : # dentro il servizio della farmacia
             print("operazione non disponibile")
 
     # sezione dedicata al farmacista
-    elif id_cliente =="None" and id_farmacista !="None"  :
+    elif tipo_prof =="farmacista" :
 
         aggiorna_magazzino()
 
@@ -86,6 +85,10 @@ if operazione =="continua" : # dentro il servizio della farmacia
         else:
             print("operazione inesistente")
 
+    #sezione dedicata al medico
+    elif tipo_prof == "medico":
+
+        print("operazione non disponibile")
     else:
         print("Operazione non valida")
 else :

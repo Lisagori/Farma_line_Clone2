@@ -6,9 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="687e12ae-2a07-4650-9e4f-85933ff285c1" name="Changes" comment="tante modifiche">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/acquisto/carrello.py" beforeDir="false" afterPath="$PROJECT_DIR$/acquisto/carrello.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/acquisto/pagamento.py" beforeDir="false" afterPath="$PROJECT_DIR$/acquisto/pagamento.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classi/persone/classe_persona.py" beforeDir="false" afterPath="$PROJECT_DIR$/classi/persone/classe_persona.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.py" beforeDir="false" afterPath="$PROJECT_DIR$/db.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/homepage/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/homepage/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/profile_creation/iscrizione.py" beforeDir="false" afterPath="$PROJECT_DIR$/profile_creation/iscrizione.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,40 +53,40 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.accesso.executor": "Run",
-    "Python.aggiorna_magazzino.executor": "Run",
-    "Python.aggiunta_farmaci.executor": "Run",
-    "Python.base_documenti_medicinali.executor": "Run",
-    "Python.base_iscrizioni.executor": "Run",
-    "Python.base_medcinali.executor": "Run",
-    "Python.carrello.executor": "Run",
-    "Python.classe_persona.executor": "Run",
-    "Python.classe_tessera_sanitaria.executor": "Debug",
-    "Python.gestione_magazzino.executor": "Run",
-    "Python.iscrizione.executor": "Run",
-    "Python.iscrizioni.executor": "Run",
-    "Python.main.executor": "Run",
-    "Python.pagamento.executor": "Run",
-    "Python.scelta_indirizzi.executor": "Run",
-    "Python.scelta_indirizzi_consegna.executor": "Run",
-    "Python.searchbar.executor": "Run",
-    "Python.verifica_ordine.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/Utente/Desktop/Farma_line - Copia3",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.accesso.executor&quot;: &quot;Run&quot;,
+    &quot;Python.aggiorna_magazzino.executor&quot;: &quot;Run&quot;,
+    &quot;Python.aggiunta_farmaci.executor&quot;: &quot;Run&quot;,
+    &quot;Python.base_documenti_medicinali.executor&quot;: &quot;Run&quot;,
+    &quot;Python.base_iscrizioni.executor&quot;: &quot;Run&quot;,
+    &quot;Python.base_medcinali.executor&quot;: &quot;Run&quot;,
+    &quot;Python.carrello.executor&quot;: &quot;Run&quot;,
+    &quot;Python.classe_persona.executor&quot;: &quot;Run&quot;,
+    &quot;Python.classe_tessera_sanitaria.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.gestione_magazzino.executor&quot;: &quot;Run&quot;,
+    &quot;Python.iscrizione.executor&quot;: &quot;Run&quot;,
+    &quot;Python.iscrizioni.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.pagamento.executor&quot;: &quot;Run&quot;,
+    &quot;Python.scelta_indirizzi.executor&quot;: &quot;Run&quot;,
+    &quot;Python.scelta_indirizzi_consegna.executor&quot;: &quot;Run&quot;,
+    &quot;Python.searchbar.executor&quot;: &quot;Run&quot;,
+    &quot;Python.verifica_ordine.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Utente/Desktop/Farma_line - Copia3&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Utente\Desktop\Farma_line - Copia3" />
@@ -418,7 +419,23 @@
       <option name="project" value="LOCAL" />
       <updated>1755100008211</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="tante modifiche">
+      <option name="closed" value="true" />
+      <created>1755100930599</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1755100930599</updated>
+    </task>
+    <task id="LOCAL-00038" summary="tante modifiche">
+      <option name="closed" value="true" />
+      <created>1755105313493</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1755105313493</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

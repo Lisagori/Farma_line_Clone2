@@ -18,9 +18,9 @@ class Persona (ABC) :
     def iscriversi(self) -> bool:
         ...
 
-    def crea_profilo(self) ->bool:
+    def crea_profilo(self, ty_p) ->bool:
 
-        profilo = ProfiloUtente(self)
+        profilo = ProfiloUtente(self, ty_p)
         ck = profilo.controllo_utente()
         while not ck:  # questo nuovo
             nuovo_nome = input("Inserisci un altro nome utente: ")
@@ -36,10 +36,12 @@ class Persona (ABC) :
 class ProfiloUtente:
     nome_utente: str
     password: str
+    tipo_profilo : str
     utente: Persona
 
-    def __init__(self, user: Persona):
+    def __init__(self, user: Persona, type_p :str):
         self.utente = user
+        self.tipo_profilo = type_p
         print("CREAZIONE PROFILO UTENTE")
         self.nome_utente = input(
             " inserire un nome utente : ")  # inserire controllo per corrispondenza profilo utente
@@ -49,9 +51,9 @@ class ProfiloUtente:
 
         if isinstance(self.utente, Cliente):
             new_profile = pd.DataFrame(  # prf fa riferimento al profilo utente da associare alla relativa tebella
-                columns=['nome_utente', 'password', 'id_cliente'],
+                columns=['nome_utente', 'password', 'tipo_profilo', 'id_cliente'],
                 data=[
-                    [self.nome_utente, self.password, self.utente.t_s.codice_fiscale]
+                    [self.nome_utente, self.password, self.tipo_profilo, self.utente.t_s.codice_fiscale]
                 ]
             )
             new_profile.to_sql('ProfiloUtente', connection, if_exists='append', index=False)
@@ -59,13 +61,24 @@ class ProfiloUtente:
 
         elif isinstance(self.utente, Farmacista):
             new_profile = pd.DataFrame(  # prf fa riferimento al profilo utente da associare alla relativa tebella
-                columns=['nome_utente', 'password', 'id_farmacista'],
+                columns=['nome_utente', 'password', 'tipo_profilo', 'id_sanitari'],
                 data=[
-                    [self.nome_utente, self.password, self.utente.t_p.n_matricola]
+                    [self.nome_utente, self.password, self.tipo_profilo, self.utente.t_p.n_matricola]
                 ]
             )
             new_profile.to_sql('ProfiloUtente', connection, if_exists='append', index=False)
             connection.commit()
+
+        elif isinstance(self.utente, Medico):
+            new_profile = pd.DataFrame(  # prf fa riferimento al profilo utente da associare alla relativa tebella
+                columns=['nome_utente', 'password', 'tipo_profilo', 'id_sanitari'],
+                data=[
+                    [self.nome_utente, self.password, self.tipo_profilo, self.utente.t_p.n_matricola]
+                ]
+            )
+            new_profile.to_sql('ProfiloUtente', connection, if_exists='append', index=False)
+            connection.commit()
+
         else:
             print("  Associazione profilo fallita: tipo utente non valido.")
             return  # torna al menu precedente
@@ -89,7 +102,7 @@ class Cliente(Persona):
         super().__init__()
         self.t_s = TesseraSanitaria()
 
-    def iscriversi(self) -> bool:
+    def iscriversi(self, ty_p :str ='') -> bool:
         ck : bool
         ck= check_date(self.t_s.data_scadenza)
 
@@ -123,46 +136,86 @@ class Cliente(Persona):
                 new_cliente.to_sql('Clienti', connection, if_exists='append', index=False)
                 connection.commit()
                 #sezione per associazione profilo utente
-                return self.crea_profilo()
+                return self.crea_profilo('cliente')
         else:
             return False
 
 class Farmacista(Persona):
-            t_p: TesserinoProfessionale  # t_p abbreviazione tesserino professionale
+        t_p: TesserinoProfessionale  # t_p abbreviazione tesserino professionale
 
-            def __init__(self):
-                super().__init__()
-                self.t_p = TesserinoProfessionale("farmacista")
+        def __init__(self):
+            super().__init__()
+            self.t_p = TesserinoProfessionale("farmacista")
 
-            def iscriversi(self) -> bool:
-                query = f"SELECT * FROM Farmacista WHERE matricola = '{self.t_p.n_matricola}'"
-                farmacista = pd.read_sql(query, connection)
-                # si definisce la ricerca da database per controllare se la persona è già registrata
-                if not farmacista.empty:  # è un dataframe
-                    print("La matricola inserita appartiene a un utente già registrato")
+        def iscriversi(self) -> bool:
+            query = f"SELECT * FROM Sanitari WHERE matricola = '{self.t_p.n_matricola}' AND professione = '{self.t_p.ordine_di_appartenenza}' "
+            farmacista = pd.read_sql(query, connection)
+            # si definisce la ricerca da database per controllare se la persona è già registrata
+            if not farmacista.empty:  # è un dataframe
+                print("La matricola inserita appartiene a un utente già registrato")
 
-                    print("Se si vuole accedere al servizio digitare 1")
-                    print("Se si vuole ritentare il processo di iscrizione digitare 2")
-                    print("Digitare exit se si vuole terminare l'operazione")
-                    scelta = input()
+                print("Se si vuole accedere al servizio digitare 1")
+                print("Se si vuole ritentare il processo di iscrizione digitare 2")
+                print("Digitare exit se si vuole terminare l'operazione")
+                scelta = input()
 
-                    if scelta == "1":
-                        return True
-                    elif scelta == "2":
-                        self.t_p.n_matricola = input("Inserire il numero di matricola corretto : ")
-                        return self.iscriversi()
-                    else:
-                        return False
-
+                if scelta == "1":
+                    return True
+                elif scelta == "2":
+                    self.t_p.n_matricola = input("Inserire il numero di matricola corretto : ")
+                    return self.iscriversi()
                 else:
-                    self.t_p.associazione_tessera_a_db()
-                    new_farmacista = pd.DataFrame(
-                        columns=['nome', 'cognome', 'matricola'],
-                        data=[
-                            [self.nome, self.cognome, self.t_p.n_matricola]
-                        ]
-                    )
-                    new_farmacista.to_sql('Farmacista', connection, if_exists='append', index=False)
-                    connection.commit()
-                    # sezione per associazione profilo utente
-                    return self.crea_profilo()
+                    return False
+
+            else:
+                self.t_p.associazione_tessera_a_db()
+                new_farmacista = pd.DataFrame(
+                    columns=['nome', 'cognome', 'professione','matricola'],
+                    data=[
+                        [self.nome, self.cognome, self.t_p.ordine_di_appartenenza, self.t_p.n_matricola]
+                    ]
+                )
+                new_farmacista.to_sql('Sanitari', connection, if_exists='append', index=False)
+                connection.commit()
+                # sezione per associazione profilo utente
+                return self.crea_profilo(self.t_p.ordine_di_appartenenza)
+
+class Medico(Persona):
+    t_p: TesserinoProfessionale  # t_p abbreviazione tesserino professionale
+
+    def __init__(self):
+        super().__init__()
+        self.t_p = TesserinoProfessionale("medico")
+
+    def iscriversi(self) -> bool:
+        query = f"SELECT * FROM Sanitari WHERE matricola = '{self.t_p.n_matricola}' AND professione = '{self.t_p.ordine_di_appartenenza}' "
+        medico = pd.read_sql(query, connection)
+        # si definisce la ricerca da database per controllare se la persona è già registrata
+        if not medico.empty:  # è un dataframe
+            print("La matricola inserita appartiene a un utente già registrato")
+
+            print("Se si vuole accedere al servizio digitare 1")
+            print("Se si vuole ritentare il processo di iscrizione digitare 2")
+            print("Digitare exit se si vuole terminare l'operazione")
+            scelta = input()
+
+            if scelta == "1":
+                return True
+            elif scelta == "2":
+                self.t_p.n_matricola = input("Inserire il numero di matricola corretto : ")
+                return self.iscriversi()
+            else:
+                return False
+
+        else:
+            self.t_p.associazione_tessera_a_db()
+            new_medico = pd.DataFrame(
+                columns=['nome', 'cognome', 'professione', 'matricola'],
+                data=[
+                    [self.nome, self.cognome, self.t_p.ordine_di_appartenenza, self.t_p.n_matricola]
+                ]
+            )
+            new_medico.to_sql('Sanitari', connection, if_exists='append', index=False)
+            connection.commit()
+            # sezione per associazione profilo utente
+            return self.crea_profilo(self.t_p.ordine_di_appartenenza)
