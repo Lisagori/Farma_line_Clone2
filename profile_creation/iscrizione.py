@@ -1,4 +1,4 @@
-from classi.persone.classe_persona import Farmacista, Cliente, Persona, Medico
+from classi.persone.classe_persona import Farmacista, Cliente, Persona,Medico
 
 
 # sezione di codice dedicata  all'iscrizione da usare nel main
@@ -18,20 +18,18 @@ def registrazione_utente() ->bool :
         if controllo == 1 :
             pearson = Cliente()
             verifica = True
-            return pearson.iscriversi()
 
         elif controllo == 2 :
             pearson = Farmacista()
             verifica = True
-            return pearson.iscriversi()
 
         elif controllo == 3 :
             pearson = Medico()
             verifica = True
-            return pearson.iscriversi()
+
         else :
             print("opzione non valida riprovare")
             return False
 
-
+    return pearson.iscriversi()
 

@@ -1,12 +1,6 @@
-from acquisto.pagamento import pagare
-from acquisto.scelta_indirizzi_consegna import scelta_indirizzi
-from gestione_magazzino.aggiorna_magazzino import aggiorna_magazzino
-from gestione_magazzino.aggiunta_farmaci import aggiunta_farmaci
 from profile_creation.iscrizione import registrazione_utente
-from accesso.accesso import accesso_utente, get_nome_utente
-from ricerca.searchbar import *
-from verifica_ordine.verifica_ordine import verifica_ordine
-from gestione_ricette.crea_ricetta import crea_ricetta
+from accesso.accesso import accesso_utente, get_profilo
+from classi.persone.classe_persona import ProfiloUtente, ProfiloCliente, ProfiloFarmacista, ProfiloMedico
 from db import connection
 
 
@@ -14,6 +8,8 @@ operazione : str
 verifica : bool
 opzioni : str = "1"
 controllo : bool
+profilo : ProfiloUtente
+
 # modifica accesso con il controllo password e i due return exit e continua
 
 print("HOME PAGE")
@@ -45,32 +41,29 @@ while operazione == "2":
 
 
 if operazione =="continua" : # dentro il servizio della farmacia
-    #TODO distinzione tra cliente e farmacista bisogna interrogare l abase dati
-    user=get_nome_utente()
-    query=f"SELECT tipo_profilo FROM ProfiloUtente WHERE nome_utente = '{user}'"
-    id = pd.read_sql_query(query, connection)
-    tipo_prof= str(id.iloc[0, 0])
+
+    profilo = get_profilo() #recupera il profilo dell'utente che ha appena eseguito l'accesso
 
     # sezione dedicata al cliente
-    if  tipo_prof =="cliente" :
+    if  isinstance(profilo , ProfiloCliente):
 
         while opzioni == "1":
-            search_bar()
+            profilo.search_bar()
             print("Se si desidera continuare a ricercare medicinali da acquistare digitare 1")
             print("Se si desidera terminare la ricerca e procedere all'acquisto digitare 2")
             opzioni = input()
 
         if opzioni == "2":
             print("PROCEDURA DI ACQUISTO")
-            scelta_indirizzi()
+            profilo.scelta_indirizzi(profilo.nome_utente)
 
         else:
             print("operazione non disponibile")
 
     # sezione dedicata al farmacista
-    elif tipo_prof =="farmacista" :
+    elif isinstance(profilo , ProfiloFarmacista) :
 
-        aggiorna_magazzino()
+        profilo.aggiorna_magazzino()
 
         print("Se si desidera aggiungere nuovi farmaci al magazzino digitare 1")
         print("Per verificare l'esistenza dell'ordine e confermare l'avvenuta consegna digitare 2")
@@ -78,19 +71,19 @@ if operazione =="continua" : # dentro il servizio della farmacia
 
         if opzioni == "1":
             print("PROCEDURA DI AGGIUNTA FARMACI")
-            aggiunta_farmaci()
+            profilo.aggiunta_farmaci()
 
         elif opzioni == "2":
             print("PROCEDURA DI VERIFICA")
-            verifica_ordine()
+            profilo.verifica_ordine()
 
         else:
             print("operazione inesistente")
 
     #sezione dedicata al medico
-    elif tipo_prof == "medico":
+    elif isinstance(profilo , ProfiloMedico):
         print("PROCEDURA DI PRESCRIZIONE RICETTA MEDICA")
-        crea_ricetta()
+        profilo.crea_ricetta()
 
     else:
         print("Operazione non valida")

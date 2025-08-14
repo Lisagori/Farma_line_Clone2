@@ -1,11 +1,14 @@
 import pandas as pd
+from classi.persone.classe_persona import ProfiloUtente, ProfiloFarmacista, ProfiloMedico, ProfiloCliente
 from db import connection
 
 username: str
 
+
 def accesso_utente() -> str:
     global username
-    pw: str #pw abbrevviazione per password
+
+    pw: str  # pw abbrevviazione per password
     count : int
     controllo: int
     count = 3
@@ -52,16 +55,23 @@ def accesso_utente() -> str:
 
     return "continua"
 
-def codice_utente() -> str|None :
-    global username
-    query = f"SELECT id_cliente FROM ProfiloUtente WHERE nome_utente ='{username}'"
-    codice_utente = pd.read_sql(query, connection)
+def get_profilo() -> ProfiloUtente:
 
-    # prendi il primo valore (prima riga, prima colonna) e lo trasformi in stringa
-    codice_utente = str(codice_utente.iloc[0, 0])
-    return codice_utente
-
-def get_nome_utente() -> str|None :
     global username
 
-    return username
+    query = f"SELECT password, tipo_profilo FROM ProfiloUtente WHERE nome_utente = '{username}'"
+    i_d = pd.read_sql_query(query, connection)
+
+    pw = str(i_d.iloc[0, 0])
+    tipo_prof = str(i_d.iloc[0,1])
+
+    if tipo_prof == "cliente" :
+        profilo = ProfiloCliente(username,pw)
+    elif tipo_prof == "farmacista" :
+        profilo = ProfiloFarmacista(username,pw)
+    elif tipo_prof == "medico":
+        profilo = ProfiloMedico(username, pw)
+    else :
+        print("Operazione fallita")
+
+    return profilo
