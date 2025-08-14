@@ -41,7 +41,7 @@ def accesso_utente() -> str:
             while pw_check.empty :
                 controllo -= 1
                 if controllo > 0:
-                    pw = input(" La password inserita  per questo username è incorretta, riprovare : ")
+                    pw = input(f" La password inserita  per questo username è incorretta, riprovare (tentetivi rimasti {controllo}): ")
                     query = f"SELECT * FROM ProfiloUtente WHERE password = '{pw}'"
                     pw_check = pd.read_sql(query, connection)
 

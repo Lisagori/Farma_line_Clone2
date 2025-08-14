@@ -5,8 +5,10 @@ from gestione_magazzino.aggiunta_farmaci import aggiunta_farmaci
 from profile_creation.iscrizione import registrazione_utente
 from accesso.accesso import accesso_utente, get_nome_utente
 from ricerca.searchbar import *
-from db import connection
 from verifica_ordine.verifica_ordine import verifica_ordine
+from gestione_ricette.crea_ricetta import crea_ricetta
+from db import connection
+
 
 operazione : str
 verifica : bool
@@ -87,8 +89,9 @@ if operazione =="continua" : # dentro il servizio della farmacia
 
     #sezione dedicata al medico
     elif tipo_prof == "medico":
+        print("PROCEDURA DI PRESCRIZIONE RICETTA MEDICA")
+        crea_ricetta()
 
-        print("operazione non disponibile")
     else:
         print("Operazione non valida")
 else :
