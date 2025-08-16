@@ -1,6 +1,7 @@
-from funzioni_generali.controlla import controlla, check_date
-import pandas as pd
+from funzioni_generali.controlli_function import controlla
 from db import connection
+import pandas as pd
+
 
 class TesseraSanitaria :
     codice_fiscale: str

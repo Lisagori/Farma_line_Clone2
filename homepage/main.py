@@ -1,6 +1,6 @@
+from classi.persone.classe_persona import ProfiloUtente, ProfiloCliente, ProfiloFarmacista, ProfiloMedico
 from profile_creation.iscrizione import registrazione_utente
 from accesso.accesso import accesso_utente, get_profilo
-from classi.persone.classe_persona import ProfiloUtente, ProfiloCliente, ProfiloFarmacista, ProfiloMedico
 from db import connection
 
 
@@ -55,7 +55,7 @@ if operazione =="continua" : # dentro il servizio della farmacia
 
         if opzioni == "2":
             print("PROCEDURA DI ACQUISTO")
-            profilo.scelta_indirizzi(profilo.nome_utente)
+            profilo.scelta_indirizzi()
 
         else:
             print("operazione non disponibile")

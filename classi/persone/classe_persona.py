@@ -6,8 +6,8 @@ from sqlalchemy import text
 from db import connection
 from classi.documenti.classe_tessera_sanitaria import TesseraSanitaria
 from classi.documenti.classe_tesserino_professionale import TesserinoProfessionale
-from funzioni_generali.altro import create_random_string
-from funzioni_generali.controlla import check_date, check_se_vuoto, controlla
+from funzioni_generali.random_function import create_random_string
+from funzioni_generali.controlli_function import check_date, check_se_vuoto, controlla
 
 carrello: list[dict] = [] #si inserisce fuori dalla funzione per evitare che il carrello si riazzeri ogni volta che viene chiamata da search_bar
 quanto_compro : list[int] = []
@@ -29,15 +29,19 @@ class Persona (ABC) :
         ...
 
 class ProfiloUtente(ABC):
+    id_utente :str
     nome_utente: str
     password: str
+    tipo_profilo :str
 
-    def __init__(self, nome : str, password :str):
+    def __init__(self, nome : str, password :str, id_u : str , tipo_p : str):
         self.nome_utente = nome
         self.password = password
+        self.id_utente = id_u
+        self.tipo_profilo = tipo_p
 
     @abstractmethod
-    def associazione_profilo_utente(self, cod: str) -> None:
+    def associazione_profilo_utente(self) -> None:
         ...
 
     def controllo_utente(self) -> bool:
@@ -49,20 +53,32 @@ class ProfiloUtente(ABC):
         else:
             return True
 
+
+class ProfilolavoratoreSanitario(ProfiloUtente) :
+
+
+    def associazione_profilo_utente(self) -> None:
+
+        new_profile = pd.DataFrame(  # prf fa riferimento al profilo utente da associare alla relativa tebella
+            columns=['nome_utente', 'password', 'tipo_profilo', 'id_sanitari'],
+            data=[
+                [self.nome_utente, self.password, self.tipo_profilo, self.id_utente]
+            ]
+        )
+        new_profile.to_sql('ProfiloUtente', connection, if_exists='append', index=False)
+        connection.commit()
+
+        print("Profilo utente aggiunto con successo.")
+        return None
+
 class ProfiloCliente(ProfiloUtente) :
 
-    tipo_profilo: str
-
-    def __init__(self, nome: str, password: str ):
-        super().__init__(nome, password)
-        self.tipo_profilo = "cliente"
-
-    def associazione_profilo_utente(self, cod: str) -> None:
+    def associazione_profilo_utente(self) -> None:
 
         new_profile = pd.DataFrame(  # prf fa riferimento al profilo utente da associare alla relativa tebella
             columns=['nome_utente', 'password', 'tipo_profilo', 'id_cliente'],
             data=[
-                [self.nome_utente, self.password, self.tipo_profilo, cod]
+                [self.nome_utente, self.password, self.tipo_profilo, self.id_utente]
             ]
         )
         new_profile.to_sql('ProfiloUtente', connection, if_exists='append', index=False)
@@ -80,8 +96,7 @@ class ProfiloCliente(ProfiloUtente) :
         filtri = input("Vuoi applicare dei filtri alla tua ricerca? (digitare si o no) : ")
 
         if filtri == "si":
-            print(
-                "Indica almeno uno dei seguenti filtri, quando non si vuole mettere un filtro premere semplicemente invio")
+            print("Indica almeno uno dei seguenti filtri, quando non si vuole mettere un filtro premere semplicemente invio")
             indicazioni_terapeutiche = input("Inserire le indicazioni terapeutiche : ")
             composizione = input("Inserire la composizione: ")
             posologia = input("Inserire la posologia : ")
@@ -162,52 +177,14 @@ class ProfiloCliente(ProfiloUtente) :
             print("Nessun farmaco trovato.")
             return  # torna al menu precedente
 
-    def scelta_indirizzi(self, nom_ut : str) -> None:
-
-        indirizzo_domicilio: str
-        scelta: str = "exit"
-        controllo: int
-
-        controllo = self.inserimento_dati_ricetta(nom_ut)
-
-        if len(carrello) > 0 :
-            if controllo == 0:
-                print("per ricevere l'ordine a domicilio digitare 1")
-                print("per ritirare l'ordine nella farmacia fisica 2")
-                scelta = input()
-            elif controllo > 0:
-                scelta = "2"
-
-            if scelta == "1":
-                indirizzo_domicilio = input("Inserire l'indirizzo di domicilio a cui si vuole ricevere l'ordine : ")
-                print(f"Operazione andata a buon fine, l'ordine sarà spedito presso {indirizzo_domicilio}")
-                controllo = self.pagare(indirizzo_domicilio,nom_ut)
-                if not controllo:
-                    print("Operazione terminata")
-
-            elif scelta == "2":
-                print(
-                    "L'ordine potrà essere ritirato entro 10 giorni presso la nostra sede fisica in Via Univeristà di Santa Marta, 26")
-                print("Operazione andata a buon fine")
-
-                controllo = self.pagare("Via Univeristà di Santa Marta, 26", nom_ut)
-
-                if not controllo:
-                    print("Operazione terminata")
-
-            else:
-                print("operazione non valida ")
-        else :
-            print("il carrello è vuoto , l'operazione di acquisto verrà terminata")
-
     @staticmethod
     def aggiunta_carrello(results) -> None:
 
         ck: bool = False
         controllo: bool = False
         verifica: bool = False
-        quantity : int = 0
-        codice_input : str = ''
+        quantity: int = 0
+        codice_input: str = ''
 
         i: int
 
@@ -245,8 +222,7 @@ class ProfiloCliente(ProfiloUtente) :
             q_trovato = pd.read_sql(query, connection)
 
             if q_trovato.empty:
-                aggiungi_carrello = input(
-                    "\nDigitare 'si' se si vuole aggiungere il prodotto al carrello, altrimenti digitare 'no': ")
+                aggiungi_carrello = input("\nDigitare 'si' se si vuole aggiungere il prodotto al carrello, altrimenti digitare 'no': ")
                 quanto_compro.append(quantity)
 
                 if aggiungi_carrello == "si":
@@ -279,7 +255,15 @@ class ProfiloCliente(ProfiloUtente) :
                     print("Contenuto attuale del carrello:")
 
                     if carrello:
-                        print(pd.DataFrame(carrello).to_string(index=False))
+                        i = 0
+                        for prodotto in carrello:
+                            print(f" codice : {prodotto["codice_farmaco"]} ")
+                            print(f" nome : {prodotto["nome"]} ")
+                            print(f" quantità : {quanto_compro[i]} ")
+                            print(f" prezzo : {quanto_compro[i] * float(prodotto["prezzo"])}")
+                            i += 1
+
+                        #print(pd.DataFrame(carrello).to_string(index=False))
                     else:
                         print("Il carrello è vuoto.")
                 else:
@@ -293,38 +277,72 @@ class ProfiloCliente(ProfiloUtente) :
                 else:
                     print("La quantità di farmaco in magazzino non è sufficiente, riprovare  ")
 
-    @staticmethod
-    def inserimento_dati_ricetta(ut :str) -> int:
+    def scelta_indirizzi(self) -> None:
+
+        indirizzo_domicilio: str
+        scelta: str = "exit"
+        controllo: int
+
+        controllo = self.inserimento_dati_ricetta()
+
+        if len(carrello) > 0 :
+            if controllo == 0:
+                print("per ricevere l'ordine a domicilio digitare 1")
+                print("per ritirare l'ordine nella farmacia fisica 2")
+                scelta = input()
+            elif controllo > 0:
+                scelta = "2"
+
+            if scelta == "1":
+                indirizzo_domicilio = input("Inserire l'indirizzo di domicilio a cui si vuole ricevere l'ordine : ")
+                print(f"Operazione andata a buon fine, l'ordine sarà spedito presso {indirizzo_domicilio}")
+                controllo = self.pagare(indirizzo_domicilio)
+                if not controllo:
+                    print("Operazione terminata")
+
+            elif scelta == "2":
+                print(
+                    "L'ordine potrà essere ritirato entro 10 giorni presso la nostra sede fisica in Via Univeristà di Santa Marta, 26")
+                print("Operazione andata a buon fine")
+
+                controllo = self.pagare("Via Univeristà di Santa Marta, 26")
+
+                if not controllo:
+                    print("Operazione terminata")
+
+            else:
+                print("operazione non valida ")
+        else :
+            print("il carrello è vuoto , l'operazione di acquisto verrà terminata")
+
+    def inserimento_dati_ricetta(self) -> int:
+
         count: int = 0
         i: int = 0
-        for prodotto in carrello:
 
+        for prodotto in carrello:
+            #si ricerca tra i prodotti nel carrello quelli che necessitano di ricetta
             codice_val = prodotto["codice_farmaco"]
             query = f" SELECT ricetta FROM FarmaciMagazzino WHERE codice = '{codice_val}' AND ricetta = 'si'"
             serve_ricetta = pd.read_sql_query(query, connection)  # può restituire si o rimanere vuoto
 
             if not serve_ricetta.empty:
 
-                query = f"SELECT id_cliente FROM ProfiloUtente WHERE nome_utente ='{ut}'"
-                codice_fiscale_utente = pd.read_sql(query, connection)
-
-                # prendi il primo valore (prima riga, prima colonna) e lo trasformi in stringa
-                codice_fiscale_utente = str(codice_fiscale_utente.iloc[0, 0])
-
                 # controllo se l'utente è in possesso della ricetta per acquistare il farmaco
-                query = f" SELECT codice_farmaco FROM Ricette WHERE codice_farmaco ='{codice_val}' AND codice_fiscale = '{codice_fiscale_utente}'"
+                query = f" SELECT codice_farmaco FROM Ricette WHERE codice_farmaco ='{codice_val}' AND codice_fiscale = '{self.id_utente}'"
                 nome_ck = pd.read_sql_query(query, connection)
+
                 if nome_ck.empty:
-                    print(
-                        "Non è associata nessuna ricetta per questo farmaco al profilo corrente, il prodotto con ricetta verrà eliminato dal carrello")
+                    print("Non è associata nessuna ricetta per questo farmaco al profilo corrente, il prodotto con ricetta verrà eliminato dal carrello")
                     carrello.remove(prodotto)
                     del quanto_compro[i]
+
                 if not nome_ck.empty:
                     count += 1
             i += 1
         return count
 
-    def pagare(self, indirizzo: str, nom_ut :str) -> bool:
+    def pagare(self, indirizzo: str) -> bool:
 
         ck: bool
         metodo: str
@@ -344,15 +362,13 @@ class ProfiloCliente(ProfiloUtente) :
             i += 1
 
         print(f"Prezzo totale dell'ordine : {prezzo_tot} €")
-
         print("se si desidera procedere all'acquisto digitare 1")
         print("se si desidera annullare l'operazione digitare exit")
         scelta = input()
 
         if scelta == "1":
             print("Scegliere metodo di pagamento")
-            print(
-                "digitare 1 per pagare con carta di credito o debito (American Express, Euro/Mastercard, Visa, Maestro)")
+            print("digitare 1 per pagare con carta di credito o debito (American Express, Euro/Mastercard, Visa, Maestro)")
             print("digitare 2 per pagare con portafoglio digitale (paypal , Google pay, Apple pay)")
             metodo = input()
 
@@ -365,18 +381,30 @@ class ProfiloCliente(ProfiloUtente) :
                 data_scadenza = controlla("Inserire  data di scadenza della carta(gg/mm/aaaa): ", 10)
                 cvc = controlla("Inserire il CVC : ", 3)
 
+                print("DATI DELLA CARTA")
+                print(f"NOME : {nome}")
+                print(f"COGNOME : {cognome}")
+                print(f"NUMERO CARTA : {numero_carta}")
+                print(f"DATA SCADENZA : {data_scadenza}")
+                print(f"CVC : {cvc}")
+
                 ck = check_date(data_scadenza)
                 if not ck:
-                    print("operazione fallita")
+                    print("operazione fallita")#carta scaduta
                     return False
                 else:
                     print("operazione andata a buon fine")
-                    self.associa_numero_ordine(indirizzo, nom_ut)
+                    self.associa_numero_ordine(indirizzo)
                     i = 0
                     for prodotto in carrello:
+                        #si modifica la quantità di prodotto in magazzino
                         new_quantity = prodotto["quantità"] - quanto_compro[i]
-                        query = f"UPDATE INTO FarmaciMagazzino SET quantità = '{new_quantity}' WHERE codice = '{prodotto["codice_farmaco"]}' "
+                        query = f"UPDATE FarmaciMagazzino SET quantità = '{new_quantity}' WHERE codice = '{prodotto["codice_farmaco"]}' "
                         connection.execute(text(query))  # serve per eseguire query che non devono restituire valori
+                        connection.commit()
+                        # si elimina la ricetta utilizzata nell'acquisto
+                        query = f"DELETE FROM Ricette WHERE codice_farmaco ='{prodotto["codice_farmaco"]}' AND codice_fiscale = '{self.id_utente}' "
+                        connection.execute(text(query))
                         connection.commit()
                         i += 1
 
@@ -384,37 +412,36 @@ class ProfiloCliente(ProfiloUtente) :
 
             elif metodo == "2":
                 print("operazione andata a buon fine")
-                self.associa_numero_ordine(indirizzo, nom_ut)
+                self.associa_numero_ordine(indirizzo)
                 i = 0
+
                 for prodotto in carrello:
+                    # si modifica la quantità di prodotto in magazzino
                     new_quantity = prodotto["quantità"] - quanto_compro[i]
                     query = f"UPDATE FarmaciMagazzino SET quantità = '{new_quantity}' WHERE codice = '{prodotto["codice_farmaco"]}' "
                     connection.execute(text(query))  # serve per eseguire query che non devono restituire valori
                     connection.commit()
+                    # si elimina la ricetta utilizzata nell'acquisto
+                    query = f"DELETE FROM Ricette WHERE codice_farmaco ='{prodotto["codice_farmaco"]}' AND codice_fiscale = '{self.id_utente}' "
+                    connection.execute(text(query))
+                    connection.commit()
                     i += 1
                 return True
+
         elif scelta == "exit":
             return False
 
-    @staticmethod
-    def associa_numero_ordine( indirizzo: str, ut : str) -> None:
+    def associa_numero_ordine( self, indirizzo: str) -> None:
 
         num_ordine: int
 
         num_ordine = random.randint(0, 1000000000)
         print(f"Fornire il seguente codice al momento del ritiro : {num_ordine}")
 
-
-        query = f"SELECT id_cliente FROM ProfiloUtente WHERE nome_utente ='{ut}'"
-        codice_fiscale_utente = pd.read_sql(query, connection)
-
-        # prendi il primo valore (prima riga, prima colonna) e lo trasformi in stringa
-        codice_fiscale_utente = str(codice_fiscale_utente.iloc[0, 0])
-
         new_ordine = pd.DataFrame(
             [[
                 num_ordine,
-                codice_fiscale_utente,
+                self.id_utente,
                 indirizzo,
             ]],
             columns=[
@@ -426,27 +453,7 @@ class ProfiloCliente(ProfiloUtente) :
         new_ordine.to_sql('Ordine', connection, if_exists='append', index=False)
         connection.commit()
 
-class ProfiloFarmacista(ProfiloUtente) :
-
-    tipo_profilo : str
-
-    def __init__(self, nome: str, password: str):
-        super().__init__(nome, password)
-        self.tipo_profilo = "farmacista"
-
-    def associazione_profilo_utente(self, cod: str) -> None:
-
-        new_profile = pd.DataFrame(  # prf fa riferimento al profilo utente da associare alla relativa tebella
-            columns=['nome_utente', 'password', 'tipo_profilo', 'id_sanitari'],
-            data=[
-                [self.nome_utente, self.password, self.tipo_profilo, cod]
-            ]
-        )
-        new_profile.to_sql('ProfiloUtente', connection, if_exists='append', index=False)
-        connection.commit()
-
-        print("Profilo utente aggiunto con successo.")
-        return None
+class ProfiloFarmacista(ProfilolavoratoreSanitario) :
 
     @staticmethod
     def verifica_ordine() -> None:
@@ -559,8 +566,7 @@ class ProfiloFarmacista(ProfiloUtente) :
         quanto: int = 0
         prezzo: float = 0.0
 
-        print(
-            "Per aggiungere una nuova tipologia di medicinale in magazzino, seguire le istruzioni di seguito riportate ")
+        print("Per aggiungere una nuova tipologia di medicinale in magazzino, seguire le istruzioni di seguito riportate ")
 
         query = "SELECT MAX(codice) FROM FarmaciMagazzino"
         cod = pd.read_sql(query, connection)
@@ -642,27 +648,7 @@ class ProfiloFarmacista(ProfiloUtente) :
 
         connection.commit()
 
-class ProfiloMedico(ProfiloUtente) :
-
-    tipo_profilo: str
-
-    def __init__(self, nome: str, password: str):
-        super().__init__(nome, password)
-        self.tipo_profilo = "medico"
-
-    def associazione_profilo_utente(self, cod: str) -> None:
-
-        new_profile = pd.DataFrame(  # prf fa riferimento al profilo utente da associare alla relativa tebella
-            columns=['nome_utente', 'password', 'tipo_profilo', 'id_sanitari'],
-            data=[
-                [self.nome_utente, self.password, self.tipo_profilo, cod]
-            ]
-        )
-        new_profile.to_sql('ProfiloUtente', connection, if_exists='append', index=False)
-        connection.commit()
-
-        print("Profilo utente aggiunto con successo.")
-        return None
+class ProfiloMedico(ProfilolavoratoreSanitario) :
 
     def crea_ricetta(self) -> None: #funzione medico
 
@@ -705,11 +691,12 @@ class ProfiloMedico(ProfiloUtente) :
         new_ricetta.to_sql('Ricetta', connection, if_exists='append', index=False)
         connection.commit()
 
-        print(f"Codice ricetta : {cod_ricetta}")
+        print(f"Fornire il seguente codice al paziente , CODICE RICETTA : {cod_ricetta}")
+
 
 class LavoratoreSanitario (Persona) :#classe base
-    t_p: TesserinoProfessionale  # t_p abbreviazione tesserino professionale
 
+    t_p: TesserinoProfessionale  # t_p abbreviazione tesserino professionale
 
     def iscriversi(self) -> bool:
         query = f"SELECT * FROM Sanitari WHERE matricola = '{self.t_p.n_matricola}' AND professione = '{self.t_p.ordine_di_appartenenza}' "
@@ -750,7 +737,9 @@ class LavoratoreSanitario (Persona) :#classe base
         print("CREAZIONE PROFILO UTENTE")
         nome = input(" inserire un nome utente : ")  # inserire controllo per corrispondenza profilo utente
         password = input(" inserire una password : ")
-        profilo = ProfiloUtente(nome, password)
+
+        profilo = ProfilolavoratoreSanitario(nome, password, self.t_p.n_matricola, self.t_p.ordine_di_appartenenza)
+
         ck = profilo.controllo_utente()
 
         while not ck:  # questo nuovo
@@ -758,7 +747,7 @@ class LavoratoreSanitario (Persona) :#classe base
             profilo.nome_utente = nuovo_nome
             ck = profilo.controllo_utente()
 
-        profilo.associazione_profilo_utente(self.t_p.n_matricola)
+        profilo.associazione_profilo_utente()
 
         print("registrazione effettuata con successo.")
         print(f"        Benvenuto {profilo.nome_utente} !")
@@ -773,14 +762,14 @@ class Cliente(Persona):
 
     def iscriversi(self, ty_p :str ='') -> bool:
         ck : bool
-        ck= check_date(self.t_s.data_scadenza)
+        ck= check_date(self.t_s.data_scadenza) # per verificare che la tessera registrata non sia scaduta
 
         if ck:
+            #per verificare che il codice inserito non appartenga a un'altra tessera sanitaria
             query = f"SELECT * FROM Clienti WHERE codice_fiscale = '{self.t_s.codice_fiscale}'"
             cliente = pd.read_sql(query, connection)
             if not cliente.empty: # è un dataframe
                 print("Il codice fiscale inserito appartiene a un utente già registrato")
-
                 print("Se si vuole accedere al servizio digitare 1")
                 print("Se si vuole ritentare il processo di iscrizione digitare 2")
                 print("Digitare exit se si vuole terminare l'operazione")
@@ -807,6 +796,7 @@ class Cliente(Persona):
                 #sezione per associazione profilo utente
                 return self.crea_profilo()
         else:
+            print("La tessera risulta scaduta, non è possibile effettuare l'iscrizione al servizio")
             return False
 
     def crea_profilo(self) ->bool:
@@ -814,7 +804,7 @@ class Cliente(Persona):
         print("CREAZIONE PROFILO UTENTE")
         nome = input(" inserire un nome utente : ")  # inserire controllo per corrispondenza profilo utente
         password = input(" inserire una password : ")
-        profilo = ProfiloUtente(nome, password)
+        profilo = ProfiloCliente(nome, password, self.t_s.codice_fiscale, 'cliente')
         ck = profilo.controllo_utente()
 
         while not ck:  # questo nuovo
@@ -822,7 +812,7 @@ class Cliente(Persona):
             profilo.nome_utente = nuovo_nome
             ck = profilo.controllo_utente()
 
-        profilo.associazione_profilo_utente(self.t_s.codice_fiscale)
+        profilo.associazione_profilo_utente()
 
         print("registrazione effettuata con successo.")
         print(f"        Benvenuto {profilo.nome_utente} !")

@@ -1,4 +1,3 @@
-
 import random
 
 def create_random_string(size: int, chars):
