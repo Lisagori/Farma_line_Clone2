@@ -90,4 +90,3 @@ if operazione =="continua" : # dentro il servizio della farmacia
 else :
     print("Operazione terminata")
 #TODO aggiungere gli exept
-#TODO togliere ricetta dopo acquisto

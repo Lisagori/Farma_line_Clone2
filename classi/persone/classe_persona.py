@@ -19,8 +19,8 @@ class Persona (ABC) :
     cognome: str
 
     def __init__(self):
-        self.nome = input("Inserire il proprio nome : ")
-        self.cognome = input("Inserire il proprio cognome : ")
+        self.nome = check_se_vuoto("Inserire il proprio nome : ")
+        self.cognome = check_se_vuoto("Inserire il proprio cognome : ")
 
     @abstractmethod
     def iscriversi(self) -> bool:
@@ -74,6 +74,13 @@ class ProfilolavoratoreSanitario(ProfiloUtente) :
         return None
 
 class ProfiloCliente(ProfiloUtente) :
+    __carrello: list[dict]   # si mette come attributo per evitare che il carrello si riazzeri ogni volta che viene chiamata da search_bar
+    __quanto_compro: list[int]
+
+    def __init__(self, nome : str, password :str, id_u : str , tipo_p : str):
+        super().__init__(nome,password, id_u, tipo_p)
+        self.__carrello= []
+        self.__quanto_compro= []
 
     def associazione_profilo_utente(self) -> None:
 
@@ -179,8 +186,7 @@ class ProfiloCliente(ProfiloUtente) :
             print("Nessun farmaco trovato.")
             return  # torna al menu precedente
 
-    @staticmethod
-    def aggiunta_carrello(results) -> None:
+    def aggiunta_carrello(self,results) -> None:
 
         ck: bool = False
         controllo: bool = False
@@ -225,7 +231,7 @@ class ProfiloCliente(ProfiloUtente) :
 
             if q_trovato.empty:
                 aggiungi_carrello = input("\nDigitare 'si' se si vuole aggiungere il prodotto al carrello, altrimenti digitare 'no': ")
-                quanto_compro.append(quantity)
+                self.__quanto_compro.append(quantity)
 
                 if aggiungi_carrello == "si":
                     # results: DataFrame con almeno la colonna "codice"
@@ -234,20 +240,20 @@ class ProfiloCliente(ProfiloUtente) :
 
                     if not riga.empty:
                         farmaco_dict = riga.iloc[0].to_dict()  # prendo la prima corrispondenza
-                        carrello.append(farmaco_dict)
+                        self.__carrello.append(farmaco_dict)
                         print("Farmaco aggiunto al carrello.")
                     else:
                         print("Codice non trovato tra i risultati mostrati.")
 
                     print("Contenuto attuale del carrello:")
 
-                    if carrello:
+                    if self.__carrello:
                         i = 0
-                        for prodotto in carrello:
+                        for prodotto in self.__carrello:
                             print(f" codice : {prodotto["codice_farmaco"]} ")
                             print(f" nome : {prodotto["nome"]} ")
-                            print(f" quantità : {quanto_compro[i]} ")
-                            print(f" prezzo : {quanto_compro[i] * float(prodotto["prezzo"])}")
+                            print(f" quantità : {self.__quanto_compro[i]} ")
+                            print(f" prezzo : {self.__quanto_compro[i] * float(prodotto["prezzo"])}")
                             i += 1
                     else:
                         print("Il carrello è vuoto.")
@@ -256,13 +262,13 @@ class ProfiloCliente(ProfiloUtente) :
                     print("Farmaco non aggiunto al carrello")
                     print("Contenuto attuale del carrello:")
 
-                    if carrello:
+                    if self.__carrello:
                         i = 0
-                        for prodotto in carrello:
+                        for prodotto in self.__carrello:
                             print(f" codice : {prodotto["codice_farmaco"]} ")
                             print(f" nome : {prodotto["nome"]} ")
-                            print(f" quantità : {quanto_compro[i]} ")
-                            print(f" prezzo : {quanto_compro[i] * float(prodotto["prezzo"])}")
+                            print(f" quantità : {self.__quanto_compro[i]} ")
+                            print(f" prezzo : {self.__quanto_compro[i] * float(prodotto["prezzo"])}")
                             i += 1
 
                         #print(pd.DataFrame(carrello).to_string(index=False))
@@ -287,7 +293,7 @@ class ProfiloCliente(ProfiloUtente) :
 
         controllo = self.inserimento_dati_ricetta()
 
-        if len(carrello) > 0 :
+        if len(self.__carrello) > 0 :
             if controllo == 0:
                 print("per ricevere l'ordine a domicilio digitare 1")
                 print("per ritirare l'ordine nella farmacia fisica 2")
@@ -322,7 +328,7 @@ class ProfiloCliente(ProfiloUtente) :
         count: int = 0
         i: int = 0
 
-        for prodotto in carrello:
+        for prodotto in self.__carrello:
             #si ricerca tra i prodotti nel carrello quelli che necessitano di ricetta
             codice_val = prodotto["codice_farmaco"]
             query = f" SELECT ricetta FROM FarmaciMagazzino WHERE codice = '{codice_val}' AND ricetta = 'si'"
@@ -336,8 +342,8 @@ class ProfiloCliente(ProfiloUtente) :
 
                 if nome_ck.empty:
                     print("Non è associata nessuna ricetta per questo farmaco al profilo corrente, il prodotto con ricetta verrà eliminato dal carrello")
-                    carrello.remove(prodotto)
-                    del quanto_compro[i]
+                    self.__carrello.remove(prodotto)
+                    del self.__quanto_compro[i]
 
                 if not nome_ck.empty:
                     count += 1
@@ -351,16 +357,16 @@ class ProfiloCliente(ProfiloUtente) :
         prezzo_tot: float = 0
         i: int = 0
 
-        for prodotto in carrello:
+        for prodotto in self.__carrello:
             print(f" codice : {prodotto["codice_farmaco"]} ")
             print(f" nome : {prodotto["nome"]} ")
-            print(f" quantità : {quanto_compro[i]} ")
-            print(f" prezzo : {quanto_compro[i] * float(prodotto["prezzo"])}")
+            print(f" quantità : {self.__quanto_compro[i]} ")
+            print(f" prezzo : {self.__quanto_compro[i] * float(prodotto["prezzo"])}")
             i += 1
 
         i = 0
-        for prodotto in carrello:
-            prezzo_tot = prezzo_tot + float(prodotto["prezzo"]) * quanto_compro[i]
+        for prodotto in self.__carrello:
+            prezzo_tot = prezzo_tot + float(prodotto["prezzo"]) * self.__quanto_compro[i]
             i += 1
 
         print(f"Prezzo totale dell'ordine : {prezzo_tot} €")
@@ -406,9 +412,9 @@ class ProfiloCliente(ProfiloUtente) :
                     print("operazione andata a buon fine")
                     self.associa_numero_ordine(indirizzo)
                     i = 0
-                    for prodotto in carrello:
+                    for prodotto in self.__carrello:
                         #si modifica la quantità di prodotto in magazzino
-                        new_quantity = prodotto["quantità"] - quanto_compro[i]
+                        new_quantity = prodotto["quantità"] - self.__quanto_compro[i]
                         query = f"UPDATE FarmaciMagazzino SET quantità = '{new_quantity}' WHERE codice = '{prodotto["codice_farmaco"]}' "
                         connection.execute(text(query))  # serve per eseguire query che non devono restituire valori
                         connection.commit()
@@ -425,9 +431,9 @@ class ProfiloCliente(ProfiloUtente) :
                 self.associa_numero_ordine(indirizzo)
                 i = 0
 
-                for prodotto in carrello:
+                for prodotto in self.__carrello:
                     # si modifica la quantità di prodotto in magazzino
-                    new_quantity = prodotto["quantità"] - quanto_compro[i]
+                    new_quantity = prodotto["quantità"] - self.__quanto_compro[i]
                     query = f"UPDATE FarmaciMagazzino SET quantità = '{new_quantity}' WHERE codice = '{prodotto["codice_farmaco"]}' "
                     connection.execute(text(query))  # serve per eseguire query che non devono restituire valori
                     connection.commit()
@@ -662,6 +668,7 @@ class ProfiloMedico(ProfilolavoratoreSanitario) :
 
     def crea_ricetta(self) -> None: #funzione medico
 
+        ck: bool= False
         cod: str
         i: int
 
@@ -673,59 +680,74 @@ class ProfiloMedico(ProfilolavoratoreSanitario) :
         if not elenco.empty:
             for farmaco in elenco.to_dict(orient="records"):
                 print(farmaco)
+
+            while not ck:
+                cod_farmaco = input()
+                query = f"SELECT nome FROM FarmaciMagazzino WHERE codice='{cod_farmaco}'"
+                farma = pd.read_sql(query, connection)
+                if not farma.empty:
+                    cod_fisc = controlla("Inserire il codice fiscale del paziente a cui si sta prescrivendo il farmaco : ", 16)
+
+                    cod_ricetta = ((create_random_string(4, string.digits)
+                                   + create_random_string(1, string.ascii_uppercase))
+                                   + ' '
+                                   + create_random_string(10, string.digits))
+
+                    new_ricetta = pd.DataFrame(
+                        [[
+                            cod_ricetta,
+                            cod_fisc,
+                            cod_farmaco,
+                            self.nome_utente
+                        ]],
+                        columns=[
+                            'codice_ricetta',  # <-- niente spazio finale
+                            'codice_fiscale',
+                            'codice_farmaco',
+                            'nome_medico'
+                        ]
+                    )
+                    new_ricetta.to_sql('Ricetta', connection, if_exists='append', index=False)
+                    connection.commit()
+
+                    print(f"Fornire il seguente codice al paziente , CODICE RICETTA : {cod_ricetta}")
+                    ck=True
+
+                else:
+                    print("Non esistono farmaci con questo codice nel magazzino, riprovare: ")
+                    ck=False
+
         else:
             print("Non ci sono farmaci con ricetta da poter prescrivere in magazzino")
-
-        cod_farmaco = input()
-        cod_fisc = input("Inserire il codice fiscale del paziente a cui si sta prescrivendo il farmaco : ")
-
-        cod_ricetta = ((create_random_string(4, string.digits)
-                       + create_random_string(1, string.ascii_uppercase))
-                       + ' '
-                       + create_random_string(10, string.digits))
-
-        new_ricetta = pd.DataFrame(
-            [[
-                cod_ricetta,
-                cod_fisc,
-                cod_farmaco,
-                self.nome_utente
-            ]],
-            columns=[
-                'codice_ricetta',  # <-- niente spazio finale
-                'codice_fiscale',
-                'codice_farmaco',
-                'nome_medico'
-            ]
-        )
-        new_ricetta.to_sql('Ricetta', connection, if_exists='append', index=False)
-        connection.commit()
-
-        print(f"Fornire il seguente codice al paziente , CODICE RICETTA : {cod_ricetta}")
 
 class LavoratoreSanitario (Persona) :#classe base
 
     t_p: TesserinoProfessionale  # t_p abbreviazione tesserino professionale
 
     def iscriversi(self) -> bool:
-        query = f"SELECT * FROM Sanitari WHERE matricola = '{self.t_p.n_matricola}' AND professione = '{self.t_p.ordine_di_appartenenza}' "
+        ck: bool = False
+        query = f"SELECT * FROM Sanitari WHERE matricola = '{self.t_p.n_matricola}'"
         lav_sani = pd.read_sql(query, connection)
         # si definisce la ricerca da database per controllare se la persona è già registrata
         if not lav_sani.empty:  # è un dataframe
             print("La matricola inserita appartiene a un utente già registrato")
 
-            print("Se si vuole accedere al servizio digitare 1")
-            print("Se si vuole ritentare il processo di iscrizione digitare 2")
-            print("Digitare exit se si vuole terminare l'operazione")
-            scelta = input()
+            while not ck:
+                print("Se si vuole accedere al servizio digitare 1")
+                print("Se si vuole ritentare il processo di iscrizione digitare 2")
+                print("Digitare exit se si vuole terminare l'operazione")
+                scelta = check_se_vuoto("")
 
-            if scelta == "1":
-                return True
-            elif scelta == "2":
-                self.t_p.n_matricola = input("Inserire il numero di matricola corretto : ")
-                return self.iscriversi()
-            else:
-                return False
+                if scelta == "1":
+                    return True
+                elif scelta == "2":
+                    self.t_p.n_matricola = input("Inserire il numero di matricola corretto : ")
+                    return self.iscriversi()
+                elif scelta== "exit":
+                    return False
+                else:
+                    print("operazione non valida,riprovare ")
+                    ck= False
 
         else:
             self.t_p.associazione_tessera_a_db()
@@ -744,15 +766,15 @@ class LavoratoreSanitario (Persona) :#classe base
     def crea_profilo(self) ->bool:
 
         print("CREAZIONE PROFILO UTENTE")
-        nome = input(" inserire un nome utente : ")  # inserire controllo per corrispondenza profilo utente
-        password = input(" inserire una password : ")
+        nome = check_se_vuoto(" inserire un nome utente : ")  # inserire controllo per corrispondenza profilo utente
+        password = check_se_vuoto(" inserire una password : ")
 
         profilo = ProfilolavoratoreSanitario(nome, password, self.t_p.n_matricola, self.t_p.ordine_di_appartenenza)
 
         ck = profilo.controllo_utente()
 
         while not ck:  # questo nuovo
-            nuovo_nome = input("Inserisci un altro nome utente: ")
+            nuovo_nome = check_se_vuoto("Inserisci un altro nome utente: ")
             profilo.nome_utente = nuovo_nome
             ck = profilo.controllo_utente()
 
@@ -812,13 +834,13 @@ class Cliente(Persona):
     def crea_profilo(self) ->bool:
 
         print("CREAZIONE PROFILO UTENTE")
-        nome = input(" inserire un nome utente : ")  # inserire controllo per corrispondenza profilo utente
-        password = input(" inserire una password : ")
+        nome = check_se_vuoto(" inserire un nome utente : ")  # inserire controllo per corrispondenza profilo utente
+        password = check_se_vuoto(" inserire una password : ")
         profilo = ProfiloCliente(nome, password, self.t_s.codice_fiscale, 'cliente')
         ck = profilo.controllo_utente()
 
         while not ck:  # questo nuovo
-            nuovo_nome = input("Inserisci un altro nome utente: ")
+            nuovo_nome = check_se_vuoto("Inserisci un altro nome utente: ")
             profilo.nome_utente = nuovo_nome
             ck = profilo.controllo_utente()
 

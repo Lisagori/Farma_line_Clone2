@@ -2,7 +2,7 @@ from sqlalchemy import text
 from classi.persone.classe_persona import ProfiloUtente, ProfiloFarmacista, ProfiloMedico, ProfiloCliente
 from db import connection
 import pandas as pd
-from funzioni_generali.controlli_function import check_date, controlla
+from funzioni_generali.controlli_function import check_date, controlla, check_se_vuoto
 from datetime import datetime
 
 username: str
@@ -21,12 +21,12 @@ def accesso_utente() -> str:
     print("INSERIMENTO DATI PER ACCESSO")
 
     #sezione dedicata al controllo del nome utente
-    username = input("Inserire il proprio nome utente : ")
+    username = check_se_vuoto("Inserire il proprio nome utente : ")
     query = f"SELECT * FROM ProfiloUtente WHERE nome_utente = '{username}'"
     username_check = pd.read_sql(query, connection)
 
     while username_check.empty:
-        username = input(f" Il nome utente inserito non appartiente a un utente registarto, riprovare (tentativi rimasti {count}): ")
+        username = check_se_vuoto(f" Il nome utente inserito non appartiente a un utente registarto, riprovare (tentativi rimasti {count}): ")
         query = f"SELECT * FROM ProfiloUtente WHERE nome_utente = '{username}'"
         username_check = pd.read_sql(query, connection)
         count -= 1
@@ -40,14 +40,14 @@ def accesso_utente() -> str:
     if count > 0 :
 
         #sezione dedicata al controllo password
-        pw = input ("Inserire la propria password : ")
+        pw = check_se_vuoto ("Inserire la propria password : ")
         query = f"SELECT * FROM ProfiloUtente WHERE password = '{pw}'"
         pw_check = pd.read_sql(query, connection)
 
         while pw_check.empty :
             controllo -= 1
             if controllo > 0:
-                pw = input(f" La password inserita  per questo username è incorretta, riprovare (tentetivi rimasti {controllo}): ")
+                pw = check_se_vuoto(f" La password inserita  per questo username è incorretta, riprovare (tentetivi rimasti {controllo}): ")
                 query = f"SELECT * FROM ProfiloUtente WHERE password = '{pw}'"
                 pw_check = pd.read_sql(query, connection)
 

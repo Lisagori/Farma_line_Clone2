@@ -1,4 +1,4 @@
-from funzioni_generali.controlli_function import controlla
+from funzioni_generali.controlli_function import controlla, check_se_vuoto
 from db import connection
 import pandas as pd
 from datetime import datetime
@@ -13,7 +13,7 @@ class TesseraSanitaria :
     data_scadenza: datetime.date
     numero_identificazione_tessera: str
 
-    #TODO quando possibile inserire controllo data di nascita e scadenza tessera sanitaria
+
 
     def __init__(self):
 
@@ -21,7 +21,7 @@ class TesseraSanitaria :
         print( " Di seguito si inseriscano i dati della tessera sanitaria : ")
         self.codice_fiscale = controlla(" CODICE FISCALE :", 16) # nel codice fiscale si contano 16 caratteri alfanumerici
         self.sesso = controlla(" SESSO : ", 1)
-        self.luogo_nascita = input(" LUOGO DI NASCITA : ")
+        self.luogo_nascita = check_se_vuoto(" LUOGO DI NASCITA : ")
         self.provincia = controlla(" PROVINCIA : ", 2)
         while not ck:
             data_input = controlla(" DATA DI NASCITA (gg/mm/aaaa) : ", 10)
