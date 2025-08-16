@@ -11,7 +11,7 @@ def controlla(messaggio: str, lunghezza: int) -> str :
    return parametro
 
 #per il controllo delle date di scadenza
-def check_nascita(data:datetime.date)->datetime: #restituisce true quando può continuare , e false quando deve cessare le operazioni
+def check_nascita(data:datetime.date)-> date: #restituisce true quando può continuare , e false quando deve cessare le operazioni
     ck: bool
     today = date.today() #funzione di Python che restituisce la data odierna
     for i in reversed ( range (3)):

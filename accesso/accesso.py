@@ -61,7 +61,9 @@ def accesso_utente() -> str:
             if isinstance(prof, ProfiloCliente):
                 query=f"SELECT data_scadenza FROM TesseraSanitaria WHERE codice_Fiscale= '{prof.id_utente}'"
                 data = pd.read_sql_query(query, connection)
-                data_ck=check_date(pd.to_datetime(data))
+                data_ck = data.iloc[0, 0]
+                data_ck = datetime.strptime(data_ck, "%Y-%m-%d").date()
+                data_ck=check_date(data_ck)
                 if not data_ck:
                     print("La tessera sanitaria risulta scaduta. Vuoi aggiornare la data di scadenza ? Digitare si o no")
                     verifica=input()
@@ -81,7 +83,7 @@ def accesso_utente() -> str:
                     elif verifica=="no":
                         print("Il profilo verrà eliminato")
                         query = f"DELETE FROM TesseraSanitaria WHERE codice_Fiscale='{prof.id_utente}'"
-                        connection.executed(text(query))
+                        connection.execute(text(query))
                         connection.commit()
                         return "exit"
                     else:
