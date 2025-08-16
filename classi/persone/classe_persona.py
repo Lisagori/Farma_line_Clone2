@@ -7,7 +7,9 @@ from db import connection
 from classi.documenti.classe_tessera_sanitaria import TesseraSanitaria
 from classi.documenti.classe_tesserino_professionale import TesserinoProfessionale
 from funzioni_generali.random_function import create_random_string
-from funzioni_generali.controlli_function import check_date, check_se_vuoto, controlla
+from funzioni_generali.controlli_function import check_date, check_se_vuoto, controlla, check_nascita
+from datetime import datetime
+from datetime import date
 
 carrello: list[dict] = [] #si inserisce fuori dalla funzione per evitare che il carrello si riazzeri ogni volta che viene chiamata da search_bar
 quanto_compro : list[int] = []
@@ -378,7 +380,15 @@ class ProfiloCliente(ProfiloUtente) :
                 nome = input("Inserire il nome dell'intestatario : ")
                 cognome = input("Inserire il cognome dell'intestatario : ")
                 numero_carta = controlla("Inserire numero della carta : ", 16)
-                data_scadenza = controlla("Inserire  data di scadenza della carta(gg/mm/aaaa): ", 10)
+                data_input = controlla("Inserire  data di scadenza della carta(gg/mm/aaaa): ", 10)
+                ck= False
+                while not ck:
+                    try:
+                        data_scadenza = datetime.strptime(data_input, "%d/%m/%Y").date()
+                        ck = True
+                    except ValueError:
+                        print("Data non valida!")
+                        ck= False
                 cvc = controlla("Inserire il CVC : ", 3)
 
                 print("DATI DELLA CARTA")
@@ -693,7 +703,6 @@ class ProfiloMedico(ProfilolavoratoreSanitario) :
 
         print(f"Fornire il seguente codice al paziente , CODICE RICETTA : {cod_ricetta}")
 
-
 class LavoratoreSanitario (Persona) :#classe base
 
     t_p: TesserinoProfessionale  # t_p abbreviazione tesserino professionale
@@ -762,9 +771,10 @@ class Cliente(Persona):
 
     def iscriversi(self, ty_p :str ='') -> bool:
         ck : bool
-        ck= check_date(self.t_s.data_scadenza) # per verificare che la tessera registrata non sia scaduta
+        ck= check_date(self.t_s.data_scadenza)# per verificare che la tessera registrata non sia scaduta
+        self.t_s.data_nascita= check_nascita(self.t_s.data_nascita)
 
-        if ck:
+        if ck and self.t_s.data_nascita != date.today()  :
             #per verificare che il codice inserito non appartenga a un'altra tessera sanitaria
             query = f"SELECT * FROM Clienti WHERE codice_fiscale = '{self.t_s.codice_fiscale}'"
             cliente = pd.read_sql(query, connection)
@@ -796,7 +806,7 @@ class Cliente(Persona):
                 #sezione per associazione profilo utente
                 return self.crea_profilo()
         else:
-            print("La tessera risulta scaduta, non è possibile effettuare l'iscrizione al servizio")
+            print("La tessera risulta scaduta o la data di nascita non è valida, non è possibile effettuare l'iscrizione al servizio")
             return False
 
     def crea_profilo(self) ->bool:

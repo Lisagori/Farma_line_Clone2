@@ -1,13 +1,16 @@
+from sqlalchemy import text
 from classi.persone.classe_persona import ProfiloUtente, ProfiloFarmacista, ProfiloMedico, ProfiloCliente
 from db import connection
 import pandas as pd
+from funzioni_generali.controlli_function import check_date, controlla
+from datetime import datetime
 
 username: str
 
 
 def accesso_utente() -> str:
     global username
-
+    verifica: str
     pw: str  # pw abbrevviazione per password
     count : int
     controllo: int
@@ -36,23 +39,54 @@ def accesso_utente() -> str:
 
     if count > 0 :
 
-            #sezione dedicata al controllo password
-            pw = input ("Inserire la propria password : ")
-            query = f"SELECT * FROM ProfiloUtente WHERE password = '{pw}'"
-            pw_check = pd.read_sql(query, connection)
+        #sezione dedicata al controllo password
+        pw = input ("Inserire la propria password : ")
+        query = f"SELECT * FROM ProfiloUtente WHERE password = '{pw}'"
+        pw_check = pd.read_sql(query, connection)
 
-            while pw_check.empty :
-                controllo -= 1
-                if controllo > 0:
-                    pw = input(f" La password inserita  per questo username è incorretta, riprovare (tentetivi rimasti {controllo}): ")
-                    query = f"SELECT * FROM ProfiloUtente WHERE password = '{pw}'"
-                    pw_check = pd.read_sql(query, connection)
+        while pw_check.empty :
+            controllo -= 1
+            if controllo > 0:
+                pw = input(f" La password inserita  per questo username è incorretta, riprovare (tentetivi rimasti {controllo}): ")
+                query = f"SELECT * FROM ProfiloUtente WHERE password = '{pw}'"
+                pw_check = pd.read_sql(query, connection)
 
-                elif controllo == 0 :
-                    print(f"La password inserita  per questo username è incorretta, tentativi rimasti {controllo}")
-                    print(f"Operazione fallita")
-                    return "exit"
+            elif controllo == 0 :
+                print(f"La password inserita  per questo username è incorretta, tentativi rimasti {controllo}")
+                print(f"Operazione fallita")
+                return "exit"
 
+        if not pw_check.empty:
+            prof=get_profilo()
+            if isinstance(prof, ProfiloCliente):
+                query=f"SELECT data_scadenza FROM TesseraSanitaria WHERE codice_Fiscale= '{prof.id_utente}'"
+                data = pd.read_sql_query(query, connection)
+                data_ck=check_date(pd.to_datetime(data))
+                if not data_ck:
+                    print("La tessera sanitaria risulta scaduta. Vuoi aggiornare la data di scadenza ? Digitare si o no")
+                    verifica=input()
+                    if verifica=="si":
+                        ck = False
+                        while not ck:
+                            data_input = controlla("NUOVA DATA DI SCADENZA (gg/mm/aaaa) : ", 10)
+                            try:
+                                new_date = datetime.strptime(data_input, "%d/%m/%Y").date()
+                                ck = True
+                            except ValueError:
+                                print("Data non valida!")
+                                ck = False
+                        query = f"UPDATE TesseraSanitaria SET data_scadenza= '{new_date}' WHERE codice_Fiscale= '{prof.id_utente}'"
+                        connection.executed(text(query))
+                        connection.commit()
+                    elif verifica=="no":
+                        print("Il profilo verrà eliminato")
+                        query = f"DELETE FROM TesseraSanitaria WHERE codice_Fiscale='{prof.id_utente}'"
+                        connection.executed(text(query))
+                        connection.commit()
+                        return "exit"
+                    else:
+                        print("operazione non valida")
+                        return "exit"
     return "continua"
 
 def get_profilo() -> ProfiloUtente:

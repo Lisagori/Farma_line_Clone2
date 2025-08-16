@@ -1,6 +1,7 @@
 from funzioni_generali.controlli_function import controlla
 from db import connection
 import pandas as pd
+from datetime import datetime
 
 
 class TesseraSanitaria :
@@ -8,23 +9,38 @@ class TesseraSanitaria :
     sesso: str
     luogo_nascita: str
     provincia: str
-    data_nascita: str
-    data_scadenza: str
+    data_nascita: datetime.date
+    data_scadenza: datetime.date
     numero_identificazione_tessera: str
 
     #TODO quando possibile inserire controllo data di nascita e scadenza tessera sanitaria
 
     def __init__(self):
 
+        ck: bool =False
         print( " Di seguito si inseriscano i dati della tessera sanitaria : ")
         self.codice_fiscale = controlla(" CODICE FISCALE :", 16) # nel codice fiscale si contano 16 caratteri alfanumerici
         self.sesso = controlla(" SESSO : ", 1)
         self.luogo_nascita = input(" LUOGO DI NASCITA : ")
         self.provincia = controlla(" PROVINCIA : ", 2)
-        self.data_nascita = controlla(" DATA DI NASCITA (gg/mm/aaaa) : ", 10)
-        self.data_scadenza = controlla(" DATA DI SCADENZA (gg/mm/aaaa) : ", 10)
+        while not ck:
+            data_input = controlla(" DATA DI NASCITA (gg/mm/aaaa) : ", 10)
+            try:
+                self.data_nascita = datetime.strptime(data_input, "%d/%m/%Y").date()
+                ck=True
+            except ValueError:
+                print("Data non valida!")
+                ck=False
+        ck= False
+        while not ck:
+            data_input = controlla(" DATA DI SCADENZA (gg/mm/aaaa) : ", 10)
+            try:
+                self.data_scadenza = datetime.strptime(data_input, "%d/%m/%Y").date()
+                ck = True
+            except ValueError:
+                print("Data non valida!")
+                ck=False
         self.numero_identificazione_tessera = controlla(" NUMERO IDENTIFICAZIONE TESSERA : ", 20)# sulla tessera sanitaria fisica sono 20 caratteri alfanumerici
-
 
     def associazione_tessera_a_db(self):
         new_tessera = pd.DataFrame(
