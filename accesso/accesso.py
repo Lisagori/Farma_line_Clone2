@@ -1,6 +1,6 @@
-import pandas as pd
 from classi.persone.classe_persona import ProfiloUtente, ProfiloFarmacista, ProfiloMedico, ProfiloCliente
 from db import connection
+import pandas as pd
 
 username: str
 
@@ -60,17 +60,28 @@ def get_profilo() -> ProfiloUtente:
     global username
 
     query = f"SELECT password, tipo_profilo FROM ProfiloUtente WHERE nome_utente = '{username}'"
-    i_d = pd.read_sql_query(query, connection)
+    profile = pd.read_sql_query(query, connection)
 
-    pw = str(i_d.iloc[0, 0])
-    tipo_prof = str(i_d.iloc[0,1])
+    pw = str(profile.iloc[0, 0])
+    tipo_prof = str(profile.iloc[0,1])
 
     if tipo_prof == "cliente" :
-        profilo = ProfiloCliente(username,pw)
-    elif tipo_prof == "farmacista" :
-        profilo = ProfiloFarmacista(username,pw)
+        query = f"SELECT id_cliente FROM ProfiloUtente WHERE nome_utente = '{username}'"
+        id_c = pd.read_sql_query(query, connection)
+        id_c = str(id_c.iloc[0,0])
+
+        profilo = ProfiloCliente(username,pw, id_c, tipo_prof)
+
+    elif tipo_prof == "farmacista":
+        query = f"SELECT id_sanitari FROM ProfiloUtente WHERE nome_utente = '{username}'"
+        id_f = pd.read_sql_query(query, connection)
+        id_f = str(id_f.iloc[0,0])
+        profilo = ProfiloFarmacista(username,pw, id_f, tipo_prof)
     elif tipo_prof == "medico":
-        profilo = ProfiloMedico(username, pw)
+        query = f"SELECT id_sanitari FROM ProfiloUtente WHERE nome_utente = '{username}'"
+        id_m = pd.read_sql_query(query, connection)
+        id_m = str(id_m.iloc[0, 0])
+        profilo = ProfiloMedico(username, pw, id_m, tipo_prof)
     else :
         print("Operazione fallita")
 

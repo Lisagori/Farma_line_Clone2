@@ -1,5 +1,5 @@
-import pandas as pd
 from db import connection
+import pandas as pd
 
 class TesserinoProfessionale :
     ordine_di_appartenenza: str # indica il settore lavorativo a cui appartieni
