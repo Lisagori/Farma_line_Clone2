@@ -1,12 +1,11 @@
-from sqlalchemy import text
 from classi.persone.classe_persona import ProfiloUtente, ProfiloFarmacista, ProfiloMedico, ProfiloCliente
-from db import connection
-import pandas as pd
 from funzioni_generali.controlli_function import check_date, controlla, check_se_vuoto
 from datetime import datetime
+from sqlalchemy import text
+from db import connection
+import pandas as pd
 
 username: str
-
 
 def accesso_utente() -> str:
     global username

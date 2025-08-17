@@ -1,10 +1,10 @@
+from funzioni_generali.controlli_function import check_se_vuoto
 from db import connection
 import pandas as pd
 
-from funzioni_generali.controlli_function import check_se_vuoto
-
 
 class TesserinoProfessionale :
+
     ordine_di_appartenenza: str # indica il settore lavorativo a cui appartieni
     n_matricola : str # indica il numero di iscrizione all'albo di riferimento
 

@@ -1,10 +1,11 @@
 from funzioni_generali.controlli_function import controlla, check_se_vuoto
+from datetime import datetime
 from db import connection
 import pandas as pd
-from datetime import datetime
 
 
 class TesseraSanitaria :
+
     codice_fiscale: str
     sesso: str
     luogo_nascita: str
@@ -12,8 +13,6 @@ class TesseraSanitaria :
     data_nascita: datetime.date
     data_scadenza: datetime.date
     numero_identificazione_tessera: str
-
-
 
     def __init__(self):
 
@@ -23,6 +22,7 @@ class TesseraSanitaria :
         self.sesso = controlla(" SESSO : ", 1)
         self.luogo_nascita = check_se_vuoto(" LUOGO DI NASCITA : ")
         self.provincia = controlla(" PROVINCIA : ", 2)
+        #controllo che la data di nascita sia inserita correttamente
         while not ck:
             data_input = controlla(" DATA DI NASCITA (gg/mm/aaaa) : ", 10)
             try:
@@ -31,6 +31,7 @@ class TesseraSanitaria :
             except ValueError:
                 print("Data non valida!")
                 ck=False
+        #controllo che la data di scadenza sia inserita correttamente
         ck= False
         while not ck:
             data_input = controlla(" DATA DI SCADENZA (gg/mm/aaaa) : ", 10)

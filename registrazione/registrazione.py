@@ -1,6 +1,5 @@
 from classi.persone.classe_persona import Farmacista, Cliente, Persona,Medico
 
-
 # sezione di codice dedicata  all'iscrizione da usare nel main
 
 def registrazione_utente() ->bool :
