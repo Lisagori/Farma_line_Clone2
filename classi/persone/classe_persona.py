@@ -531,7 +531,7 @@ class ProfiloFarmacista(ProfilolavoratoreSanitario) :
         scelta: str
         controllo: bool = False
         verifica: str = "1"
-        new_quantity: int = 0
+        new_quantity: int
 
         query = "SELECT codice, nome, quantità FROM FarmaciMagazzino WHERE quantità <= 2 "
         riordinare = pd.read_sql(query, connection)
@@ -553,6 +553,7 @@ class ProfiloFarmacista(ProfilolavoratoreSanitario) :
                 controllo = True
 
                 while verifica == "1":
+                    new_quantity=0
                     cod = input("Inserire il codice del farmaco che si vuole aggiornare : ")
 
                     query = f"SELECT codice FROM FarmaciMagazzino WHERE codice = '{cod}' AND quantità <= 2 "
@@ -572,10 +573,21 @@ class ProfiloFarmacista(ProfilolavoratoreSanitario) :
                         connection.execute(text(query))  # serve per eseguire query che non devono restituire valori
                         connection.commit()
 
+                        query = "SELECT codice, nome, quantità FROM FarmaciMagazzino WHERE quantità <= 2 "
+                        new_elenco = pd.read_sql(query, connection)
+
+                        if not new_elenco.empty:
+                            print("ELENCO AGGIORNATO")
+                            for farmaco in new_elenco.to_dict(orient="records"):
+                                print(farmaco)
+                        else:
+                            return None
+
                         print("Se si desidera continuare ad aggiornare le quantità digitare 1 ")
                         print("Per procedere con altre operazioni digitare 2 ")
                         verifica = input()
-
+                        if verifica!= '2':
+                            print("operazione non valida, riprovare")
                     else:
                         print("Il codice inserito non è presente nella lista fornita , riprovare ")
                         verifica = "1"
