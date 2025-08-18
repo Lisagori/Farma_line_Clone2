@@ -17,19 +17,18 @@ def registrazione_utente() ->bool :
 
         if controllo == '1' :
             pearson = Cliente()
-            verifica = True
+            break
 
         elif controllo == '2' :
             pearson = Farmacista()
-            verifica = True
+            break
 
         elif controllo == '3' :
             pearson = Medico()
-            verifica = True
+            break
 
         else :
             print("opzione non valida riprovare")
-            verifica= False
 
     return pearson.iscriversi()
 

@@ -28,10 +28,11 @@ class Persona (ABC) :
         ...
 
 class ProfiloUtente(ABC):
-    id_utente :str
+
     nome_utente: str
     password: str
-    tipo_profilo :str
+    tipo_profilo: str
+    id_utente :str
 
     def __init__(self, nome : str, password :str, id_u : str , tipo_p : str):
         self.nome_utente = nome
@@ -43,7 +44,7 @@ class ProfiloUtente(ABC):
     def associazione_profilo_utente(self) -> None:
         ...
 
-    def controllo_utente(self) -> bool:
+    def controllo_nome_utente(self) -> bool:
         query = f"SELECT * FROM ProfiloUtente WHERE nome_utente = '{self.nome_utente}'"
         profilo_esistente = pd.read_sql(query, connection)
         if not profilo_esistente.empty:  # pd.read_sql(...) restituisce sempre un DataFrame di pandas.
@@ -54,7 +55,6 @@ class ProfiloUtente(ABC):
 
 
 class ProfilolavoratoreSanitario(ProfiloUtente) :
-
 
     def associazione_profilo_utente(self) -> None:
 
@@ -189,7 +189,7 @@ class ProfiloCliente(ProfiloUtente) :
         ck: bool = False
         ck_se_presente : bool = False
         controllo_q: bool = False
-        verifica: bool = False
+        verifica_cod: bool = False
         quantity: int = 0
         codice_input: str = ''
 
@@ -201,12 +201,12 @@ class ProfiloCliente(ProfiloUtente) :
 
                 for prodotto in results.to_dict(orient="records"):
                     if codice_input == prodotto["codice_farmaco"]:
-                        verifica = True
+                        verifica_cod = True
                         break
                     else:
-                        verifica = False
+                        verifica_cod = False
 
-                if not verifica:
+                if not verifica_cod:
                     print("Il codice inserito non è valido, o non è presente tra quelli elencati")
                 else:
                     ck = True
@@ -297,34 +297,34 @@ class ProfiloCliente(ProfiloUtente) :
     def scelta_indirizzi(self) -> None:
 
         indirizzo_domicilio: str
-        scelta: str = "exit"
-        controllo: int
+        scelta_ind: str = "exit"
+        controllo_ricetta: int
+        ck_pagamento :bool
 
-        controllo = self.inserimento_dati_ricetta()
+        controllo_ricetta = self.verifica_dati_ricetta()
 
         if len(self.__carrello) > 0 :
-            if controllo == 0:
+            if controllo_ricetta == 0:
                 print("per ricevere l'ordine a domicilio digitare 1")
                 print("per ritirare l'ordine nella farmacia fisica 2")
-                scelta = input()
-            elif controllo > 0:
-                scelta = "2"
+                scelta_ind = input()
+            elif controllo_ricetta > 0:
+                scelta_ind= "2"
 
-            if scelta == "1":
+            if scelta_ind == "1":
                 indirizzo_domicilio = input("Inserire l'indirizzo di domicilio a cui si vuole ricevere l'ordine : ")
                 print(f"Operazione andata a buon fine, l'ordine sarà spedito presso {indirizzo_domicilio}")
-                controllo = self.pagare(indirizzo_domicilio)
-                if not controllo:
+                ck_pagamento = self.pagare(indirizzo_domicilio)
+                if not ck_pagamento:
                     print("Operazione terminata")
 
-            elif scelta == "2":
-                print(
-                    "L'ordine potrà essere ritirato entro 10 giorni presso la nostra sede fisica in Via Univeristà di Santa Marta, 26")
+            elif scelta_ind== "2":
+                print("L'ordine potrà essere ritirato entro 10 giorni presso la nostra sede fisica in Via Univeristà di Santa Marta, 26")
                 print("Operazione andata a buon fine")
 
-                controllo = self.pagare("Via Univeristà di Santa Marta, 26")
+                ck_pagamento = self.pagare("Via Univeristà di Santa Marta, 26")
 
-                if not controllo:
+                if not ck_pagamento:
                     print("Operazione terminata")
 
             else:
@@ -332,7 +332,7 @@ class ProfiloCliente(ProfiloUtente) :
         else :
             print("il carrello è vuoto , l'operazione di acquisto verrà terminata")
 
-    def inserimento_dati_ricetta(self) -> int:
+    def verifica_dati_ricetta(self) -> int:
 
         count: int = 0
         nome_farma : str
@@ -363,7 +363,7 @@ class ProfiloCliente(ProfiloUtente) :
 
     def pagare(self, indirizzo: str) -> bool:
 
-        ck: bool
+        ck_data: bool
         ck_opzioni : bool = False
         metodo: str
         prezzo_tot: float = 0
@@ -399,14 +399,14 @@ class ProfiloCliente(ProfiloUtente) :
                     cognome = input("Inserire il cognome dell'intestatario : ")
                     numero_carta = controlla("Inserire numero della carta : ", 16)
                     data_input = controlla("Inserire  data di scadenza della carta(gg/mm/aaaa): ", 10)
-                    ck= False
-                    while not ck:
+                    ck_data= False
+                    while not ck_data:
                         try:
                             data_scadenza = datetime.strptime(data_input, "%d/%m/%Y").date()
-                            ck = True
+                            ck_data = True
                         except ValueError:
                             print("Data non valida!")
-                            ck= False
+                            ck_data= False
                     cvc = controlla("Inserire il CVC : ", 3)
 
                     print("DATI DELLA CARTA")
@@ -416,8 +416,8 @@ class ProfiloCliente(ProfiloUtente) :
                     print(f"DATA SCADENZA : {data_scadenza}")
                     print(f"CVC : {cvc}")
 
-                    ck = check_date(data_scadenza)
-                    if not ck:
+                    ck_data = check_date(data_scadenza)
+                    if not ck_data:
                         print("operazione fallita")#carta scaduta
                         return False
                     else:
@@ -528,9 +528,9 @@ class ProfiloFarmacista(ProfilolavoratoreSanitario) :
     @staticmethod
     def aggiorna_magazzino() -> None:
 
-        scelta: str
-        controllo: bool = False
-        verifica: str = "1"
+        scelta_op: str
+        controllo_scelta: bool = False
+        continua: str = "1"
         new_quantity: int = 0
 
         query = "SELECT codice, nome, quantità FROM FarmaciMagazzino WHERE quantità <= 2 "
@@ -543,16 +543,16 @@ class ProfiloFarmacista(ProfilolavoratoreSanitario) :
         else:
             return None
 
-        while not controllo:
+        while not controllo_scelta:
             print("Se si vuole aggiornare le quantità dei farmaci sopra elencati digitare 1")
             print("Per procedere con altre operazioni digitare 2")
-            scelta = input()
+            scelta_op = input()
 
-            if scelta == "1":
+            if scelta_op == "1":
 
-                controllo = True
+                controllo_scelta = True
 
-                while verifica == "1":
+                while continua == "1":
                     cod = input("Inserire il codice del farmaco che si vuole aggiornare : ")
 
                     query = f"SELECT codice FROM FarmaciMagazzino WHERE codice = '{cod}' AND quantità <= 2 "
@@ -574,18 +574,18 @@ class ProfiloFarmacista(ProfilolavoratoreSanitario) :
 
                         print("Se si desidera continuare ad aggiornare le quantità digitare 1 ")
                         print("Per procedere con altre operazioni digitare 2 ")
-                        verifica = input()
+                        continua = input()
 
                     else:
                         print("Il codice inserito non è presente nella lista fornita , riprovare ")
-                        verifica = "1"
+                        continua = "1"
 
-            elif scelta == "2":
+            elif scelta_op == "2":
                 return None
 
             else:
                 print("Operazione non valida")
-                controllo = False
+                controllo_scelta = False
 
     @staticmethod
     def aggiunta_farmaci() -> None:
@@ -688,7 +688,7 @@ class ProfiloMedico(ProfilolavoratoreSanitario) :
 
     def crea_ricetta(self) -> None: #funzione medico
 
-        ck: bool= False
+        ck_cod: bool= False
         cod: str
         i: int
 
@@ -701,7 +701,7 @@ class ProfiloMedico(ProfilolavoratoreSanitario) :
             for farmaco in elenco.to_dict(orient="records"):
                 print(farmaco)
 
-            while not ck:
+            while not ck_cod:
 
                 cod_farmaco = input()
                 query = f"SELECT nome FROM FarmaciMagazzino WHERE codice='{cod_farmaco}' AND ricetta = 'si'"
@@ -733,11 +733,11 @@ class ProfiloMedico(ProfilolavoratoreSanitario) :
                     connection.commit()
 
                     print(f"Fornire il seguente codice al paziente , CODICE RICETTA : {cod_ricetta}")
-                    ck=True
+                    ck_cod=True
 
                 else:
                     print("Il codice inserito non appartiente a nessun farmaco nell'elenco , riprovare: ")
-                    ck=False
+                    ck_cod=False
 
         else:
             print("Non ci sono farmaci con ricetta da poter prescrivere in magazzino")
@@ -748,14 +748,16 @@ class LavoratoreSanitario (Persona) :#classe base
     t_p: TesserinoProfessionale  # t_p abbreviazione tesserino professionale
 
     def iscriversi(self) -> bool:
-        ck: bool = False
+
+        ck_scelta: bool = False
         query = f"SELECT * FROM Sanitari WHERE matricola = '{self.t_p.n_matricola}'"
         lav_sani = pd.read_sql(query, connection)
+
         # si definisce la ricerca da database per controllare se la persona è già registrata
         if not lav_sani.empty:  # è un dataframe
             print("La matricola inserita appartiene a un utente già registrato")
 
-            while not ck:
+            while not ck_scelta:
                 print("Se si vuole accedere al servizio digitare 1")
                 print("Se si vuole ritentare il processo di iscrizione digitare 2")
                 print("Digitare exit se si vuole terminare l'operazione")
@@ -770,7 +772,7 @@ class LavoratoreSanitario (Persona) :#classe base
                     return False
                 else:
                     print("operazione non valida,riprovare ")
-                    ck= False
+                    ck_scelta= False
 
         else:
             self.t_p.associazione_tessera_a_db()
@@ -794,12 +796,12 @@ class LavoratoreSanitario (Persona) :#classe base
 
         profilo = ProfilolavoratoreSanitario(nome, password, self.t_p.n_matricola, self.t_p.ordine_di_appartenenza)
 
-        ck = profilo.controllo_utente()
+        ck = profilo.controllo_nome_utente()
 
         while not ck:  # questo nuovo
             nuovo_nome = check_se_vuoto("Inserisci un altro nome utente: ")
             profilo.nome_utente = nuovo_nome
-            ck = profilo.controllo_utente()
+            ck = profilo.controllo_nome_utente()
 
         profilo.associazione_profilo_utente()
 
@@ -816,13 +818,13 @@ class Cliente(Persona):
 
     def iscriversi(self, ty_p :str ='') -> bool:
 
-        ck : bool
+        ck_data: bool
 
         self.t_s.data_nascita = check_nascita(self.t_s.data_nascita)# per verificare che la data di nascita non indichi una data futura
-        ck= check_date(self.t_s.data_scadenza)# per verificare che la tessera registrata non sia scaduta
+        ck_data= check_date(self.t_s.data_scadenza)# per verificare che la tessera registrata non sia scaduta
 
 
-        if ck and self.t_s.data_nascita != date.today()  :
+        if ck_data and self.t_s.data_nascita != date.today()  :
             #per verificare che il codice inserito non appartenga a un'altra tessera sanitaria
             query = f"SELECT * FROM Clienti WHERE codice_fiscale = '{self.t_s.codice_fiscale}'"
             cliente = pd.read_sql(query, connection)
@@ -863,12 +865,12 @@ class Cliente(Persona):
         nome = check_se_vuoto(" inserire un nome utente : ")  # inserire controllo per corrispondenza profilo utente
         password = check_se_vuoto(" inserire una password : ")
         profilo = ProfiloCliente(nome, password, self.t_s.codice_fiscale, 'cliente')
-        ck = profilo.controllo_utente()
+        ck = profilo.controllo_nome_utente()
 
         while not ck:  # questo nuovo
             nuovo_nome = check_se_vuoto("Inserisci un altro nome utente: ")
             profilo.nome_utente = nuovo_nome
-            ck = profilo.controllo_utente()
+            ck = profilo.controllo_nome_utente()
 
         profilo.associazione_profilo_utente()
 
