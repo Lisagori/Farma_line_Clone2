@@ -12,7 +12,7 @@ class TesserinoProfessionale :
         self.ordine_di_appartenenza = ordine
         self.n_matricola =check_se_vuoto("Inserire il proprio numero di matricola : ")
 
-    def associazione_tessera_a_db(self):
+    def associazione_tessera_a_db(self)->None:
         # Crea le istanze dei modelli SQLAlchemy da salvare sulle tabelle
         new_tesserino = pd.DataFrame(
             columns=['ordine_appartenenza','n_matricola'],
