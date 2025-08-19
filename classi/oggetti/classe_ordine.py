@@ -32,11 +32,10 @@ class Ordine :
                     if codice_input == prodotto["codice_farmaco"]:
                         verifica_cod = True
                         break
-                    else:
-                        verifica_cod = False
 
                 if not verifica_cod:
                     print("Il codice inserito non è valido, o non è presente tra quelli elencati")
+                    ck=False
                 else:
                     ck = True
         # Se ce n'è solo uno

@@ -232,6 +232,7 @@ class ProfiloCliente(ProfiloUtente) :
 
     def __init__(self, nome: str, password: str, id_u: str, tipo_p: str):
         super().__init__(nome,password,id_u,tipo_p)
+        self.ordine=Ordine()
         self.ricetta= Ricetta(self.id_utente)
 
     def associazione_profilo_utente(self) -> None:
@@ -302,7 +303,7 @@ class ProfiloCliente(ProfiloUtente) :
                 results = pd.DataFrame()  # equivalente a lista vuota
 
         elif filtri == "no":
-            medicinale = input("Digitare il nome del farmaco che si sta cercando: ").strip()
+            medicinale = input("Digitare il nome del farmaco che si sta cercando(premendo invio si visualizza tutto l'elenco): ")
 
             query = f"""
                     SELECT
