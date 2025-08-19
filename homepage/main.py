@@ -1,6 +1,4 @@
-from classi.persone.classe_persona import ProfiloUtente, ProfiloCliente, ProfiloFarmacista, ProfiloMedico
-from registrazione.registrazione import registrazione_utente
-from accesso.accesso import accesso_utente, get_profilo
+from classi.persone.classe_persona import ProfiloUtente, ProfiloCliente, ProfiloFarmacista, ProfiloMedico, Persona
 from db import connection
 
 ck_f : bool = False
@@ -11,6 +9,7 @@ opzioni : str = "1"
 controllo : bool
 profilo : ProfiloUtente
 
+
 # modifica accesso con il controllo password e i due return exit e continua
 
 print("HOME PAGE")
@@ -20,30 +19,30 @@ operazione= input()
 
 # Operazioni con scelta di accesso al servizio
 while operazione == "1":
-    operazione = accesso_utente()  # restituisce continua se l'operazione si è conclusa correttamente ,
+    operazione= ProfiloUtente.accesso_utente()  # restituisce il profilo con cui si fa l'accesso se l'operazione si è conclusa correttamente ,
                                    # 2 se ci si vuole registare ,
                                    # exit per terminare le operazioni
     if operazione == "2" :
-        if registrazione_utente() : # se è vero la registarzione è avvenuta correttamente , altrimenti vengono terminate le operazioni
+        if Persona.registrazione_utente() : # se è vero la registarzione è avvenuta correttamente , altrimenti vengono terminate le operazioni
             operazione = "1" #per poi procedere all'acesso
         else :
             operazione = "exit"
 
 # Operazioni con scelta di registrazione al servizio
 while operazione == "2":
-    verifica = registrazione_utente()# se è vero la registarzione è avvenuta correttamente , altrimenti vengono terminate le operazioni
+    verifica = Persona.registrazione_utente()# se è vero la registarzione è avvenuta correttamente , altrimenti vengono terminate le operazioni
 
     if verifica:
-        operazione = accesso_utente()  # restituisce continua se l'operazione si è conclusa correttamente ,
+        operazione = ProfiloUtente.accesso_utente()  # restituisce il profilo con cui si fa l'accesso se l'operazione si è conclusa correttamente ,
                                        # 2 se ci si vuole registare ,
                                        # exit per terminare le operazioni
     else:
         operazione = "exit"
 
 
-if operazione =="continua" : # dentro il servizio della farmacia
+if isinstance( operazione , ProfiloUtente) : # dentro il servizio della farmacia
 
-    profilo = get_profilo() #recupera il profilo dell'utente che ha appena eseguito l'accesso
+    profilo = operazione
 
     # sezione dedicata al cliente
     if  isinstance(profilo , ProfiloCliente):
@@ -117,4 +116,4 @@ if operazione =="continua" : # dentro il servizio della farmacia
         print("Operazione non valida")
 else :
     print("Operazione terminata")
-#TODO aggiungere gli exept
+

@@ -130,7 +130,7 @@ class Ordine :
             ]],
             columns=[
                 'numero_ordine',  # <-- niente spazio finale
-                'cf',
+                'codice_fiscale',
                 'indirizzo',
             ]
         )
