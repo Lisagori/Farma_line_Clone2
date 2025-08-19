@@ -1,4 +1,5 @@
-from classi.persone.classe_persona import Farmacista, Cliente, Persona,Medico
+from classi.persone.classe_persona import Farmacista, Cliente, Persona, Medico, LavoratoreSanitario
+
 
 # sezione di codice dedicata  all'iscrizione da usare nel main
 
@@ -20,11 +21,11 @@ def registrazione_utente() ->bool :
             break
 
         elif controllo == '2' :
-            pearson = Farmacista()
+            pearson = LavoratoreSanitario("farmacista")
             break
 
         elif controllo == '3' :
-            pearson = Medico()
+            pearson = LavoratoreSanitario("medico")
             break
 
         else :

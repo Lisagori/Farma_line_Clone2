@@ -2,12 +2,13 @@ from funzioni_generali.controlli_function import check_date, check_se_vuoto, con
 from classi.documenti.classe_tesserino_professionale import TesserinoProfessionale
 from classi.documenti.classe_tessera_sanitaria import TesseraSanitaria
 from funzioni_generali.random_function import create_random_string
+from classi.oggetti.ricetta import Ricetta
+from classi.oggetti.ordine import Ordine
 from abc import ABC, abstractmethod
 from datetime import datetime, date
 from sqlalchemy import text
 from db import connection
 import pandas as pd
-import random
 import string
 
 
@@ -71,13 +72,13 @@ class ProfilolavoratoreSanitario(ProfiloUtente) :
         return None
 
 class ProfiloCliente(ProfiloUtente) :
-    __carrello: list[dict]   # si mette come attributo per evitare che il carrello si riazzeri ogni volta che viene chiamata da search_bar
-    __quanto_compro: dict
 
-    def __init__(self, nome : str, password :str, id_u : str , tipo_p : str):
-        super().__init__(nome,password, id_u, tipo_p)
-        self.__carrello= []
-        self.__quanto_compro= {}
+    ordine : Ordine
+    ricetta: Ricetta
+
+    def __init__(self, nome: str, password: str, id_u: str, tipo_p: str):
+        super().__init__(nome,password,id_u,tipo_p)
+        self.ricetta.__init__(self.id_utente)
 
     def associazione_profilo_utente(self) -> None:
 
@@ -178,121 +179,12 @@ class ProfiloCliente(ProfiloUtente) :
         if not results.empty:
             for farmaco in results.to_dict(orient="records"):
                 print(farmaco)
-            self.aggiunta_carrello(results)
+
+            self.ordine.aggiunta_carrello(results)
 
         if results.empty:
             print("Nessun farmaco trovato.")
             return  # torna al menu precedente
-
-    def aggiunta_carrello(self,results) -> None:
-
-        ck: bool = False
-        ck_se_presente : bool = False
-        controllo_q: bool = False
-        verifica_cod: bool = False
-        quantity: int = 0
-        codice_input: str = ''
-
-        # sezione dedicata al controllo del codice se è presente o meno nell'elenco trovato nella ricerca
-        # Se ce più di un farmaco
-        if len(results) > 1:
-            while not ck:
-                codice_input = input("\nInserire il codice del farmaco che si vuole acquistare: ")
-
-                for prodotto in results.to_dict(orient="records"):
-                    if codice_input == prodotto["codice_farmaco"]:
-                        verifica_cod = True
-                        break
-                    else:
-                        verifica_cod = False
-
-                if not verifica_cod:
-                    print("Il codice inserito non è valido, o non è presente tra quelli elencati")
-                else:
-                    ck = True
-        # Se ce n'è solo uno
-        else:
-            codice_input = (results.iloc[0]["codice_farmaco"])
-
-        #ricerca se il prodotto era già stato aggiunto al carrello
-        for contenuto in self.__carrello :
-            if codice_input == contenuto["codice_farmaco"]:
-                ck_se_presente = True
-                break
-
-        # sezione di codice per controllare che la quantità che si vuole acquistare sia disponibile
-        while not controllo_q: #  consente di riprovare se non è sufficente la quantità
-            ck = False
-            while not ck:
-                try:
-                    quantity = int(input("Inserire la quantità di prodotto che si vuole aqcuistare : "))
-                    ck = True
-                except ValueError:
-                    ck = False
-                    print("il valore inserito non è compatibile, riprovare")
-
-
-            if ck_se_presente :
-                print(self.__quanto_compro)
-                quantity = quantity + self.__quanto_compro[codice_input]
-
-            query = f"SELECT quantità FROM FarmaciMagazzino WHERE quantità < '{quantity}' AND codice = '{codice_input}' "
-            q_trovato = pd.read_sql(query, connection)
-
-            if q_trovato.empty:
-                aggiungi_carrello = input("\nDigitare 'si' se si vuole aggiungere il prodotto al carrello, altrimenti digitare 'no': ")
-
-                if aggiungi_carrello == "si":
-
-                    # recupera la riga che contiene le informazioni del farmaco che si vuole acquistare
-                    riga = results.loc[results["codice_farmaco"] == codice_input]
-                    farmaco_dict = riga.iloc[0].to_dict()# prende la prima corrispondenza
-
-                    if not ck_se_presente : # aggiunge al  carrelo solo se non ho messo nel carrello lo stesso prodotto
-                        self.__carrello.append(farmaco_dict)
-                        self.__quanto_compro[codice_input]= quantity
-                    else :
-                        self.__quanto_compro[codice_input] = quantity
-
-                    print("Farmaco aggiunto al carrello.")
-
-                    # stampa del carrello
-                    print("Contenuto attuale del carrello:")
-                    if self.__carrello:
-                        for prodotto in self.__carrello:
-                            print(f" codice : {prodotto["codice_farmaco"]} ")
-                            print(f" nome : {prodotto["nome"]} ")
-                            print(f" quantità : {self.__quanto_compro[prodotto["codice_farmaco"]]} ")
-                            print(f" prezzo : {self.__quanto_compro[prodotto["codice_farmaco"]] * float(prodotto["prezzo"])}")
-
-                    else:
-                        print("Il carrello è vuoto.")
-
-                elif aggiungi_carrello == "no":
-                    print("Farmaco non aggiunto al carrello")
-                    print("Contenuto attuale del carrello:")
-
-                    #stampa del carrello
-                    if self.__carrello:
-
-                        for prodotto in self.__carrello:
-                            print(f" codice : {prodotto["codice_farmaco"]} ")
-                            print(f" nome : {prodotto["nome"]} ")
-                            print(f" quantità : {self.__quanto_compro[prodotto["codice_farmaco"]]} ")
-                            print(f" prezzo : {self.__quanto_compro[prodotto["codice_farmaco"]] * float(prodotto["prezzo"])}")
-
-                    else:
-                        print("Il carrello è vuoto.")
-                else:
-                    print("Operazione non valida.")
-
-                controllo_q = True
-            else: # non trova riscontri in magazzino
-                if q_trovato.iloc[0, 0] == 0:
-                    print("Il prodotto è terminato non è possibile acquistarlo")
-                    controllo_q = True
-                else:
-                    print("La quantità di farmaco in magazzino non è sufficiente, riprovare  ")
 
     def scelta_indirizzi(self) -> None:
 
@@ -301,9 +193,9 @@ class ProfiloCliente(ProfiloUtente) :
         controllo_ricetta: int
         ck_pagamento :bool
 
-        controllo_ricetta = self.verifica_dati_ricetta()
+        controllo_ricetta = self.ricetta.verifica_dati_ricetta(self.ordine.carrello, self.ordine.quanto_compro)
 
-        if len(self.__carrello) > 0 :
+        if len(self.ordine.carrello) > 0 :
             if controllo_ricetta == 0:
                 print("per ricevere l'ordine a domicilio digitare 1")
                 print("per ritirare l'ordine nella farmacia fisica 2")
@@ -332,35 +224,6 @@ class ProfiloCliente(ProfiloUtente) :
         else :
             print("il carrello è vuoto , l'operazione di acquisto verrà terminata")
 
-    def verifica_dati_ricetta(self) -> int:
-
-        count: int = 0
-        nome_farma : str
-
-        for prodotto in self.__carrello:
-            #si ricerca tra i prodotti nel carrello quelli che necessitano di ricetta
-            codice_val = prodotto["codice_farmaco"]
-            nome_farma = prodotto["nome"]
-            query = f" SELECT ricetta FROM FarmaciMagazzino WHERE codice = '{codice_val}' AND ricetta = 'si'"
-            serve_ricetta = pd.read_sql_query(query, connection)  # può restituire si o rimanere vuoto
-
-            if not serve_ricetta.empty:
-
-                # controllo se l'utente è in possesso della ricetta per acquistare il farmaco
-                query = f" SELECT codice_farmaco FROM Ricetta WHERE codice_farmaco ='{codice_val}' AND codice_fiscale = '{self.id_utente}'"
-                nome_ck = pd.read_sql_query(query, connection)
-
-                if nome_ck.empty:
-
-                    print(f"Non è associata nessuna ricetta per {nome_farma} al profilo corrente, il prodotto con ricetta verrà eliminato dal carrello")
-                    self.__carrello.remove(prodotto)
-                    del self.__quanto_compro[prodotto["codice_farmaco"]]
-
-                if not nome_ck.empty:
-                    count += 1
-
-        return count
-
     def pagare(self, indirizzo: str) -> bool:
 
         ck_data: bool
@@ -368,16 +231,10 @@ class ProfiloCliente(ProfiloUtente) :
         metodo: str
         prezzo_tot: float = 0
 
-        for prodotto in self.__carrello:
-            print(f" codice : {prodotto["codice_farmaco"]} ")
-            print(f" nome : {prodotto["nome"]} ")
-            print(f" quantità : {self.__quanto_compro[prodotto["codice_farmaco"]]} ")
-            print(f" prezzo : {self.__quanto_compro[prodotto["codice_farmaco"]] * float(prodotto["prezzo"])}")
+        self.ordine.stampa_carrello()
 
-        print(self.__quanto_compro)
-
-        for prodotto in self.__carrello:
-            prezzo_tot = prezzo_tot + float(prodotto["prezzo"]) * self.__quanto_compro[prodotto["codice_farmaco"]]
+        for prodotto in self.ordine.carrello:
+            prezzo_tot = prezzo_tot + float(prodotto["prezzo"]) * self.ordine.quanto_compro[prodotto["codice_farmaco"]]
 
         print(f"Prezzo totale dell'ordine : {prezzo_tot} €")
 
@@ -422,35 +279,15 @@ class ProfiloCliente(ProfiloUtente) :
                         return False
                     else:
                         print("operazione andata a buon fine")
-                        self.associa_numero_ordine(indirizzo)
-
-                        for prodotto in self.__carrello:
-                            #si modifica la quantità di prodotto in magazzino
-                            new_quantity = prodotto["quantità"] - self.__quanto_compro[prodotto["codice_farmaco"]]
-                            query = f"UPDATE FarmaciMagazzino SET quantità = '{new_quantity}' WHERE codice = '{prodotto["codice_farmaco"]}' "
-                            connection.execute(text(query))  # serve per eseguire query che non devono restituire valori
-                            connection.commit()
-                            # si elimina la ricetta utilizzata nell'acquisto
-                            query = f"DELETE FROM Ricetta WHERE codice_farmaco ='{prodotto["codice_farmaco"]}' AND codice_fiscale = '{self.id_utente}' "
-                            connection.execute(text(query))
-                            connection.commit()
+                        self.ordine.associa_numero_ordine(indirizzo, self.id_utente)
+                        self.ordine.update_database(self.id_utente)
 
                         return True
 
                 elif metodo == "2":
                     print("operazione andata a buon fine")
-                    self.associa_numero_ordine(indirizzo)
-
-                    for prodotto in self.__carrello:
-                        # si modifica la quantità di prodotto in magazzino
-                        new_quantity = prodotto["quantità"] - self.__quanto_compro[prodotto["codice_farmaco"]]
-                        query = f"UPDATE FarmaciMagazzino SET quantità = '{new_quantity}' WHERE codice = '{prodotto["codice_farmaco"]}' "
-                        connection.execute(text(query))  # serve per eseguire query che non devono restituire valori
-                        connection.commit()
-                        # si elimina la ricetta utilizzata nell'acquisto
-                        query = f"DELETE FROM Ricetta WHERE codice_farmaco ='{prodotto["codice_farmaco"]}' AND codice_fiscale = '{self.id_utente}' "
-                        connection.execute(text(query))
-                        connection.commit()
+                    self.ordine.associa_numero_ordine(indirizzo, self.id_utente)
+                    self.ordine.update_database(self.id_utente)
 
                     return True
 
@@ -462,27 +299,6 @@ class ProfiloCliente(ProfiloUtente) :
             else:
                 print("Opzione non valida, riprovare")
 
-    def associa_numero_ordine( self, indirizzo: str) -> None:
-
-        num_ordine: int
-
-        num_ordine = random.randint(0, 1000000000)
-        print(f"Fornire il seguente codice al momento del ritiro : {num_ordine}")
-
-        new_ordine = pd.DataFrame(
-            [[
-                num_ordine,
-                self.id_utente,
-                indirizzo,
-            ]],
-            columns=[
-                'numero_ordine',  # <-- niente spazio finale
-                'cf',
-                'indirizzo',
-            ]
-        )
-        new_ordine.to_sql('Ordine', connection, if_exists='append', index=False)
-        connection.commit()
 
 class ProfiloFarmacista(ProfilolavoratoreSanitario) :
 
@@ -531,7 +347,7 @@ class ProfiloFarmacista(ProfilolavoratoreSanitario) :
         scelta_op: str
         controllo_scelta: bool = False
         continua: str = "1"
-        new_quantity: int = 0
+        new_quantity: int
 
         query = "SELECT codice, nome, quantità FROM FarmaciMagazzino WHERE quantità <= 2 "
         riordinare = pd.read_sql(query, connection)
@@ -553,8 +369,7 @@ class ProfiloFarmacista(ProfilolavoratoreSanitario) :
                 controllo_scelta = True
 
                 while continua == "1":
-                while verifica == "1":
-                    new_quantity=0
+                    new_quantity = 0
                     cod = input("Inserire il codice del farmaco che si vuole aggiornare : ")
 
                     query = f"SELECT codice FROM FarmaciMagazzino WHERE codice = '{cod}' AND quantità <= 2 "
@@ -586,10 +401,12 @@ class ProfiloFarmacista(ProfilolavoratoreSanitario) :
 
                         print("Se si desidera continuare ad aggiornare le quantità digitare 1 ")
                         print("Per procedere con altre operazioni digitare 2 ")
-                        verifica = input()
-                        if verifica!= '2':
-                            print("operazione non valida, riprovare")
                         continua = input()
+
+                        if continua!= '2':
+                            print("operazione non valida, riprovare")
+                            continua = "1"
+
 
                     else:
                         print("Il codice inserito non è presente nella lista fornita , riprovare ")
@@ -762,6 +579,10 @@ class LavoratoreSanitario (Persona) :#classe base
 
     t_p: TesserinoProfessionale  # t_p abbreviazione tesserino professionale
 
+    def __init__(self, tipo_p :str ):
+        super().__init__()
+        self.t_p = TesserinoProfessionale(tipo_p)
+
     def iscriversi(self) -> bool:
 
         ck_scelta: bool = False
@@ -831,7 +652,7 @@ class Cliente(Persona):
         super().__init__()
         self.t_s = TesseraSanitaria()
 
-    def iscriversi(self, ty_p :str ='') -> bool:
+    def iscriversi(self) -> bool:
 
         ck_data: bool
 
@@ -893,14 +714,3 @@ class Cliente(Persona):
         print(f"        Benvenuto {profilo.nome_utente} !")
         return True
 
-class Farmacista(LavoratoreSanitario):
-
-    def __init__(self):
-        super().__init__()
-        self.t_p = TesserinoProfessionale("farmacista")
-
-class Medico(LavoratoreSanitario):
-
-    def __init__(self):
-        super().__init__()
-        self.t_p = TesserinoProfessionale("medico")
