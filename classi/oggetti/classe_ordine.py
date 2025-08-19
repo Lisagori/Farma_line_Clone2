@@ -22,6 +22,7 @@ class Ordine :
         verifica_cod: bool = False
         quantity: int = 0
         codice_input: str = ''
+        quanto_in_m:int
 
         # sezione dedicata al controllo del codice se è presente o meno nell'elenco trovato nella ricerca
         # Se ce più di un farmaco
@@ -45,18 +46,22 @@ class Ordine :
 
         #ricerca se il prodotto era già stato aggiunto al carrello
         for contenuto in self.carrello :
+            quanto_in_m=contenuto["quantità"]
             if codice_input == contenuto["codice_farmaco"]:
                 ck_se_presente = True
                 break
 
-        if ck_se_presente :
-            rimane = self.carrello["quantità"]-self.quanto_compro[codice_input]
-            print(" Il farmaco è stato precedentemente selezionato. ")
-            print(f"Con la precedente selzione rimangono {rimane} campioni ")
 
         # sezione di codice per controllare che la quantità che si vuole acquistare sia disponibile
         while not controllo_q: #  consente di riprovare se non è sufficente la quantità
             ck = False
+            if ck_se_presente:
+                rimane = quanto_in_m - self.quanto_compro[codice_input]
+                print(" Il farmaco è stato precedentemente selezionato. ")
+                print(f"Con la precedente selzione rimangono {rimane} campioni ")
+                if rimane ==0:
+                    print("Il prodotto è terminato non è possibile acquistarlo")
+                    break
 
             while not ck:
                 try:
@@ -118,7 +123,7 @@ class Ordine :
                 controllo_q = True
 
             else: # non trova riscontri in magazzino
-                if q_trovato.iloc[0, 0] == 0 or rimane == 0:
+                if q_trovato.iloc[0, 0] == 0:
                     print("Il prodotto è terminato non è possibile acquistarlo")
                     controllo_q = True
                 else:

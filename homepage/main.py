@@ -117,3 +117,4 @@ if isinstance( operazione , ProfiloUtente) : # dentro il servizio della farmacia
 else :
     print("Operazione terminata")
 
+#TODO controllo quantità dei farmaci corrisponda al numero di ricette( e aggiornare i documenti)

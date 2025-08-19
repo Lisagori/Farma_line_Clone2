@@ -362,8 +362,8 @@ class ProfiloCliente(ProfiloUtente) :
                 indirizzo_domicilio = input("Inserire l'indirizzo di domicilio a cui si vuole ricevere l'ordine : ")
                 print(f"Operazione andata a buon fine, l'ordine sarà spedito presso {indirizzo_domicilio}")
                 ck_pagamento = self.pagare(indirizzo_domicilio)
-                if not ck_pagamento:
-                    print("Operazione terminata")
+                while not ck_pagamento:
+                    ck_pagamento=self.pagare(indirizzo_domicilio)
 
             elif scelta_ind== "2":
                 print("L'ordine potrà essere ritirato entro 10 giorni presso la nostra sede fisica in Via Univeristà di Santa Marta, 26")
@@ -371,8 +371,8 @@ class ProfiloCliente(ProfiloUtente) :
 
                 ck_pagamento = self.pagare("Via Univeristà di Santa Marta, 26")
 
-                if not ck_pagamento:
-                    print("Operazione terminata")
+                while not ck_pagamento:
+                    ck_pagamento=self.pagare(indirizzo_domicilio)
 
             else:
                 print("operazione non valida ")
@@ -432,7 +432,7 @@ class ProfiloCliente(ProfiloUtente) :
 
                     ck_data = check_date(data_scadenza)
                     if not ck_data:
-                        print("operazione fallita")#carta scaduta
+                        print("operazione fallita, ritenta")#carta scaduta
                         return False
                     else:
                         print("operazione andata a buon fine")
