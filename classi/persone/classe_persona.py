@@ -2,8 +2,8 @@ from funzioni_generali.controlli_function import check_date, check_se_vuoto, con
 from classi.documenti.classe_tesserino_professionale import TesserinoProfessionale
 from classi.documenti.classe_tessera_sanitaria import TesseraSanitaria
 from funzioni_generali.random_function import create_random_string
-from classi.oggetti.ricetta import Ricetta
-from classi.oggetti.ordine import Ordine
+from classi.oggetti.classe_ricetta import Ricetta
+from classi.oggetti.classe_ordine import Ordine
 from abc import ABC, abstractmethod
 from datetime import datetime, date
 from sqlalchemy import text
@@ -232,7 +232,7 @@ class ProfiloCliente(ProfiloUtente) :
 
     def __init__(self, nome: str, password: str, id_u: str, tipo_p: str):
         super().__init__(nome,password,id_u,tipo_p)
-        self.ricetta.__init__(self.id_utente)
+        self.ricetta= Ricetta(self.id_utente)
 
     def associazione_profilo_utente(self) -> None:
 
