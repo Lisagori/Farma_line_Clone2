@@ -1,7 +1,7 @@
-import random
-import pandas as pd
 from sqlalchemy import text
 from db import connection
+import pandas as pd
+import random
 
 
 class Ordine :
@@ -61,7 +61,6 @@ class Ordine :
 
 
             if ck_se_presente :
-                print(self.quanto_compro)
                 quantity = quantity + self.quanto_compro[codice_input]
 
             query = f"SELECT quantità FROM FarmaciMagazzino WHERE quantità < '{quantity}' AND codice = '{codice_input}' "
@@ -142,7 +141,7 @@ class Ordine :
             print(f" codice : {prodotto["codice_farmaco"]} ")
             print(f" nome : {prodotto["nome"]} ")
             print(f" quantità : {self.quanto_compro[prodotto["codice_farmaco"]]} ")
-            print(f" prezzo : {self.quanto_compro[prodotto["codice_farmaco"]] * float(prodotto["prezzo"])}")
+            print(f" prezzo : {self.quanto_compro[prodotto["codice_farmaco"]] * float(prodotto["prezzo"])} €")
 
     def update_database(self, id_utente :str)->None:
 

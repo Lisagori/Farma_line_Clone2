@@ -381,7 +381,7 @@ class ProfiloCliente(ProfiloUtente) :
 
     def pagare(self, indirizzo: str) -> bool:
 
-        ck_data: bool
+        ck_data: bool = False
         ck_opzioni : bool = False
         metodo: str
         prezzo_tot: float = 0
@@ -407,18 +407,20 @@ class ProfiloCliente(ProfiloUtente) :
                 if metodo == "1":
 
                     print("INSERIMENTO DATI CARTA")
-                    nome = input("Inserire il nome dell'intestatario : ")
-                    cognome = input("Inserire il cognome dell'intestatario : ")
+                    nome = check_se_vuoto("Inserire il nome dell'intestatario : ")
+                    cognome = check_se_vuoto("Inserire il cognome dell'intestatario : ")
                     numero_carta = controlla("Inserire numero della carta : ", 16)
-                    data_input = controlla("Inserire  data di scadenza della carta(gg/mm/aaaa): ", 10)
-                    ck_data= False
-                    while not ck_data:
+
+                    while not ck_data :
+                        data_input = controlla("Inserire  data di scadenza della carta(gg/mm/aaaa): ", 10)
+
                         try:
                             data_scadenza = datetime.strptime(data_input, "%d/%m/%Y").date()
                             ck_data = True
                         except ValueError:
                             print("Data non valida!")
-                            ck_data= False
+                            ck_data = False
+
                     cvc = controlla("Inserire il CVC : ", 3)
 
                     print("DATI DELLA CARTA")
