@@ -16,6 +16,7 @@ class Ordine :
     def aggiunta_carrello(self,results) -> None:
 
         ck: bool = False
+        rimane :int = 0
         ck_se_presente : bool = False
         controllo_q: bool = False
         verifica_cod: bool = False
@@ -48,20 +49,30 @@ class Ordine :
                 ck_se_presente = True
                 break
 
+        if ck_se_presente :
+            rimane = self.carrello["quantità"]-self.quanto_compro[codice_input]
+            print(" Il farmaco è stato precedentemente selezionato. ")
+            print(f"Con la precedente selzione rimangono {rimane} campioni ")
+
         # sezione di codice per controllare che la quantità che si vuole acquistare sia disponibile
         while not controllo_q: #  consente di riprovare se non è sufficente la quantità
             ck = False
+
             while not ck:
                 try:
                     quantity = int(input("Inserire la quantità di prodotto che si vuole aqcuistare : "))
-                    ck = True
+                    if quantity == 0 :
+                        print("non può assumere valore nullo, riprovare ")
+                        ck = False
+                    else :
+                        ck = True
                 except ValueError:
                     ck = False
                     print("il valore inserito non è compatibile, riprovare")
 
-
-            if ck_se_presente :
+            if ck_se_presente:
                 quantity = quantity + self.quanto_compro[codice_input]
+
 
             query = f"SELECT quantità FROM FarmaciMagazzino WHERE quantità < '{quantity}' AND codice = '{codice_input}' "
             q_trovato = pd.read_sql(query, connection)
@@ -105,8 +116,9 @@ class Ordine :
                     print("Operazione non valida.")
 
                 controllo_q = True
+
             else: # non trova riscontri in magazzino
-                if q_trovato.iloc[0, 0] == 0:
+                if q_trovato.iloc[0, 0] == 0 or rimane == 0:
                     print("Il prodotto è terminato non è possibile acquistarlo")
                     controllo_q = True
                 else:
