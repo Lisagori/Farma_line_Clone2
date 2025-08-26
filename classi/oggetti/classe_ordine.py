@@ -65,7 +65,7 @@ class Ordine :
 
             while not ck:
                 try:
-                    quantity = int(input("Inserire la quantità di prodotto che si vuole aqcuistare : "))
+                    quantity = int(input("Inserire la quantità di prodotto che si vuole acquistare : "))
                     if quantity == 0 :
                         print("non può assumere valore nullo, riprovare ")
                         ck = False
