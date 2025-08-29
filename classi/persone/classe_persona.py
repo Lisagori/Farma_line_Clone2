@@ -346,7 +346,6 @@ class ProfiloCliente(ProfiloUtente) :
         indirizzo_domicilio: str
         scelta_ind: str = "exit"
         controllo_ricetta: int
-        ck_pagamento :bool
 
         controllo_ricetta = self.ricetta.verifica_dati_ricetta(self.ordine.carrello, self.ordine.quanto_compro)
 
@@ -361,28 +360,23 @@ class ProfiloCliente(ProfiloUtente) :
             if scelta_ind == "1":
                 indirizzo_domicilio = input("Inserire l'indirizzo di domicilio a cui si vuole ricevere l'ordine : ")
                 print(f"Operazione andata a buon fine, l'ordine sarà spedito presso {indirizzo_domicilio}")
-                ck_pagamento = self.pagare(indirizzo_domicilio)
-                while not ck_pagamento:
-                    ck_pagamento=self.pagare(indirizzo_domicilio)
+                self.pagare(indirizzo_domicilio)
+
 
             elif scelta_ind== "2":
                 print("L'ordine potrà essere ritirato entro 10 giorni presso la nostra sede fisica in Via Univeristà di Santa Marta, 26")
                 print("Operazione andata a buon fine")
 
-                ck_pagamento = self.pagare("Via Univeristà di Santa Marta, 26")
-
-                while not ck_pagamento:
-                    ck_pagamento=self.pagare(indirizzo_domicilio)
+                self.pagare("Via Univeristà di Santa Marta, 26")
 
             else:
                 print("operazione non valida ")
         else :
             print("il carrello è vuoto , l'operazione di acquisto verrà terminata")
 
-    def pagare(self, indirizzo: str) -> bool:
+    def pagare(self, indirizzo: str) -> None:
 
         ck_data: bool = False
-        ck_opzioni : bool = False
         metodo: str
         prezzo_tot: float = 0
 
@@ -393,68 +387,65 @@ class ProfiloCliente(ProfiloUtente) :
 
         print(f"Prezzo totale dell'ordine : {prezzo_tot} €")
 
-        while not ck_opzioni :
-            print("se si desidera procedere all'acquisto digitare 1")
-            print("se si desidera annullare l'operazione digitare exit")
-            scelta = input()
+        print("se si desidera procedere all'acquisto digitare 1")
+        print("se si desidera annullare l'operazione digitare exit")
+        scelta = input()
 
-            while scelta == "1":
-                print("Scegliere metodo di pagamento")
-                print("digitare 1 per pagare con carta di credito o debito (American Express, Euro/Mastercard, Visa, Maestro)")
-                print("digitare 2 per pagare con portafoglio digitale (paypal , Google pay, Apple pay)")
-                metodo = input()
+        if scelta == "1":
+            print("Scegliere metodo di pagamento")
+            print("digitare 1 per pagare con carta di credito o debito (American Express, Euro/Mastercard, Visa, Maestro)")
+            print("digitare 2 per pagare con portafoglio digitale (paypal , Google pay, Apple pay)")
+            metodo = input()
 
-                if metodo == "1":
+            if metodo == "1":
 
-                    print("INSERIMENTO DATI CARTA")
-                    nome = check_se_vuoto("Inserire il nome dell'intestatario : ")
-                    cognome = check_se_vuoto("Inserire il cognome dell'intestatario : ")
-                    numero_carta = controlla("Inserire numero della carta : ", 16)
+                print("INSERIMENTO DATI CARTA")
+                nome = check_se_vuoto("Inserire il nome dell'intestatario : ")
+                cognome = check_se_vuoto("Inserire il cognome dell'intestatario : ")
+                numero_carta = controlla("Inserire numero della carta : ", 16)
 
-                    while not ck_data :
-                        data_input = controlla("Inserire  data di scadenza della carta(gg/mm/aaaa): ", 10)
+                while not ck_data :
+                    data_input = controlla("Inserire  data di scadenza della carta(gg/mm/aaaa): ", 10)
 
-                        try:
-                            data_scadenza = datetime.strptime(data_input, "%d/%m/%Y").date()
-                            ck_data = True
-                        except ValueError:
-                            print("Data non valida!")
-                            ck_data = False
+                    try:
+                        data_scadenza = datetime.strptime(data_input, "%d/%m/%Y").date()
+                        ck_data = True
+                    except ValueError:
+                        print("Data non valida!")
+                        ck_data = False
 
-                    cvc = controlla("Inserire il CVC : ", 3)
+                cvc = controlla("Inserire il CVC : ", 3)
 
-                    print("DATI DELLA CARTA")
-                    print(f"NOME : {nome}")
-                    print(f"COGNOME : {cognome}")
-                    print(f"NUMERO CARTA : {numero_carta}")
-                    print(f"DATA SCADENZA : {data_scadenza}")
-                    print(f"CVC : {cvc}")
+                print("DATI DELLA CARTA")
+                print(f"NOME : {nome}")
+                print(f"COGNOME : {cognome}")
+                print(f"NUMERO CARTA : {numero_carta}")
+                print(f"DATA SCADENZA : {data_scadenza}")
+                print(f"CVC : {cvc}")
 
-                    ck_data = check_date(data_scadenza)
-                    if not ck_data:
-                        print("operazione fallita, ritenta")#carta scaduta
-                        return False
-                    else:
-                        print("operazione andata a buon fine")
-                        self.ordine.associa_numero_ordine(indirizzo, self.id_utente)
-                        self.ordine.update_database(self.id_utente)
+                ck_data = check_date(data_scadenza)
 
-                        return True
-
-                elif metodo == "2":
+                if not ck_data:
+                    print("operazione fallita")#carta scaduta
+                else:
                     print("operazione andata a buon fine")
                     self.ordine.associa_numero_ordine(indirizzo, self.id_utente)
                     self.ordine.update_database(self.id_utente)
 
-                    return True
+            elif metodo == "2":
+                print("operazione andata a buon fine")
+                self.ordine.associa_numero_ordine(indirizzo, self.id_utente)
+                self.ordine.update_database(self.id_utente)
 
-                else :
-                    print("Opzione non valida, riprovare")
+            else :
+                print("Opzione non valida")
 
-            if scelta == "exit":
-                return False
-            else:
-                print("Opzione non valida, riprovare")
+            return None
+
+        elif scelta == "exit":
+            return None
+        else:
+            print("Opzione non valida")
 
 class ProfiloFarmacista(ProfilolavoratoreSanitario) :
 
@@ -674,7 +665,8 @@ class ProfiloFarmacista(ProfilolavoratoreSanitario) :
 
 class ProfiloMedico(ProfilolavoratoreSanitario) :
 
-    def crea_ricetta(self) -> None: #funzione medico
+    @staticmethod
+    def crea_ricetta() -> None: #funzione medico
 
         ck_cod: bool= False
         cod: str
@@ -707,14 +699,12 @@ class ProfiloMedico(ProfilolavoratoreSanitario) :
                         [[
                             cod_ricetta,
                             cod_fisc,
-                            cod_farmaco,
-                            self.nome_utente
+                            cod_farmaco
                         ]],
                         columns=[
                             'codice_ricetta',  # <-- niente spazio finale
                             'codice_fiscale',
                             'codice_farmaco',
-                            'nome_medico'
                         ]
                     )
                     new_ricetta.to_sql('Ricetta', connection, if_exists='append', index=False)

@@ -1,6 +1,7 @@
 from classi.persone.classe_persona import ProfiloUtente, ProfiloCliente, ProfiloFarmacista, ProfiloMedico, Persona
 from db import connection
 
+ck_op: bool = False
 ck_f : bool = False
 ck_m : bool = False
 operazione : str
@@ -63,13 +64,20 @@ if isinstance( operazione , ProfiloUtente) : # dentro il servizio della farmacia
     # sezione dedicata al farmacista
     elif isinstance(profilo , ProfiloFarmacista) :
 
-        profilo.aggiorna_magazzino()
-
         while not ck_f :
-            print("Se si desidera aggiungere nuovi farmaci al magazzino digitare 1")
+            print("Se si desidera aggiornare il magazzino digitare 1")
             print("Per verificare l'esistenza dell'ordine e confermare l'avvenuta consegna digitare 2")
             print("Per terminare le operazioni digitare exit.")
             opzioni = input()
+
+            if opzioni == "1":
+                profilo.aggiorna_magazzino()
+                print("Se si desidera aggiungere nuovi farmaci al magazzino digitare 1")
+                print("Per terminare le operazioni digitare exit.")
+                opzioni = input()
+
+                if opzioni == "2":
+                    ck_op = True
 
             while opzioni == "1":
                 print("PROCEDURA DI AGGIUNTA FARMACI")
@@ -79,7 +87,7 @@ if isinstance( operazione , ProfiloUtente) : # dentro il servizio della farmacia
                 print("Per terminare le operazioni digitare exit.")
                 opzioni = input()
 
-            while opzioni == "2":
+            while opzioni == "2" and not ck_op:
                 print("PROCEDURA DI VERIFICA")
                 profilo.verifica_ordine()
                 print("Se si desidera aggiungere nuovi farmaci al magazzino digitare 1")
@@ -91,6 +99,7 @@ if isinstance( operazione , ProfiloUtente) : # dentro il servizio della farmacia
                 ck_f = True
             else:
                 print("operazione inesistente")
+                ck_op = False
 
     #sezione dedicata al medico
     elif isinstance(profilo , ProfiloMedico):
